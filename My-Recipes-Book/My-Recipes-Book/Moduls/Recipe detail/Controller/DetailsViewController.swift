@@ -18,6 +18,7 @@ class DetailsViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(MainImageCell.self, forCellReuseIdentifier: "ImageCell")
+        tableView.register(IngredientCell.self, forCellReuseIdentifier: "ingredientCell")
         //        tableView.separatorStyle = .none
     }
 }
@@ -29,7 +30,11 @@ extension DetailsViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        if section == 2 {
+            return 5
+        } else {
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,9 +42,17 @@ extension DetailsViewController {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? MainImageCell else { return UITableViewCell() }
             
+            
+            cell.backgroundColor = .white
+            return cell
+        } else if indexPath.section == 2  {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath) as? IngredientCell else { return UITableViewCell() }
+            
+            
             cell.backgroundColor = .white
             return cell
         } else {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             
             cell.backgroundColor = .white
@@ -52,49 +65,86 @@ extension DetailsViewController {
 extension DetailsViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        headerView.backgroundColor = .white
         let label = UILabel()
         
         headerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-        }
-
+        
         if section == 0 {
             label.text = "How to make Tasty Fish (point & Kill)"
-            label.font = UIFont.boldSystemFont(ofSize: 27)
+            label.font = UIFont(name: "Poppins-Bold", size: 24)
             label.textColor = .black
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
             
+            label.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.left.equalToSuperview().offset(16)
+                make.right.equalToSuperview().offset(-16)
+            }
             return headerView
         } else if section == 1 {
             
             label.text = "Instructions"
-            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.font = UIFont(name: "Poppins-Bold", size: 20)
             label.textColor = .black
+            
+            label.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.left.equalToSuperview().offset(16)
+                make.right.equalToSuperview().offset(-16)
+            }
             return headerView
         } else {
+            let countItemsLabel = UILabel()
+            countItemsLabel.text = "5 items"
+            countItemsLabel.textColor = #colorLiteral(red: 0.5686274767, green: 0.5686274767, blue: 0.5686274767, alpha: 1)
+            countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            headerView.addSubview(countItemsLabel)
+            
+            
             label.text = "Ingredients"
-            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.font = UIFont(name: "Poppins-Bold", size: 20)
             label.textColor = .black
+            
+            
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.left.equalToSuperview().offset(16)
+            }
+            
+            countItemsLabel.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.centerY.equalToSuperview()
+            }
+            
             return headerView
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
+        
         return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return CGFloat(260)
+            return 260
+        } else if indexPath.section == 2 {
+            return 90
         } else {
             return 50
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
