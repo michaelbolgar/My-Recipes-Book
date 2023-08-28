@@ -16,46 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = createTabBarController()
+        window.rootViewController = UINavigationController(rootViewController: DetailsViewController()) 
         window.makeKeyAndVisible()
         self.window = window
-    }
-
-    func createTabBarController() -> UITabBarController {
-        let tabbarController = UITabBarController()
-        tabbarController.tabBar.backgroundColor = .cyan
-        tabbarController.viewControllers = [
-            createHomeViewController(),
-            createSavedViewController(),
-            createDetailsViewController(),
-            createProfileViewController()
-        ]
-
-        return tabbarController
-    }
-
-    func createHomeViewController() -> UINavigationController {
-        let homeVC = HomeViewController()
-        homeVC.tabBarItem = UITabBarItem (title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        return UINavigationController(rootViewController: homeVC)
-    }
-
-    func createSavedViewController() -> UINavigationController {
-        let savedVC = SavedViewController()
-        savedVC.tabBarItem = UITabBarItem (title: "Saved", image: UIImage(systemName: "bookmark"), tag: 1)
-        return UINavigationController(rootViewController: savedVC)
-    }
-
-    func createDetailsViewController() -> UINavigationController {
-        let detailsVC = DetailsViewController()
-        detailsVC.tabBarItem = UITabBarItem (title: "News", image: UIImage(systemName: "bell"), tag: 2)
-        return UINavigationController(rootViewController: detailsVC)
-    }
-
-    func createProfileViewController() -> UINavigationController {
-        let profileVC = ProfileViewController()
-        profileVC.tabBarItem = UITabBarItem (title: "Profile", image: UIImage(systemName: "person"), tag: 3)
-        return UINavigationController(rootViewController: profileVC)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
