@@ -20,7 +20,7 @@ class MainImageCell: UITableViewCell {
         return mainImage
     }()
     
-    lazy var starImageView: UIImageView = {
+    private lazy var starImageView: UIImageView = {
         var starImageView = UIImageView()
         starImageView.image = UIImage(systemName: "star.fill")
         starImageView.tintColor = .black
@@ -31,7 +31,7 @@ class MainImageCell: UITableViewCell {
     lazy var ratingLabel: UILabel = {
         var ratingLabel = UILabel()
         ratingLabel.text = "4,5"
-        ratingLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        ratingLabel.font = UIFont(name: "Poppins-Bold", size: 17)
         ratingLabel.textColor = .black
         return ratingLabel
     }()
@@ -43,7 +43,7 @@ class MainImageCell: UITableViewCell {
         return reviewsLabel
     }()
     
-    lazy var ratingStackView: UIStackView = {
+    private lazy var ratingStackView: UIStackView = {
         var ratingStackView = UIStackView()
         ratingStackView.spacing = 8
         ratingStackView.alignment = .fill
