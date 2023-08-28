@@ -36,7 +36,7 @@
 		F43422552A9C2B700025C556 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F43422572A9C2BEA0025C556 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "My-Recipes-Book.xcodeproj"; path = "../../../../../../../../Desktop/IOS Developer Kirill/SwiftMarathon/2Challenge/My-Recipes-Book/My-Recipes-Book/My-Recipes-Book.xcodeproj"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				F434221E2A9C29930025C556 /* My-Recipes-Book */,
-				F43422672A9C80B70025C556 /* My-Recipes-Book.app */,
+				F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -283,7 +283,7 @@
 				F43422632A9C802E0025C556 /* SnapKit */,
 			);
 			productName = "My-Recipes-Book";
-			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.app */;
+			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
