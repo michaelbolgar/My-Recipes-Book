@@ -7,15 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FC0E1492A9CE1B9003610BE /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E1482A9CE1B9003610BE /* TrendingView.swift */; };
-		4FC0E14B2A9CE270003610BE /* TrendRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E14A2A9CE270003610BE /* TrendRecipeCell.swift */; };
-		4FC0E14D2A9CE2C9003610BE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E14C2A9CE2C9003610BE /* UIImageViewExtension.swift */; };
-		4FC0E1502A9DC415003610BE /* RecipeDataModelForCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E14F2A9DC415003610BE /* RecipeDataModelForCell.swift */; };
-		4FC0E1632AA1B093003610BE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E1622AA1B093003610BE /* EndPointType.swift */; };
-		4FC0E1662AA22ACA003610BE /* RequestBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E1652AA22ACA003610BE /* RequestBuilding.swift */; };
-		4FC0E1682AA22AE8003610BE /* NetworkManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E1672AA22AE8003610BE /* NetworkManagment.swift */; };
-		4FC0E16A2AA22B7A003610BE /* RecipeEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E1692AA22B7A003610BE /* RecipeEndPoint.swift */; };
-		4FC0E16C2AA22B8D003610BE /* NetworkRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0E16B2AA22B8D003610BE /* NetworkRouting.swift */; };
+		0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B292A9D1FB500B72054 /* HomeView.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -32,15 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FC0E1482A9CE1B9003610BE /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
-		4FC0E14A2A9CE270003610BE /* TrendRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendRecipeCell.swift; sourceTree = "<group>"; };
-		4FC0E14C2A9CE2C9003610BE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
-		4FC0E14F2A9DC415003610BE /* RecipeDataModelForCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataModelForCell.swift; sourceTree = "<group>"; };
-		4FC0E1622AA1B093003610BE /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
-		4FC0E1652AA22ACA003610BE /* RequestBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilding.swift; sourceTree = "<group>"; };
-		4FC0E1672AA22AE8003610BE /* NetworkManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagment.swift; sourceTree = "<group>"; };
-		4FC0E1692AA22B7A003610BE /* RecipeEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEndPoint.swift; sourceTree = "<group>"; };
-		4FC0E16B2AA22B8D003610BE /* NetworkRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouting.swift; sourceTree = "<group>"; };
+		0A3D3B292A9D1FB500B72054 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = SOURCE_ROOT; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,66 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4FC0E14E2A9CE337003610BE /* TableCells */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E14A2A9CE270003610BE /* TrendRecipeCell.swift */,
-			);
-			path = TableCells;
-			sourceTree = "<group>";
-		};
-		4FC0E1642AA22A85003610BE /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E16E2AA22C53003610BE /* Services */,
-				4FC0E16D2AA22C2D003610BE /* EndPoint */,
-				4FC0E16F2AA22C64003610BE /* Manager */,
-				4FC0E1702AA22C73003610BE /* Encoding */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4FC0E16D2AA22C2D003610BE /* EndPoint */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E1692AA22B7A003610BE /* RecipeEndPoint.swift */,
-			);
-			path = EndPoint;
-			sourceTree = "<group>";
-		};
-		4FC0E16E2AA22C53003610BE /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E16B2AA22B8D003610BE /* NetworkRouting.swift */,
-				4FC0E1622AA1B093003610BE /* EndPointType.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		4FC0E16F2AA22C64003610BE /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E1672AA22AE8003610BE /* NetworkManagment.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		4FC0E1702AA22C73003610BE /* Encoding */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E1652AA22ACA003610BE /* RequestBuilding.swift */,
-			);
-			path = Encoding;
-			sourceTree = "<group>";
-		};
-		4FC0E1712AA6550F003610BE /* GeneralModels */ = {
-			isa = PBXGroup;
-			children = (
-				4FC0E14F2A9DC415003610BE /* RecipeDataModelForCell.swift */,
-			);
-			path = GeneralModels;
-			sourceTree = "<group>";
-		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
@@ -146,10 +70,8 @@
 				F43422332A9C29C50025C556 /* Moduls */,
 				F43422592A9C2C550025C556 /* Fonts */,
 				F43422282A9C29950025C556 /* Assets.xcassets */,
-				4FC0E1712AA6550F003610BE /* GeneralModels */,
 				F43422572A9C2BEA0025C556 /* Palette.swift */,
 				F434222D2A9C29950025C556 /* Info.plist */,
-				4FC0E1642AA22A85003610BE /* Networking */,
 			);
 			path = "My-Recipes-Book";
 			sourceTree = "<group>";
@@ -220,6 +142,7 @@
 		F434223E2A9C2A410025C556 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A3D3B292A9D1FB500B72054 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,8 +239,6 @@
 		F43422502A9C2B200025C556 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4FC0E1482A9CE1B9003610BE /* TrendingView.swift */,
-				4FC0E14E2A9CE337003610BE /* TableCells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				F43422552A9C2B700025C556 /* UIColor Extension.swift */,
-				4FC0E14C2A9CE2C9003610BE /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -424,22 +344,14 @@
 			files = (
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
-				4FC0E1492A9CE1B9003610BE /* TrendingView.swift in Sources */,
-				4FC0E16C2AA22B8D003610BE /* NetworkRouting.swift in Sources */,
 				F43422202A9C29930025C556 /* AppDelegate.swift in Sources */,
-				4FC0E1502A9DC415003610BE /* RecipeDataModelForCell.swift in Sources */,
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
-				4FC0E1662AA22ACA003610BE /* RequestBuilding.swift in Sources */,
+				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
-				4FC0E1632AA1B093003610BE /* EndPointType.swift in Sources */,
-				4FC0E1682AA22AE8003610BE /* NetworkManagment.swift in Sources */,
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
-				4FC0E14B2A9CE270003610BE /* TrendRecipeCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
-				4FC0E14D2A9CE2C9003610BE /* UIImageViewExtension.swift in Sources */,
-				4FC0E16A2AA22B7A003610BE /* RecipeEndPoint.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
