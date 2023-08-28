@@ -52,36 +52,47 @@ extension DetailsViewController {
 extension DetailsViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        let label = UILabel()
         
+        headerView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
+
         if section == 0 {
-            let label = UILabel()
             label.text = "How to make Tasty Fish (point & Kill)"
             label.font = UIFont.boldSystemFont(ofSize: 27)
             label.textColor = .black
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
             
-            headerView.addSubview(label)
+            return headerView
+        } else if section == 1 {
             
-            label.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-                label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-                label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
-            ])
+            label.text = "Instructions"
+            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.textColor = .black
             return headerView
         } else {
+            label.text = "Ingredients"
+            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.textColor = .black
             return headerView
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70
+        
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return CGFloat(270)
+            return CGFloat(260)
         } else {
             return 50
         }
