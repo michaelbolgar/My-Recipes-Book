@@ -19,11 +19,10 @@
 		F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422552A9C2B700025C556 /* UIColor Extension.swift */; };
 		F43422582A9C2BEA0025C556 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422572A9C2BEA0025C556 /* Palette.swift */; };
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
-		F43422612A9C2D4E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422602A9C2D4E0025C556 /* SnapKit */; };
+		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F434221C2A9C29930025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,7 +36,7 @@
 		F43422552A9C2B700025C556 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F43422572A9C2BEA0025C556 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		F434225E2A9C2D360025C556 /* SnapKit-develop */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SnapKit-develop"; path = "../../../../../Downloads/SnapKit-develop"; sourceTree = "<group>"; };
+		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F43422612A9C2D4E0025C556 /* SnapKit in Frameworks */,
+				F43422642A9C802E0025C556 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,17 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				F434221E2A9C29930025C556 /* My-Recipes-Book */,
-				F434221D2A9C29930025C556 /* Products */,
-				F434225F2A9C2D4E0025C556 /* Frameworks */,
+				F43422672A9C80B70025C556 /* My-Recipes-Book.app */,
 			);
-			sourceTree = "<group>";
-		};
-		F434221D2A9C29930025C556 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F434221C2A9C29930025C556 /* My-Recipes-Book.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F434221E2A9C29930025C556 /* My-Recipes-Book */ = {
@@ -80,7 +70,6 @@
 				F43422282A9C29950025C556 /* Assets.xcassets */,
 				F43422572A9C2BEA0025C556 /* Palette.swift */,
 				F434222D2A9C29950025C556 /* Info.plist */,
-				F434225E2A9C2D360025C556 /* SnapKit-develop */,
 			);
 			path = "My-Recipes-Book";
 			sourceTree = "<group>";
@@ -274,13 +263,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F434225F2A9C2D4E0025C556 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,10 +280,10 @@
 			);
 			name = "My-Recipes-Book";
 			packageProductDependencies = (
-				F43422602A9C2D4E0025C556 /* SnapKit */,
+				F43422632A9C802E0025C556 /* SnapKit */,
 			);
 			productName = "My-Recipes-Book";
-			productReference = F434221C2A9C29930025C556 /* My-Recipes-Book.app */;
+			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +310,10 @@
 				Base,
 			);
 			mainGroup = F43422132A9C29930025C556;
-			productRefGroup = F434221D2A9C29930025C556 /* Products */;
+			packageReferences = (
+				F43422622A9C802E0025C556 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
+			productRefGroup = F43422132A9C29930025C556;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -569,9 +554,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		F43422622A9C802E0025C556 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		F43422602A9C2D4E0025C556 /* SnapKit */ = {
+		F43422632A9C802E0025C556 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = F43422622A9C802E0025C556 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
