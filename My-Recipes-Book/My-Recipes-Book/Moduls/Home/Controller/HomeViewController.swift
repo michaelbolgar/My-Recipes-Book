@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
+        title = "Get amazing recepies for cooking"
         view.addSubview(homeView)
         
     }
