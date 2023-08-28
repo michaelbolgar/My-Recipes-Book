@@ -17,10 +17,12 @@ class DetailsViewController: UITableViewController {
         view.backgroundColor = .white
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+        tableView.register(MainImageCell.self, forCellReuseIdentifier: "ImageCell")
+        //        tableView.separatorStyle = .none
     }
 }
 
+// MARK: - UITableViewDataSource
 extension DetailsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         3
@@ -31,12 +33,23 @@ extension DetailsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.backgroundColor = .white
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? MainImageCell else { return UITableViewCell() }
+            
+            cell.backgroundColor = .white
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            
+            cell.backgroundColor = .white
+            return cell
+        }
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+extension DetailsViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         
@@ -60,17 +73,17 @@ extension DetailsViewController {
         } else {
             return headerView
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70 // Укажите желаемую высоту
+        return 70
     }
     
-    
-    
-    
-    
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return CGFloat(270)
+        } else {
+            return 50
+        }
+    }
 }
