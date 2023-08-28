@@ -12,16 +12,14 @@ class HomeView: UIView {
 
     //MARK: - Properties
     
-    private 
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCompositionalLayout() )
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .yellow
+        return collectionView
+    }()
 
-//    private lazy var rulesLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Game"
-//        label.textColor = .purple
-//        label.numberOfLines = 0
-//        label.font = UIFont(name: "Poppins-Bold", size: 32)
-//        return label
-//    }()
 
     //MARK: - UI Elements
 
@@ -31,13 +29,9 @@ class HomeView: UIView {
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.redPrimary80
+        setOutlets()
+        setupConstraints()
 
-//        self.addSubview(rulesLabel)
-//
-//        rulesLabel.snp.makeConstraints { make in
-//            make.top.equalTo(self.snp.top).offset(200)
-//            make.centerX.equalToSuperview()
-//        }
     }
 
     required init?(coder: NSCoder) {
@@ -45,9 +39,40 @@ class HomeView: UIView {
     }
 
     //MARK: - Methods
-
-
-    //MARK: - Extension
+    
+    private func setOutlets() {
+        self.addSubview(collectionView)
+    }
+    
+    private func setupConstraints() {
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        
+        
+    }
 
 }
 
+//MARK: - UICollectionViewDelegate
+
+extension HomeView: UICollectionViewDelegate {
+    
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension HomeView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
+}
