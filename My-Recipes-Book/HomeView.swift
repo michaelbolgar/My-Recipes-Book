@@ -13,7 +13,7 @@ class HomeView: UIView {
     //MARK: - Properties
     
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCompositionalLayout() )
+        let collectionView = UICollectionView()//frame: .zero)//, collectionViewLayout: self.createCompositionalLayout() )
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .yellow
@@ -50,10 +50,10 @@ class HomeView: UIView {
         }
     }
     
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        
-        
-    }
+//    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+//        
+//        
+//    }
 
 }
 
@@ -67,11 +67,11 @@ extension HomeView: UICollectionViewDelegate {
 
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        UICollectionViewCell()
     }
     
     
