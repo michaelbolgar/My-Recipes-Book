@@ -8,7 +8,7 @@
 import UIKit
 
 class TrendingCollectionViewCell: UICollectionViewCell {
-    static let id = "TrendingCollectionViewCell"
+    static let reuseID = "TrendingCollectionViewCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

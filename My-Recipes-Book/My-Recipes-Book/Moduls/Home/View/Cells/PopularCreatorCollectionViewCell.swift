@@ -7,8 +7,8 @@
 
 import UIKit
 
-class PopularCollectionViewCell: UICollectionViewCell {
-    static let id = "PopularCollectionViewCell"
+class PopularCreatorCollectionViewCell: UICollectionViewCell {
+    static let reuseID = "PopularCollectionViewCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
