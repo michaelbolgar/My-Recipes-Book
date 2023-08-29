@@ -12,7 +12,8 @@ final class IngredientCell: UITableViewCell {
     // MARK: - Public UI Properties
     lazy var ingredientImageView: UIImageView = {
         var ingredientImageView = UIImageView()
-    
+        ingredientImageView.layer.cornerRadius = 10
+        ingredientImageView.clipsToBounds = true
         return ingredientImageView
     }()
     
@@ -20,14 +21,19 @@ final class IngredientCell: UITableViewCell {
         var ingrLabel = UILabel()
         ingrLabel.textColor = .black
         ingrLabel.font = UIFont(name: "Poppins-Bold", size: 15)
-        ingrLabel.adjustsFontSizeToFitWidth = true
-        ingrLabel.minimumScaleFactor = 0.5
+        ingrLabel.numberOfLines = 0
+//        ingrLabel.adjustsFontSizeToFitWidth = true
+//        ingrLabel.minimumScaleFactor = 0.5
         return ingrLabel
     }()
     
     lazy var weightLabel: UILabel = {
         var weightLabel = UILabel()
         weightLabel.text = "?"
+        weightLabel.textAlignment = .left
+        weightLabel.adjustsFontSizeToFitWidth = true
+        weightLabel.minimumScaleFactor = 0.5
+        weightLabel.font = UIFont.systemFont(ofSize: 15)
         weightLabel.textColor = #colorLiteral(red: 0.5686274767, green: 0.5686274767, blue: 0.5686274767, alpha: 1)
         return weightLabel
     }()
@@ -89,6 +95,9 @@ final class IngredientCell: UITableViewCell {
     func configure(with ingredient: Ingredient?) {
         ingredientNameLabel.text = ingredient?.name
         ingredientImageView.image = UIImage(named: "question")
+        guard let amount = ingredient?.amount else { return }
+        guard let unit = ingredient?.unit else { return }
+        weightLabel.text = "\(amount) \(unit)"
   
         RecipeManager.shared.fetchIngredientImage(from: ingredient?.image ?? "") { [weak self] result in
             switch result {
@@ -126,15 +135,15 @@ final class IngredientCell: UITableViewCell {
         }
         
         ingredientImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(5)
+            make.left.equalToSuperview().offset(5)
+            make.right.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
         }
         
         ingredientNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(squareView)
-            make.left.equalTo(squareView.snp.right).offset(15)
+            make.left.equalTo(squareView.snp.right).offset(10)
             make.right.equalTo(weightLabel.snp.left).offset(-10)
         }
         
@@ -146,8 +155,8 @@ final class IngredientCell: UITableViewCell {
         
         weightLabel.snp.makeConstraints { make in
             make.centerY.equalTo(squareView)
-            make.right.equalTo(checkBoxButton.snp.left)
-            make.width.equalTo(50)
+            make.right.equalTo(checkBoxButton.snp.left).offset(-5)
+            make.width.equalTo(80)
         }
         
         activityIndicator.snp.makeConstraints { make in

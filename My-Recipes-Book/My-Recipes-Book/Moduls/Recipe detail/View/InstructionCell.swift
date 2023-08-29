@@ -37,9 +37,9 @@ final class InstructionCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(_ instruction: String, number: String) {
-        numberLabel.text = "\(number)."
-        instructionLabel.text = instruction
+    func configure(_ step: Step?) {
+        numberLabel.text = "\(step?.number ?? 0)."
+        instructionLabel.text = step?.step
     }
     
     // MARK: - Private Methods
@@ -47,12 +47,12 @@ final class InstructionCell: UITableViewCell {
         numberLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.left.equalToSuperview().offset(20)
-            make.width.equalTo(12)
+            make.width.equalTo(25)
         }
         
         instructionLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.left.equalTo(numberLabel.snp.right).offset(8)
+            make.left.equalTo(numberLabel.snp.right).offset(2)
             make.bottom.equalToSuperview()
             make.right.equalToSuperview().offset(-16)
         }
