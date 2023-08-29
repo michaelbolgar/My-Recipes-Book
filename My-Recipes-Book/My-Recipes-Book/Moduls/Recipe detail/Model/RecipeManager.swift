@@ -14,7 +14,7 @@ enum NetworkError: Error {
 }
 
 enum Link: String {
-    case recipeURL = "https://api.spoonacular.com/recipes/716429/information?apiKey=5ae93d38d7cf4f94912465f822fa82eb&includeNutrition=false"
+    case recipeURL = "https://api.spoonacular.com/recipes/324694/information?apiKey=5ae93d38d7cf4f94912465f822fa82eb&includeNutrition=false"
 }
 
 final class RecipeManager {

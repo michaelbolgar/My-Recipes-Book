@@ -11,13 +11,13 @@ import SnapKit
 
 final class DetailsViewController: UITableViewController {
     
-    var instructions = [
-        "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.",
-        "Place chopped eggs in a bowl.",
-        "Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice.",
-        "Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper.",
-        "Stir and serve on your favorite bread or crackers.",
-    ]
+//    var instructions = [
+//        "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.",
+//        "Place chopped eggs in a bowl.",
+//        "Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice.",
+//        "Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper.",
+//        "Stir and serve on your favorite bread or crackers.",
+//    ]
     
     var recipe: Recipe?
     
@@ -45,10 +45,10 @@ final class DetailsViewController: UITableViewController {
 //        cell.configure(with: ingredient?.name ?? "")
 //    }
     
-    func configureInstructionCell(_ cell: InstructionCell, at indexPath: IndexPath) {
-        let instruction = instructions[indexPath.row]
-        cell.configure(instruction, number: String(indexPath.row + 1))
-    }
+//    func configureInstructionCell(_ cell: InstructionCell, at indexPath: IndexPath) {
+//        let instruction = instructions[indexPath.row]
+//        cell.configure(instruction, number: String(indexPath.row + 1))
+//    }
 }
 
 // MARK: - Networking
@@ -76,7 +76,7 @@ extension DetailsViewController {
         if section == 2 {
             return recipe?.extendedIngredients.count ?? 1
         } else {
-            return section == 0 ? 1 : instructions.count
+            return section == 0 ? 1 : recipe?.analyzedInstructions.first?.steps.count ?? 1
         }
     }
     
@@ -111,7 +111,10 @@ extension DetailsViewController {
             else {
                 return UITableViewCell()
             }
-            configureInstructionCell(cell, at: indexPath)
+            
+//            configureInstructionCell(cell, at: indexPath)
+            let step = recipe?.analyzedInstructions.first?.steps[indexPath.row]
+            cell.configure(step)
             cell.backgroundColor = .white
             return cell
         }

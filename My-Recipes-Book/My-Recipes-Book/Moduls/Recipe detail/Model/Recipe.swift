@@ -12,7 +12,8 @@ struct Recipe: Codable {
     let title: String
     let image: String
     let extendedIngredients: [Ingredient]
-
+    let instructions: String
+    let analyzedInstructions: [AnalyzedInstructions]
 }
 
 struct Ingredient: Codable {
@@ -21,4 +22,13 @@ struct Ingredient: Codable {
     let amount: Double
     let unit: String
     let image: String
+}
+
+struct AnalyzedInstructions: Codable {
+    let steps: [Step]
+}
+
+struct Step: Codable {
+    let number: Int
+    let step: String
 }
