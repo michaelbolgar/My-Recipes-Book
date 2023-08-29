@@ -8,24 +8,14 @@
 import UIKit
 import SnapKit
 
-class MainImageCell: UITableViewCell {
+final class MainImageCell: UITableViewCell {
     
-    // MARK: - UI Properties
+    // MARK: - Public UI Properties
     lazy var mainImageView: UIImageView = {
         var mainImage = UIImageView()
-        mainImage.image = UIImage(named: "DishImage")
-        mainImage.translatesAutoresizingMaskIntoConstraints = false
         mainImage.layer.cornerRadius = 10
         mainImage.clipsToBounds = true
         return mainImage
-    }()
-    
-    private lazy var starImageView: UIImageView = {
-        var starImageView = UIImageView()
-        starImageView.image = UIImage(systemName: "star.fill")
-        starImageView.tintColor = .black
-        starImageView.translatesAutoresizingMaskIntoConstraints = false
-        return starImageView
     }()
     
     lazy var ratingLabel: UILabel = {
@@ -43,6 +33,14 @@ class MainImageCell: UITableViewCell {
         return reviewsLabel
     }()
     
+    // MARK: - Private UI Properties
+    private lazy var starImageView: UIImageView = {
+        var starImageView = UIImageView()
+        starImageView.image = UIImage(systemName: "star.fill")
+        starImageView.tintColor = .black
+        return starImageView
+    }()
+    
     private lazy var ratingStackView: UIStackView = {
         var ratingStackView = UIStackView()
         ratingStackView.spacing = 8
@@ -54,11 +52,20 @@ class MainImageCell: UITableViewCell {
         return ratingStackView
     }()
     
+    private lazy var activityIndicatior: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .gray
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(mainImageView)
         contentView.addSubview(ratingStackView)
+        mainImageView.addSubview(activityIndicatior)
         setupConstraints()
     }
     
@@ -66,9 +73,24 @@ class MainImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    func configure(with imageURL: String) {
+        if imageURL != "" {
+            RecipeManager.shared.fetchImage(from: imageURL) { [weak self] result in
+                switch result {
+
+                case .success(let imageData):
+                    self?.mainImageView.image = UIImage(data: imageData)
+                    self?.activityIndicatior.stopAnimating()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
-        // setup constraints to mainImage
         mainImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(16)
@@ -76,10 +98,15 @@ class MainImageCell: UITableViewCell {
             make.height.equalTo(190)
         }
         
-        // setup constraints to ratingStackView
         ratingStackView.snp.makeConstraints { make in
             make.top.equalTo(mainImageView.snp.bottom).offset(15)
             make.left.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().offset(-5)
+        }
+        
+        activityIndicatior.snp.makeConstraints { make in
+            make.centerX.equalTo(mainImageView.snp.centerX)
+            make.centerY.equalTo(mainImageView.snp.centerY)
         }
     }
 }
