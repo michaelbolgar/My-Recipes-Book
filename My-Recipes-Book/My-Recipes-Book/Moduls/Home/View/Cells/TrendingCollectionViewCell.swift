@@ -12,7 +12,7 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .yellow
+        contentView.backgroundColor = .orange
     }
     
     required init?(coder: NSCoder) {
