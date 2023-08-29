@@ -29,7 +29,8 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .cyan
         title = "Get amazing recepies for cooking"
         //view.addSubview(homeView)
-        
+        setOutlets()
+        setupConstraints()
     }
     
     //MARK: - Methods
@@ -47,8 +48,43 @@ class HomeViewController: UIViewController {
             make.edges.equalToSuperview()
         }
     }
+    //MARK: - Compositional layout creation
+    
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         
+        let layout = UICollectionViewCompositionalLayout { sectionNumber, layoutEnviroment in
+            switch sectionNumber {
+            case SectionType.trending.rawValue:
+                return self.createTrendingSection()
+            case SectionType.popularCategory.rawValue:
+                return self.createPopularCategorySection()
+            case SectionType.popularItem.rawValue:
+                return self.createPopularItemSection()
+            case SectionType.recentRecipe.rawValue:
+                return self.createRecentRecipeSection()
+            default: return nil
+            }
+        }
+        return layout
+    }
+    
+    private func createTrendingSection() -> NSCollectionLayoutSection {
+        
+    }
+    
+    private func createPopularCategorySection() -> NSCollectionLayoutSection {
+        
+    }
+    
+    private func createPopularItemSection() -> NSCollectionLayoutSection {
+        
+    }
+    
+    private func createRecentRecipeSection() -> NSCollectionLayoutSection {
+        
+    }
+    
+    private func createPopularCreatorSection() -> NSCollectionLayoutSection {
         
     }
     
@@ -82,6 +118,9 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case SectionType.popularItem.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.recentRecipe.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)
             return cell
         case SectionType.popularCreator.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath)
