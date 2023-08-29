@@ -64,12 +64,31 @@ extension HomeViewController: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 
 extension HomeViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        SectionType.allCases.count
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        switch indexPath.section {
+        case SectionType.trending.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.popularCategory.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.popularItem.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.popularCreator.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     
