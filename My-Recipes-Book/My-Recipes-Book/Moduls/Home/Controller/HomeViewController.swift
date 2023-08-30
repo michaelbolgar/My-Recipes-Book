@@ -42,7 +42,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setOutlets()
         setupConstraints()
-        }
     }
     
     //MARK: - Methods
@@ -91,7 +90,7 @@ extension HomeViewController {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(54))
         let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: layoutSectionHeaderSize,
-        elementKind: headerKind,
+            elementKind: headerKind,
             alignment: .top)
         return layoutSectionHeader
     }
