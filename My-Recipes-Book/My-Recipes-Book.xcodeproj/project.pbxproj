@@ -79,6 +79,7 @@
 				0A3D3B332A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift */,
 				0A3D3B352A9E6C2000B72054 /* RecentCollectionViewCell.swift */,
 				0A3D3B372A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift */,
+				0A3D3B432A9F672400B72054 /* HeaderCollectionReusableView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -388,6 +389,7 @@
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
 				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
+				0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */,
 				0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
