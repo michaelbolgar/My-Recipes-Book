@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setOutlets()
         setupConstraints()
+        }
     }
     
     //MARK: - Methods
@@ -112,7 +113,7 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
         section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
@@ -134,7 +135,8 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 19, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 19, trailing: 0)
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
     
@@ -155,7 +157,7 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
         return section
     }
     
@@ -176,7 +178,8 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
     
@@ -197,7 +200,8 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
 }
@@ -244,10 +248,38 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == headerKind {
+            
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
+            header.setup(setHeaderData(for: indexPath))
             return header
         }
         return .init()
+    }
+    
+    private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
+        var title: String
+        var isHidden: Bool
+        switch indexPath.section {
+        case SectionType.trending.rawValue :
+            title = "Trending now 🔥"
+            isHidden = false
+        case SectionType.popularCategory.rawValue:
+            title = "Popular category"
+            isHidden = true
+        case SectionType.popularItem.rawValue:
+            title = ""
+            isHidden = true
+        case SectionType.recentRecipe.rawValue:
+            title = "Recent recipe"
+            isHidden = false
+        case SectionType.popularCreator.rawValue:
+            title = "Popular creators"
+            isHidden = false
+        default:
+            title = ""
+            isHidden = true
+        }
+        return (title, isHidden)
     }
     
 }
