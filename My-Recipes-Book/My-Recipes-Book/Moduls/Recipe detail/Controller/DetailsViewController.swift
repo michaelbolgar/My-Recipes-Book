@@ -9,11 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-
-
 final class DetailsViewController: UITableViewController {
-
- 
+    
     
     // MARK: - Public Properties
     var recipe: Recipe?
@@ -164,6 +161,8 @@ extension DetailsViewController {
     }
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
+            cell.checkBoxDidTapped()
+        }
     }
 }
