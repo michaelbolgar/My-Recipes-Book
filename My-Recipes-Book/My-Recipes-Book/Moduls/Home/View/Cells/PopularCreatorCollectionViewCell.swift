@@ -13,6 +13,9 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .green
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderWidth = 1
+        contentView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
