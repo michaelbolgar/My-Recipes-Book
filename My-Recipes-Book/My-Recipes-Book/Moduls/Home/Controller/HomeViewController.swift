@@ -12,32 +12,47 @@ class HomeViewController: UIViewController {
     
     //MARK: - Propperties
     
+    let headerKind = UICollectionView.elementKindSectionHeader
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCompositionalLayout() )
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: TrendingCollectionViewCell.reuseID)
+        collectionView.register(PopularCategoryCollectionViewCell.self, forCellWithReuseIdentifier: PopularCategoryCollectionViewCell.reuseID)
+        collectionView.register(PopularItemCollectionViewCell.self, forCellWithReuseIdentifier: PopularItemCollectionViewCell.reuseID)
+        collectionView.register(RecentCollectionViewCell.self, forCellWithReuseIdentifier: RecentCollectionViewCell.reuseID)
+        collectionView.register(PopularCreatorCollectionViewCell.self, forCellWithReuseIdentifier: PopularCreatorCollectionViewCell.reuseID)
+        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: headerKind, withReuseIdentifier: HeaderCollectionReusableView.reuseID)
         //collectionView.backgroundColor = .yellow
         return collectionView
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController()
+        controller.isActive = true
+        controller.searchBar.placeholder = "Search recepies"
+        return controller
     }()
     
     //MARK: - Load view
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
-        title = "Get amazing recepies for cooking"
-        //view.addSubview(homeView)
         setOutlets()
         setupConstraints()
     }
     
     //MARK: - Methods
     private func setOutlets() {
+        view.backgroundColor = .cyan
+        title = "Get amazing recepies for cooking"
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         view.addSubview(collectionView)
-        collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: TrendingCollectionViewCell.reuseID)
-        collectionView.register(PopularCategoryCollectionViewCell.self, forCellWithReuseIdentifier: PopularCategoryCollectionViewCell.reuseID)
-        collectionView.register(PopularItemCollectionViewCell.self, forCellWithReuseIdentifier: PopularItemCollectionViewCell.reuseID)
-        collectionView.register(RecentCollectionViewCell.self, forCellWithReuseIdentifier: RecentCollectionViewCell.reuseID)
-        collectionView.register(PopularCreatorCollectionViewCell.self, forCellWithReuseIdentifier: PopularCreatorCollectionViewCell.reuseID)
+        
     }
     
     private func setupConstraints() {
@@ -71,6 +86,15 @@ extension HomeViewController {
         return layout
     }
     
+    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(54))
+        let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: layoutSectionHeaderSize,
+        elementKind: headerKind,
+            alignment: .top)
+        return layoutSectionHeader
+    }
+    
     private func createTrendingSection() -> NSCollectionLayoutSection {
         //item
         let itemSize = NSCollectionLayoutSize(
@@ -88,7 +112,8 @@ extension HomeViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
     
@@ -217,5 +242,12 @@ extension HomeViewController: UICollectionViewDataSource {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == headerKind {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
+            return header
+        }
+        return .init()
+    }
     
 }
