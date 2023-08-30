@@ -46,7 +46,7 @@
 		F43422552A9C2B700025C556 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F43422572A9C2BEA0025C556 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "My-Recipes-Book.xcodeproj"; path = "../../../../../../../../Desktop/IOS Developer Kirill/SwiftMarathon/2Challenge/My-Recipes-Book/My-Recipes-Book/My-Recipes-Book.xcodeproj"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +61,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C1609FA2A9F5640008BAA8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
 				F434221E2A9C29930025C556 /* My-Recipes-Book */,
-				F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */,
+				F43422672A9C80B70025C556 /* My-Recipes-Book.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,8 +171,9 @@
 		F43422422A9C2A710025C556 /* Recipe detail */ = {
 			isa = PBXGroup;
 			children = (
+				3C1609FA2A9F5640008BAA8F /* View */,
 				F43422452A9C2A920025C556 /* Model */,
-				F43422442A9C2A8E0025C556 /* View */,
+				F43422442A9C2A8E0025C556 /* ViewCell */,
 				F43422432A9C2A890025C556 /* Controller */,
 			);
 			path = "Recipe detail";
@@ -179,14 +187,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F43422442A9C2A8E0025C556 /* View */ = {
+		F43422442A9C2A8E0025C556 /* ViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				3C1609ED2A9C9A02008BAA8F /* MainImageCell.swift */,
 				3C1609F12A9CD0B5008BAA8F /* InstructionCell.swift */,
 				3C1609EF2A9CB779008BAA8F /* IngredientCell.swift */,
 			);
-			path = View;
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 		F43422452A9C2A920025C556 /* Model */ = {
@@ -298,7 +306,7 @@
 				F43422632A9C802E0025C556 /* SnapKit */,
 			);
 			productName = "My-Recipes-Book";
-			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.xcodeproj */;
+			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

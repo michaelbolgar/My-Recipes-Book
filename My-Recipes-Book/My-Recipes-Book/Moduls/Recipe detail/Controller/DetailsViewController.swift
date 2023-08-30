@@ -25,6 +25,7 @@ final class DetailsViewController: UITableViewController {
         fetchRecipe(with: Link.recipeURL.rawValue)
     }
     
+
     // MARK: - Private Methods
     private func registerCells() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -73,6 +74,7 @@ extension DetailsViewController {
                 return UITableViewCell()
             }
             cell.configure(with: recipe?.image ?? "")
+            cell.setHighlighted(false, animated: false)
             cell.backgroundColor = .white
             return cell
         } else if indexPath.section == 2  {
@@ -83,6 +85,9 @@ extension DetailsViewController {
                 return UITableViewCell()
             }
             let ingredient = recipe?.extendedIngredients[indexPath.row]
+            
+
+            cell.setHighlighted(false, animated: false)
             cell.configure(with: ingredient)
             cell.backgroundColor = .white
             return cell
@@ -157,9 +162,11 @@ extension DetailsViewController {
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
-            cell.checkBoxDidTapped()
+            // отработка кнопки по нажатию на ячейку
+//            cell.checkBoxDidTapped()
             cell.setHighlighted(false, animated: false)
         }
-        
     }
 }
+
+

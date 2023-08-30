@@ -36,6 +36,10 @@ final class InstructionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        // отключаем выделение ячейки
+    }
+    
     // MARK: - Public Methods
     func configure(_ step: Step?) {
         numberLabel.text = "\(step?.number ?? 0)."
