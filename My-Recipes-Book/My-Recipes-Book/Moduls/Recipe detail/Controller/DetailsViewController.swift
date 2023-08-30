@@ -155,14 +155,11 @@ extension DetailsViewController {
         indexPath.section == 2 ? 100 : tableView.rowHeight
     }
     
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        nil
-    }
-    
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
             cell.checkBoxDidTapped()
+            cell.setHighlighted(false, animated: false)
         }
+        
     }
 }
