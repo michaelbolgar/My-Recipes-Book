@@ -7,11 +7,7 @@
 
 import UIKit
 
-
 final class IngredientCell: UITableViewCell{
-
-    var buttonIsTapped = false
-    
     
     // MARK: - Public UI Properties
     lazy var ingredientImageView: UIImageView = {
@@ -93,6 +89,11 @@ final class IngredientCell: UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        // отключаем выделение ячейки
+    }
+    
     // MARK: - Public Methods
     func configure(with ingredient: Ingredient?) {
         ingredientNameLabel.text = ingredient?.name
@@ -100,7 +101,7 @@ final class IngredientCell: UITableViewCell{
         guard let amount = ingredient?.amount else { return }
         guard let unit = ingredient?.unit else { return }
         weightLabel.text = "\(amount) \(unit)"
-  
+        
         RecipeManager.shared.fetchIngredientImage(from: ingredient?.image ?? "") { [weak self] result in
             switch result {
                 
@@ -115,20 +116,10 @@ final class IngredientCell: UITableViewCell{
     
     // MARK: - Private Actions
     @objc  func checkBoxDidTapped() {
-        if buttonIsTapped {
-            checkBoxButton.tintColor = .black
-            buttonIsTapped = false
-        } else {
-            checkBoxButton.tintColor = .red
-            buttonIsTapped = true
-        }
-
-//        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
-//        ? .red
-//        : .black
+        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
+        ? .red
+        : .black
     }
-    
-
     
     // MARK: - Private Methods
     private func setupConstraints() {
@@ -176,5 +167,4 @@ final class IngredientCell: UITableViewCell{
             make.centerY.equalTo(ingredientImageView.snp.centerY)
         }
     }
-    
 }
