@@ -16,6 +16,8 @@
 		0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B3E2A9E725C00B72054 /* SectionType.swift */; };
 		0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B432A9F672400B72054 /* HeaderCollectionReusableView.swift */; };
 		0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */; };
+		0A3D3B492A9FCA0F00B72054 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */; };
+		0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -366,6 +368,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3D3B492A9FCA0F00B72054 /* Poppins-Regular.ttf in Resources */,
+				0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */,
 				F43422292A9C29950025C556 /* Assets.xcassets in Resources */,
 				F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */,
 			);
