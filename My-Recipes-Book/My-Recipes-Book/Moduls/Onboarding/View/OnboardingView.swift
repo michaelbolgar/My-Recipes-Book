@@ -117,10 +117,8 @@ class OnboardingView: UIView {
         getStartedButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(-70)
-            make.width.equalTo(274)
-            make.height.equalTo(79)
-            
-            make.size.equalTo(CGSize(width: 156, height: 56))
+            make.width.equalTo(156)
+            make.height.equalTo(56)
         }
         
         
