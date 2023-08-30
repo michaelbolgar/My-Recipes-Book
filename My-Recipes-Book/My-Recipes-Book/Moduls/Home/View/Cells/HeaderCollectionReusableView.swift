@@ -13,14 +13,13 @@ class HeaderCollectionReusableView: UICollectionReusableView {
    //MARK: - Propperties
     static let reuseID = "HeaderCollectionReusableView"
     
-    lazy var leftLabel: UILabel = {
+    private lazy var leftLabel: UILabel = {
         let label = UILabel()
-        label.text = "Trending now 🔥"
-        label.font = .poppins(weight: .bold, size: 20)
+        label.font = .poppins(weight: .semibold, size: 20)
         return label
     }()
     
-    lazy var rightLabel: UILabel = {
+    private lazy var rightLabel: UILabel = {
         let label = UILabel()
         label.text = "See all"
         label.font = .poppins(weight: .bold, size: 14)
@@ -28,12 +27,13 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         return label
     }()
     
-    lazy var arrowImageView: UIImageView = {
+    private lazy var arrowImageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "Arrow-Right"))
         return view
     }()
     
     //MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setOutlets()
@@ -43,6 +43,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: - Methods
     fileprivate func setOutlets() {
         addSubview(leftLabel)
@@ -66,6 +67,12 @@ class HeaderCollectionReusableView: UICollectionReusableView {
             make.trailing.equalTo(arrowImageView.snp.leading).inset(-3)
             make.centerY.equalTo(leftLabel)
         }
+    }
+    
+    func setup(_ data: (title: String, isHidden: Bool)) {
+        leftLabel.text = data.title
+        rightLabel.isHidden = data.isHidden
+        arrowImageView.isHidden = data.isHidden
     }
     
 }
