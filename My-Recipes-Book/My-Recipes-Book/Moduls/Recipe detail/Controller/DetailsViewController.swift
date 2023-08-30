@@ -87,7 +87,7 @@ extension DetailsViewController {
             let ingredient = recipe?.extendedIngredients[indexPath.row]
             
 
-            cell.setHighlighted(false, animated: false)
+//            cell.setHighlighted(false, animated: false)
             cell.configure(with: ingredient)
             cell.backgroundColor = .white
             return cell
@@ -164,6 +164,10 @@ extension DetailsViewController {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
             // отработка кнопки по нажатию на ячейку
 //            cell.checkBoxDidTapped()
+            cell.setHighlighted(false, animated: false)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? MainImageCell {
+            cell.setHighlighted(false, animated: false)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? InstructionCell {
             cell.setHighlighted(false, animated: false)
         }
     }
