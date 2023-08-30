@@ -9,7 +9,6 @@ import UIKit
 
 final class IngredientCell: UITableViewCell{
     
-    
     // MARK: - Public UI Properties
     lazy var ingredientImageView: UIImageView = {
         var ingredientImageView = UIImageView()
@@ -72,7 +71,7 @@ final class IngredientCell: UITableViewCell{
         return activityIndicator
     }()
     
-//    var isTapped = false
+    //    var isTapped = false
     var isTapped: [IndexPath: Bool] = [:]
     
     // MARK: - Init
@@ -98,10 +97,6 @@ final class IngredientCell: UITableViewCell{
         // отключаем выделение ячейки
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     // MARK: - Public Methods
     func configure(with ingredient: Ingredient?) {
         ingredientNameLabel.text = ingredient?.name
@@ -122,17 +117,17 @@ final class IngredientCell: UITableViewCell{
         }
     }
     
-
+    
     
     // MARK: - Private Actions
     @objc  func checkBoxDidTapped() {
-//        if isTapped  {
-//            checkBoxButton.tintColor = .black
-//            isTapped = false
-//        } else {
-//            checkBoxButton.tintColor = .red
-//            isTapped = true
-//        }
+        //        if isTapped  {
+        //            checkBoxButton.tintColor = .black
+        //            isTapped = false
+        //        } else {
+        //            checkBoxButton.tintColor = .red
+        //            isTapped = true
+        //        }
         checkBoxButton.tintColor = checkBoxButton.tintColor == .black
         ? .red
         : .black

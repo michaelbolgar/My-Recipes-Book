@@ -36,6 +36,7 @@ final class InstructionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         // отключаем выделение ячейки
     }

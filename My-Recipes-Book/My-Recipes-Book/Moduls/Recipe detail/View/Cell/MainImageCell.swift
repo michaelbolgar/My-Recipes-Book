@@ -73,6 +73,7 @@ final class MainImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         // отключаем выделение ячейки
     }
@@ -82,7 +83,7 @@ final class MainImageCell: UITableViewCell {
         if imageURL != "" {
             RecipeManager.shared.fetchImage(from: imageURL) { [weak self] result in
                 switch result {
-
+                    
                 case .success(let imageData):
                     self?.mainImageView.image = UIImage(data: imageData)
                     self?.activityIndicatior.stopAnimating()
