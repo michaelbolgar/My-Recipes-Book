@@ -71,8 +71,7 @@ final class IngredientCell: UITableViewCell{
         return activityIndicator
     }()
     
-    //    var isTapped = false
-    var isTapped: [IndexPath: Bool] = [:]
+    var isButtonPressed = false
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -117,20 +116,22 @@ final class IngredientCell: UITableViewCell{
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+
+    
     
     
     // MARK: - Private Actions
     @objc  func checkBoxDidTapped() {
-        //        if isTapped  {
-        //            checkBoxButton.tintColor = .black
-        //            isTapped = false
-        //        } else {
-        //            checkBoxButton.tintColor = .red
-        //            isTapped = true
-        //        }
-        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
-        ? .red
-        : .black
+        isButtonPressed.toggle()
+        checkBoxButton.tintColor = isButtonPressed ? .red : .black
+      
+
+//        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
+//        ? .red
+//        : .black
     }
     
     // MARK: - Private Methods
