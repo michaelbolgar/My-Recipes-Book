@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class IngredientCell: UITableViewCell {
+
+final class IngredientCell: UITableViewCell{
+
+    var buttonIsTapped = false
+    
     
     // MARK: - Public UI Properties
     lazy var ingredientImageView: UIImageView = {
@@ -22,8 +26,6 @@ final class IngredientCell: UITableViewCell {
         ingrLabel.textColor = .black
         ingrLabel.font = UIFont(name: "Poppins-Bold", size: 15)
         ingrLabel.numberOfLines = 0
-//        ingrLabel.adjustsFontSizeToFitWidth = true
-//        ingrLabel.minimumScaleFactor = 0.5
         return ingrLabel
     }()
     
@@ -112,11 +114,21 @@ final class IngredientCell: UITableViewCell {
     }
     
     // MARK: - Private Actions
-    @objc private func checkBoxDidTapped() {
-        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
-        ? .red
-        : .black
+    @objc  func checkBoxDidTapped() {
+        if buttonIsTapped {
+            checkBoxButton.tintColor = .black
+            buttonIsTapped = false
+        } else {
+            checkBoxButton.tintColor = .red
+            buttonIsTapped = true
+        }
+
+//        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
+//        ? .red
+//        : .black
     }
+    
+
     
     // MARK: - Private Methods
     private func setupConstraints() {

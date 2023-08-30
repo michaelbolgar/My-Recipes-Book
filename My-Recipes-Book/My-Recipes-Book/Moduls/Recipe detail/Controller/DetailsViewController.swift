@@ -9,16 +9,13 @@ import Foundation
 import UIKit
 import SnapKit
 
+
+
 final class DetailsViewController: UITableViewController {
+
+ 
     
-//    var instructions = [
-//        "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.",
-//        "Place chopped eggs in a bowl.",
-//        "Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice.",
-//        "Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper.",
-//        "Stir and serve on your favorite bread or crackers.",
-//    ]
-    
+    // MARK: - Public Properties
     var recipe: Recipe?
     
     // MARK: - Life Cycle Methods
@@ -38,17 +35,6 @@ final class DetailsViewController: UITableViewController {
         tableView.register(IngredientCell.self, forCellReuseIdentifier: "ingredientCell")
         tableView.register(InstructionCell.self, forCellReuseIdentifier: "instructionCell")
     }
-    
-    // MARK: - Methods for Cells
-//    func configureIngredientCell(_ cell: IngredientCell, at indexPath: IndexPath) {
-//        let ingredient = recipe?.extendedIngredients[indexPath.row]
-//        cell.configure(with: ingredient?.name ?? "")
-//    }
-    
-//    func configureInstructionCell(_ cell: InstructionCell, at indexPath: IndexPath) {
-//        let instruction = instructions[indexPath.row]
-//        cell.configure(instruction, number: String(indexPath.row + 1))
-//    }
 }
 
 // MARK: - Networking
@@ -99,7 +85,6 @@ extension DetailsViewController {
             else {
                 return UITableViewCell()
             }
-//            configureIngredientCell(cell, at: indexPath)
             let ingredient = recipe?.extendedIngredients[indexPath.row]
             cell.configure(with: ingredient)
             cell.backgroundColor = .white
@@ -111,8 +96,6 @@ extension DetailsViewController {
             else {
                 return UITableViewCell()
             }
-            
-//            configureInstructionCell(cell, at: indexPath)
             let step = recipe?.analyzedInstructions.first?.steps[indexPath.row]
             cell.configure(step)
             cell.backgroundColor = .white
@@ -175,7 +158,12 @@ extension DetailsViewController {
         indexPath.section == 2 ? 100 : tableView.rowHeight
     }
     
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        false
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        nil
+    }
+    
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
 }
