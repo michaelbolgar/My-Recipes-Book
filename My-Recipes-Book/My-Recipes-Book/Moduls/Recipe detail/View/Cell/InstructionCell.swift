@@ -12,7 +12,6 @@ final class InstructionCell: UITableViewCell {
     // MARK: - UIProperties
     lazy var numberLabel: UILabel = {
         var numberLabel = UILabel()
-        numberLabel.text = "1."
         numberLabel.textColor = .black
         return numberLabel
     }()
@@ -40,7 +39,6 @@ final class InstructionCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         // отключаем выделение ячейки
     }
-    
     
     // MARK: - Public Methods
     func configure(_ step: Step?) {

@@ -20,6 +20,9 @@ class ContentView: UIView {
     
     var recipe: Recipe?
     
+    // MARK: - Private Properties
+    private var buttonStates: [IndexPath: Bool] = [:]
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,10 +47,27 @@ class ContentView: UIView {
     }
     
     private func registerCells() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(MainImageCell.self, forCellReuseIdentifier: "ImageCell")
-        tableView.register(IngredientCell.self, forCellReuseIdentifier: "ingredientCell")
-        tableView.register(InstructionCell.self, forCellReuseIdentifier: "instructionCell")
+        tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "cell"
+        )
+        tableView.register(
+            MainImageCell.self,
+            forCellReuseIdentifier: "ImageCell"
+        )
+        tableView.register(
+            IngredientCell.self,
+            forCellReuseIdentifier: "ingredientCell"
+        )
+        tableView.register(
+            InstructionCell.self,
+            forCellReuseIdentifier: "instructionCell"
+        )
+    }
+    
+    // метод для обновления состояния ячейки
+    private func updateButtonState(for indexPath: IndexPath, isPressed: Bool) {
+        buttonStates[indexPath] = isPressed
     }
 }
 
@@ -67,37 +87,48 @@ extension ContentView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             guard
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "ImageCell", for: indexPath) as? MainImageCell
             else {
                 return UITableViewCell()
             }
+            
             cell.configure(with: recipe?.image ?? "")
             cell.backgroundColor = .white
+            
             return cell
-        } else if indexPath.section == 2  {
-            guard
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "ingredientCell", for: indexPath) as? IngredientCell
-            else {
-                return UITableViewCell()
-            }
-            let ingredient = recipe?.extendedIngredients[indexPath.row]
-            cell.configure(with: ingredient)
-            cell.backgroundColor = .white
-            return cell
-        } else {
+        case 1:
             guard
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "instructionCell", for: indexPath) as? InstructionCell
             else {
                 return UITableViewCell()
             }
+            
             let step = recipe?.analyzedInstructions.first?.steps[indexPath.row]
             cell.configure(step)
             cell.backgroundColor = .white
+            
+            return cell
+        default :
+            guard
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "ingredientCell", for: indexPath) as? IngredientCell
+            else {
+                return UITableViewCell()
+            }
+            
+            let ingredient = recipe?.extendedIngredients[indexPath.row]
+            cell.configure(with: ingredient)
+            cell.isButtonPressed = buttonStates[indexPath] ?? false
+            cell.buttonTapHandler = { [weak self] isPressed in
+                self?.updateButtonState(for: indexPath, isPressed: isPressed)
+            }
+            cell.backgroundColor = .white
+            
             return cell
         }
     }
@@ -123,18 +154,19 @@ extension ContentView: UITableViewDelegate {
             make.right.equalToSuperview().offset(-16)
         }
         
-        if section == 0 {
+        switch section {
+        case 0:
             label.text = "How to make \(recipe?.title ?? "")"
             label.font = UIFont(name: "Poppins-Bold", size: 24)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
-        } else if section == 1 {
+        case 1:
             label.text = "Instructions"
             label.font = UIFont(name: "Poppins-Bold", size: 20)
-        } else {
+        default:
             let countItemsLabel = UILabel()
             countItemsLabel.text = "\(recipe?.extendedIngredients.count ?? 0) Items"
-            countItemsLabel.textColor = #colorLiteral(red: 0.5686274767, green: 0.5686274767, blue: 0.5686274767, alpha: 1)
+            countItemsLabel.textColor = .systemGray
             countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
             headerView.addSubview(countItemsLabel)
             
@@ -145,7 +177,6 @@ extension ContentView: UITableViewDelegate {
                 make.centerY.equalToSuperview()
             }
         }
-        
         return headerView
     }
     
@@ -158,9 +189,15 @@ extension ContentView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        //        if let cell = tableView.cellForRow(at: indexPath) {
+        //            if let ingredientCell = cell as? IngredientCell {
+        //                ingredientCell.isButtonPressed.toggle()
+        //            }
+        //            cell.setHighlighted(false, animated: false)
+        //        }
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
             // отработка кнопки по нажатию на ячейку
-            //                        cell.checkBoxDidTapped()
+            // cell.checkBoxDidTapped()
             cell.setHighlighted(false, animated: false)
         } else if let cell = tableView.cellForRow(at: indexPath) as? MainImageCell {
             cell.setHighlighted(false, animated: false)
