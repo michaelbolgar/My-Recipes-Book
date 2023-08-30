@@ -41,6 +41,7 @@ final class InstructionCell: UITableViewCell {
         // отключаем выделение ячейки
     }
     
+    
     // MARK: - Public Methods
     func configure(_ step: Step?) {
         numberLabel.text = "\(step?.number ?? 0)."

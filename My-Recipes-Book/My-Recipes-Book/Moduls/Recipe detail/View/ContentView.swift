@@ -160,7 +160,7 @@ extension ContentView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
             // отработка кнопки по нажатию на ячейку
-            //            cell.checkBoxDidTapped()
+            //                        cell.checkBoxDidTapped()
             cell.setHighlighted(false, animated: false)
         } else if let cell = tableView.cellForRow(at: indexPath) as? MainImageCell {
             cell.setHighlighted(false, animated: false)
