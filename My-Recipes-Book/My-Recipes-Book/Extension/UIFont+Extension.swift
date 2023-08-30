@@ -9,7 +9,7 @@ import UIKit
 
 enum PoppinsWeight: String {
     case bold = "Poppins-Bold"
-    case semibold = "Poppins-Semibold"
+    case semibold = "Poppins-SemiBold"
     case regular = "Poppins-Regular"
 }
 
