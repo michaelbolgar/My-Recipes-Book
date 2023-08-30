@@ -29,7 +29,7 @@ final class MainImageCell: UITableViewCell {
     lazy var reviewsLabel: UILabel = {
         var reviewsLabel = UILabel()
         reviewsLabel.text = "(300 Reviews)"
-        reviewsLabel.textColor = #colorLiteral(red: 0.5686274767, green: 0.5686274767, blue: 0.5686274767, alpha: 1)
+        reviewsLabel.textColor = .systemGray
         return reviewsLabel
     }()
     

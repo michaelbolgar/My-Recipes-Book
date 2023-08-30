@@ -12,8 +12,6 @@ final class IngredientCell: UITableViewCell{
     // MARK: - Public UI Properties
     lazy var ingredientImageView: UIImageView = {
         var ingredientImageView = UIImageView()
-        ingredientImageView.layer.cornerRadius = 10
-        ingredientImageView.clipsToBounds = true
         return ingredientImageView
     }()
     
@@ -27,14 +25,22 @@ final class IngredientCell: UITableViewCell{
     
     lazy var weightLabel: UILabel = {
         var weightLabel = UILabel()
-        weightLabel.text = "?"
         weightLabel.textAlignment = .left
         weightLabel.adjustsFontSizeToFitWidth = true
         weightLabel.minimumScaleFactor = 0.5
         weightLabel.font = UIFont.systemFont(ofSize: 15)
-        weightLabel.textColor = #colorLiteral(red: 0.5686274767, green: 0.5686274767, blue: 0.5686274767, alpha: 1)
+        weightLabel.textColor = .systemGray
         return weightLabel
     }()
+    
+    // MARK: - Public Properties for checkBox
+    var isButtonPressed: Bool = false {
+        didSet {
+            checkBoxButton.tintColor = isButtonPressed ? .red : .black
+        }
+    }
+    
+    var buttonTapHandler: ((Bool) -> Void)?
     
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
@@ -71,19 +77,10 @@ final class IngredientCell: UITableViewCell{
         return activityIndicator
     }()
     
-    var isButtonPressed = false
-    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(mainView)
-        mainView.addSubview(squareView)
-        squareView.addSubview(ingredientImageView)
-        ingredientImageView.addSubview(activityIndicator)
-        mainView.addSubview(ingredientNameLabel)
-        mainView.addSubview(checkBoxButton)
-        mainView.addSubview(weightLabel)
-        
+        addViews()
         setupConstraints()
     }
     
@@ -98,15 +95,13 @@ final class IngredientCell: UITableViewCell{
     
     // MARK: - Public Methods
     func configure(with ingredient: Ingredient?) {
-        ingredientNameLabel.text = ingredient?.name
-        ingredientImageView.image = UIImage(named: "question")
-        guard let amount = ingredient?.amount else { return }
-        guard let unit = ingredient?.unit else { return }
-        weightLabel.text = "\(amount) \(unit)"
+        guard let ingredient = ingredient else { return }
         
-        RecipeManager.shared.fetchIngredientImage(from: ingredient?.image ?? "") { [weak self] result in
+        ingredientNameLabel.text = ingredient.name
+        weightLabel.text = "\(ingredient.amount) \(ingredient.unit)"
+        
+        RecipeManager.shared.fetchIngredientImage(from: ingredient.image) { [weak self] result in
             switch result {
-                
             case .success(let image):
                 self?.ingredientImageView.image = UIImage(data: image)
                 self?.activityIndicator.stopAnimating()
@@ -116,25 +111,23 @@ final class IngredientCell: UITableViewCell{
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-
-    
-    
-    
     // MARK: - Private Actions
-    @objc  func checkBoxDidTapped() {
+    @objc private func checkBoxDidTapped() {
         isButtonPressed.toggle()
-        checkBoxButton.tintColor = isButtonPressed ? .red : .black
-      
-
-//        checkBoxButton.tintColor = checkBoxButton.tintColor == .black
-//        ? .red
-//        : .black
+        buttonTapHandler?(isButtonPressed)
     }
     
     // MARK: - Private Methods
+    private func addViews() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(squareView)
+        squareView.addSubview(ingredientImageView)
+        ingredientImageView.addSubview(activityIndicator)
+        mainView.addSubview(ingredientNameLabel)
+        mainView.addSubview(checkBoxButton)
+        mainView.addSubview(weightLabel)
+    }
+    
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
