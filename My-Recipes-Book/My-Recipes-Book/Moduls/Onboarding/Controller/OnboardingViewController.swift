@@ -15,11 +15,13 @@ class OnboardingViewController: UIViewController {
 //    let startPageImage = UIImage(named: "startPage")
     let onboardingView = OnboardingView()
 
-
     //MARK: - Init
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         layout()
 //        setupImage()
@@ -29,7 +31,8 @@ class OnboardingViewController: UIViewController {
 
     private func layout() {
         view.addSubview(onboardingView)
-        
+
+                
         NSLayoutConstraint.activate([
 
             onboardingView.topAnchor.constraint(equalTo: view.topAnchor),
