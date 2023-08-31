@@ -15,9 +15,11 @@ struct Palette {
     static let black80 = UIColor.fromHex(0x484848)
     static let black70 = UIColor.fromHex(0x606060)
     static let black60 = UIColor.fromHex(0x797979)
-
-    static let redPrimary80 = UIColor.fromHex(0x9E2B2B)
+    
+    static let redPrimary20 = UIColor(hex: 0xF3B2B2)
     static let redPrimary50 = UIColor(hex: 0xE23E3E)
+    static let redPrimary80 = UIColor.fromHex(0x9E2B2B)
+    
 
     static let sandSecondary60 = UIColor.fromHex(0xB36D00)
 
@@ -28,4 +30,6 @@ struct Palette {
 
     static let greenSuccess100 = UIColor.fromHex(0x31B057)
     static let greenSuccess10 = UIColor.fromHex(0xCEECD7)
+    
+    static let neutral10 = UIColor.fromHex(0xF0F0F0)
 }
