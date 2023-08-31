@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContentView: UIView {
+final class ContentView: UIView {
     
     // MARK: - UI Properties
     lazy var tableView: UITableView = {
