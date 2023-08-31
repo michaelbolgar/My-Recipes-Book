@@ -18,6 +18,7 @@ class ContentView: UIView {
         return tableView
     }()
     
+    // MARK: - Public Properties
     var recipe: Recipe?
     
     // MARK: - Private Properties
@@ -189,20 +190,19 @@ extension ContentView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        //        if let cell = tableView.cellForRow(at: indexPath) {
-        //            if let ingredientCell = cell as? IngredientCell {
-        //                ingredientCell.isButtonPressed.toggle()
-        //            }
-        //            cell.setHighlighted(false, animated: false)
-        //        }
-        if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
-            // отработка кнопки по нажатию на ячейку
-            // cell.checkBoxDidTapped()
-            cell.setHighlighted(false, animated: false)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? MainImageCell {
-            cell.setHighlighted(false, animated: false)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? InstructionCell {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if let ingredientCell = cell as? IngredientCell {
+                ingredientCell.isButtonPressed.toggle()
+            }
             cell.setHighlighted(false, animated: false)
         }
+        //        if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
+        //            // отработка кнопки по нажатию на ячейку
+        //            cell.setHighlighted(false, animated: false)
+        //        } else if let cell = tableView.cellForRow(at: indexPath) as? MainImageCell {
+        //            cell.setHighlighted(false, animated: false)
+        //        } else if let cell = tableView.cellForRow(at: indexPath) as? InstructionCell {
+        //            cell.setHighlighted(false, animated: false)
+        //        }
     }
 }
