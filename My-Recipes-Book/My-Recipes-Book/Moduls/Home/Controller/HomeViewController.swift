@@ -10,6 +10,9 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
+    //MARK: - Temporary data source
+    let categoriesArray = ["There will", "Be some more", "Text here", "But not", "Just now"]
+    
     //MARK: - Propperties
     
     let headerKind = UICollectionView.elementKindSectionHeader
@@ -120,22 +123,21 @@ extension HomeViewController {
     private func createPopularCategorySection() -> NSCollectionLayoutSection {
         //item
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
+            widthDimension: .estimated(150),//fractionalWidth(1),
             heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         //group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1/4),
+            widthDimension: .estimated(150),//fractionalWidth(1/4),
             heightDimension: .absolute(34))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 19, trailing: 0)
         section.boundarySupplementaryItems = [createSectionHeader()]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 19, trailing: 0)
         return section
     }
     
@@ -218,8 +220,21 @@ extension HomeViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         SectionType.allCases.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        switch section {
+        case SectionType.trending.rawValue:
+            return 10
+        case SectionType.popularCategory.rawValue:
+            return categoriesArray.count
+        case SectionType.popularItem.rawValue:
+            return 10
+        case SectionType.recentRecipe.rawValue:
+            return 10
+        case SectionType.popularCreator.rawValue:
+            return 10
+        default: return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -229,7 +244,8 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath)
             return cell
         case SectionType.popularCategory.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
+            cell.setup(with: categoriesArray[indexPath.item])
             return cell
         case SectionType.popularItem.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath)
