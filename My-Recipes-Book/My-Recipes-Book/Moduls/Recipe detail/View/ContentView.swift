@@ -28,7 +28,10 @@ class ContentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
+        
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        
         registerCells()
         setupConstraints()
     }
