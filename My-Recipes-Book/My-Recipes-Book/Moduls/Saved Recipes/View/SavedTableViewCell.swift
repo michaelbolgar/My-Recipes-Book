@@ -25,15 +25,20 @@ final class SavedTableViewCell: UITableViewCell {
     
     private lazy var recipeScoreView: UIView = {
         let scoreView = UIView()
+        scoreView.frame = CGRect(x: 8, y: 8, width: 58, height: 27.6)
         scoreView.layer.cornerRadius = 16
         scoreView.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.19, alpha: 0.3)
         scoreView.layer.opacity = 0.3
         
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "star.fill")
-        scoreView.addSubview(imageView)
+        let starView = UIImageView()
+        starView.frame = CGRect(x: 8, y: 5.8, width: 16, height: 16)
+        starView.contentMode = .scaleAspectFit
+        starView.image = UIImage(systemName: "star.fill")
+        scoreView.addSubview(starView)
         
         let scoreLabel = UILabel()
+        scoreLabel.frame = CGRect(x: starView.frame.maxX + 3, y: 4, width: 24, height: 20)
+        scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
         scoreLabel.text = "5.0"
         scoreView.addSubview(scoreLabel)
         
