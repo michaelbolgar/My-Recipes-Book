@@ -15,6 +15,9 @@ final class SavedTableViewCell: UITableViewCell {
     
     private lazy var recipeImageView: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage()
+        image.backgroundColor = .orange
+        image.layer.cornerRadius = 16
         return image
     }()
     
@@ -22,6 +25,18 @@ final class SavedTableViewCell: UITableViewCell {
     
     private lazy var recipeScoreView: UIView = {
         let scoreView = UIView()
+        scoreView.layer.cornerRadius = 16
+        scoreView.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.19, alpha: 0.3)
+        scoreView.layer.opacity = 0.3
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "star.fill")
+        scoreView.addSubview(imageView)
+        
+        let scoreLabel = UILabel()
+        scoreLabel.text = "5.0"
+        scoreView.addSubview(scoreLabel)
+        
         return scoreView
     }()
     
