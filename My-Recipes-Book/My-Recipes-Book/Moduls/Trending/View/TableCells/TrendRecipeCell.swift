@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 class TrandRecipeCell: UITableViewCell {
-    
+// MARK: - Properties
     static let cellID = "TrandRecipeCell"
-    
+
     private var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -21,7 +21,7 @@ class TrandRecipeCell: UITableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+// MARK: - UI element
     private let pointScoreView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -32,44 +32,43 @@ class TrandRecipeCell: UITableViewCell {
         view.addSubview(starImage)
         return view
     }()
-    
+
     private var recipeNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
         label.contentMode = .left
         label.text = "ghujiudf ufdufwef i wsefiu ief \nghbfhrfyjdcv"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Poppins-Bold", size: 16)
         return label
     }()
-    
+
     private var countOfIngredientsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "9 Ingredients"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Poppins-Bold", size: 12)
         return label
     }()
-    
+
     private var cookTimeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "25 min"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Poppins-Bold", size: 12)
         return label
     }()
-    
+
     private var lineSeparatorLabel: UILabel = {
         let label = UILabel()
         label.text = "|"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Bold", size: 18)
         return label
     }()
-
+// MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupCell()
         putToHierarchy()
         setLayouts()
         setPointScoreLabel(score: "5,0")
@@ -86,10 +85,7 @@ class TrandRecipeCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    private func setupCell() {
-    }
-    
+// MARK: - Cell preparation
     private func putToHierarchy() {
         self.addSubview(dishImageView)
         dishImageView.addSubview(recipeNameLabel)
@@ -98,7 +94,16 @@ class TrandRecipeCell: UITableViewCell {
         dishImageView.addSubview(cookTimeLabel)
         dishImageView.addSubview(pointScoreView)
     }
-    
+    //This scoreLabel will have a value only after the cell is loaded.
+    //It cannot be declared in the context of pointScoreView,
+    //so it is described in a separate function
+    private func setPointScoreLabel(score: String) {
+        let scoreLabel = UILabel(frame: CGRect(x: 27, y: 4, width: 24, height: 20))
+        scoreLabel.text = score
+        scoreLabel.textColor = .white
+        pointScoreView.addSubview(scoreLabel)
+    }
+
     private func setLayouts() {
         dishImageView.snp.makeConstraints { make in
             make.edges.equalTo(self).inset(UIEdgeInsets(top: 12, left: 15, bottom: 24, right: 15))
@@ -116,10 +121,10 @@ class TrandRecipeCell: UITableViewCell {
         countOfIngredientsLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-16)
-            make.size.equalTo(CGSize(width: 80, height: 18))
+            make.size.equalTo(CGSize(width: 85, height: 18))
         }
         lineSeparatorLabel.snp.makeConstraints { make in
-            make.left.equalTo(countOfIngredientsLabel).offset(85)
+            make.left.equalTo(countOfIngredientsLabel).offset(88)
             make.bottom.equalTo(countOfIngredientsLabel)
             make.size.equalTo(CGSize(width: 2, height: 18))
         }
@@ -128,12 +133,5 @@ class TrandRecipeCell: UITableViewCell {
             make.bottom.equalTo(countOfIngredientsLabel)
             make.size.equalTo(CGSize(width: 100, height: 18))
         }
-    }
-    
-    private func setPointScoreLabel(score: String) {
-        let scoreLabel = UILabel(frame: CGRect(x: 27, y: 4, width: 24, height: 20))
-        scoreLabel.text = score
-        scoreLabel.textColor = .white
-        pointScoreView.addSubview(scoreLabel)
     }
 }
