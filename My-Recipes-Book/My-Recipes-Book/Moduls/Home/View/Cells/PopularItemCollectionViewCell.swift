@@ -57,24 +57,12 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        print("layoutSubviews height:", dishImageView.frame.size.height)
-        dishImageView.layer.cornerRadius = dishImageView.frame.size.height / 2
-    }
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        print("didMoveToSuperview height:", dishImageView.frame.size.height)
-    }
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
         setConstraints()
-//        dishImageView.layer.cornerRadius = dishImageView.bounds.height / 2
-//        dishImageView.layer.cornerRadius = dishImageView.frame.size.height / 2
-        layoutSubviews()
-        print("Init height:", dishImageView.frame.size.height)
     }
     
     required init?(coder: NSCoder) {
@@ -131,9 +119,11 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dishImageView.layer.cornerRadius = dishImageView.frame.height / 2
+    }
+    
     func setupCell() {
-        //dishImageView.image = UIImage(systemName: "square")
-        print("setup() height:", dishImageView.frame.size.height)
-        dishImageView.layer.cornerRadius = dishImageView.frame.size.height / 2
     }
 }
