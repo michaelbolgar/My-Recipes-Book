@@ -13,7 +13,6 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
     private lazy var creatorImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .yellow
-        //view.layer.cornerRadius = creatorImageView.frame.height / 2
         return view
     }()
     
@@ -35,6 +34,11 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        creatorImageView.layer.cornerRadius = creatorImageView.frame.height / 2
     }
     
     //MARK: - Methods
