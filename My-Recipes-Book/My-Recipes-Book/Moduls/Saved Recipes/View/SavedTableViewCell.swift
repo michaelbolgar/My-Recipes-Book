@@ -39,25 +39,40 @@ final class SavedTableViewCell: UITableViewCell {
         let scoreLabel = UILabel()
         scoreLabel.frame = CGRect(x: starView.frame.maxX + 3, y: 4, width: 24, height: 20)
         scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        scoreLabel.text = "5.0"
         scoreView.addSubview(scoreLabel)
         
         return scoreView
     }()
     
-    private lazy var bookmarkView: UIView = {
-        let bookmarkView = UIView()
-        return bookmarkView
+    // MARK: Bookmark Image
+    
+    private lazy var bookmarkImage: UIImageView = {
+        let bookmarkImage = UIImageView()
+        bookmarkImage.contentMode = .scaleAspectFit
+        bookmarkImage.backgroundColor = .clear
+        bookmarkImage.image = UIImage(named: "Bookmark")
+        return bookmarkImage
     }()
+    
+    // MARK: Time label
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
+        label.layer.cornerRadius = 16
+        label.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.19, alpha: 0.3)
+        label.layer.opacity = 0.3
         return label
     }()
     
-    private lazy var recipeLabel: UILabel = {
+    // MARK: Score with Star image
+    
+    private lazy var recipeNameView: UIView = {
+        let view = UIView()
         let label = UILabel()
-        return label
+        let moreImageView = UIImageView()
+        moreImageView.image = UIImage(named: "More")
+        view.addSubview(label)
+        return view
     }()
     
     // MARK: Author image with name label
@@ -67,12 +82,14 @@ final class SavedTableViewCell: UITableViewCell {
         return view
     }()
     
+    // MARK: init base interface
+    
     private func confidureUI() {
         contentView.addSubview(recipeImageView)
         contentView.addSubview(recipeScoreView)
-        contentView.addSubview(bookmarkView)
+        contentView.addSubview(bookmarkImage)
         contentView.addSubview(timeLabel)
-        contentView.addSubview(recipeLabel)
+        contentView.addSubview(recipeNameView)
         contentView.addSubview(authorView)
     }
     
@@ -82,6 +99,35 @@ final class SavedTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        recipeImageView.frame = CGRect(x: 16,
+                                       y: contentView.safeAreaInsets.bottom,
+                                       width: contentView.frame.width - 16 - 16,
+                                       height: 215)
+        recipeScoreView.frame = CGRect(x: recipeImageView.frame.minX + 8,
+                                       y: recipeImageView.frame.origin.y + 8,
+                                       width: 58,
+                                       height: 27.6)
+        bookmarkImage.frame = CGRect(x: recipeImageView.frame.maxX - 8 - 32,
+                                     y: recipeImageView.frame.origin.y + 8,
+                                     width: 32,
+                                     height: 32)
+        timeLabel.frame = CGRect(x: recipeImageView.frame.maxX - 8 - 41,
+                                 y: recipeImageView.frame.maxY - 8,
+                                 width: 41,
+                                 height: 25)
+        recipeNameView.frame = CGRect(x: <#T##CGFloat#>,
+                                   y: <#T##CGFloat#>,
+                                   width: <#T##CGFloat#>,
+                                   height: <#T##CGFloat#>)
+        authorView.frame = CGRect(x: <#T##CGFloat#>,
+                                  y: <#T##CGFloat#>,
+                                  width: <#T##CGFloat#>,
+                                  height: <#T##CGFloat#>)
     }
     
 }
