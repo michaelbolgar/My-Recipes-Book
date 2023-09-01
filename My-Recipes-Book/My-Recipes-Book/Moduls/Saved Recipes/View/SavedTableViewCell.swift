@@ -72,6 +72,7 @@ final class SavedTableViewCell: UITableViewCell {
         let moreImageView = UIImageView()
         moreImageView.image = UIImage(named: "More")
         view.addSubview(label)
+        view.addSubview(moreImageView)
         return view
     }()
     
@@ -103,7 +104,6 @@ final class SavedTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         recipeImageView.frame = CGRect(x: 16,
                                        y: contentView.safeAreaInsets.bottom,
                                        width: contentView.frame.width - 16 - 16,
@@ -120,14 +120,14 @@ final class SavedTableViewCell: UITableViewCell {
                                  y: recipeImageView.frame.maxY - 8,
                                  width: 41,
                                  height: 25)
-        recipeNameView.frame = CGRect(x: <#T##CGFloat#>,
-                                   y: <#T##CGFloat#>,
-                                   width: <#T##CGFloat#>,
-                                   height: <#T##CGFloat#>)
-        authorView.frame = CGRect(x: <#T##CGFloat#>,
-                                  y: <#T##CGFloat#>,
-                                  width: <#T##CGFloat#>,
-                                  height: <#T##CGFloat#>)
+        recipeNameView.frame = CGRect(x: 16,
+                                      y: recipeImageView.frame.maxY + 16,
+                                      width: contentView.frame.width - 16 - 16,
+                                   height: 22)
+        authorView.frame = CGRect(x: 16,
+                                  y: recipeNameView.frame.maxY + 16,
+                                  width: contentView.frame.width - 16 - 16,
+                                  height: 32)
     }
     
 }
