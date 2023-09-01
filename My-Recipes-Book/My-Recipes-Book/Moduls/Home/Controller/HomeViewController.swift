@@ -66,6 +66,99 @@ class HomeViewController: UIViewController {
     
 }
 
+//MARK: - UICollectionViewDelegate
+
+extension HomeViewController: UICollectionViewDelegate {
+    
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension HomeViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        SectionType.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case SectionType.trending.rawValue:
+            return 10
+        case SectionType.popularCategory.rawValue:
+            return categoriesArray.count
+        case SectionType.popularItem.rawValue:
+            return 10
+        case SectionType.recentRecipe.rawValue:
+            return 10
+        case SectionType.popularCreator.rawValue:
+            return 10
+        default: return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        switch indexPath.section {
+        case SectionType.trending.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.popularCategory.rawValue:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
+            cell.setup(with: categoriesArray[indexPath.item])
+            return cell
+        case SectionType.popularItem.rawValue:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
+            cell.setupCell()
+            return cell
+        case SectionType.recentRecipe.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        case SectionType.popularCreator.rawValue:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath)
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == headerKind {
+            
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
+            header.setup(setHeaderData(for: indexPath))
+            return header
+        }
+        return .init()
+    }
+    
+    private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
+        var title: String
+        var isHidden: Bool
+        switch indexPath.section {
+        case SectionType.trending.rawValue :
+            title = "Trending now 🔥"
+            isHidden = false
+        case SectionType.popularCategory.rawValue:
+            title = "Popular category"
+            isHidden = true
+        case SectionType.popularItem.rawValue:
+            title = ""
+            isHidden = true
+        case SectionType.recentRecipe.rawValue:
+            title = "Recent recipe"
+            isHidden = false
+        case SectionType.popularCreator.rawValue:
+            title = "Popular creators"
+            isHidden = false
+        default:
+            title = ""
+            isHidden = true
+        }
+        return (title, isHidden)
+    }
+    
+}
+
 //MARK: - Compositional layout creation
 extension HomeViewController {
     
@@ -205,97 +298,4 @@ extension HomeViewController {
         section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
-}
-
-//MARK: - UICollectionViewDelegate
-
-extension HomeViewController: UICollectionViewDelegate {
-    
-}
-
-//MARK: - UICollectionViewDataSource
-
-extension HomeViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        SectionType.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case SectionType.trending.rawValue:
-            return 10
-        case SectionType.popularCategory.rawValue:
-            return categoriesArray.count
-        case SectionType.popularItem.rawValue:
-            return 10
-        case SectionType.recentRecipe.rawValue:
-            return 10
-        case SectionType.popularCreator.rawValue:
-            return 10
-        default: return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        switch indexPath.section {
-        case SectionType.trending.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath)
-            return cell
-        case SectionType.popularCategory.rawValue:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
-            cell.setup(with: categoriesArray[indexPath.item])
-            return cell
-        case SectionType.popularItem.rawValue:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
-            cell.setupCell()
-            return cell
-        case SectionType.recentRecipe.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)
-            return cell
-        case SectionType.popularCreator.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath)
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == headerKind {
-            
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
-            header.setup(setHeaderData(for: indexPath))
-            return header
-        }
-        return .init()
-    }
-    
-    private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
-        var title: String
-        var isHidden: Bool
-        switch indexPath.section {
-        case SectionType.trending.rawValue :
-            title = "Trending now 🔥"
-            isHidden = false
-        case SectionType.popularCategory.rawValue:
-            title = "Popular category"
-            isHidden = true
-        case SectionType.popularItem.rawValue:
-            title = ""
-            isHidden = true
-        case SectionType.recentRecipe.rawValue:
-            title = "Recent recipe"
-            isHidden = false
-        case SectionType.popularCreator.rawValue:
-            title = "Popular creators"
-            isHidden = false
-        default:
-            title = ""
-            isHidden = true
-        }
-        return (title, isHidden)
-    }
-    
 }
