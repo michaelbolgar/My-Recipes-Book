@@ -248,7 +248,8 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.setup(with: categoriesArray[indexPath.item])
             return cell
         case SectionType.popularItem.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
+            cell.setupCell()
             return cell
         case SectionType.recentRecipe.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)

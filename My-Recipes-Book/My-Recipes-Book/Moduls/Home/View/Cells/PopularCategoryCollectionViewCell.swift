@@ -26,7 +26,6 @@ class PopularCategoryCollectionViewCell: UICollectionViewCell {
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Frame")
         setViews()
         setConstraints()
     }
@@ -40,7 +39,6 @@ class PopularCategoryCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func setViews() {
-        print("Set outlets")
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
         contentView.backgroundColor = isSelected ? Palette.redPrimary50 : .none
