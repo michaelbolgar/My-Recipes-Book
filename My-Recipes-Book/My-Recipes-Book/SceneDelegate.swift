@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func createDetailsViewController() -> UINavigationController {
         let detailsVC = DetailsViewController()
-        detailsVC.tabBarItem = UITabBarItem (title: "News", image: UIImage(systemName: "bell"), tag: 2)
+        detailsVC.tabBarItem = UITabBarItem (title: "Details", image: UIImage(systemName: "bell"), tag: 2)
         return UINavigationController(rootViewController: detailsVC)
     }
 
