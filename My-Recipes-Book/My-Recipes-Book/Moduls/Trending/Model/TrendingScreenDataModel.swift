@@ -15,7 +15,7 @@ struct TrendingRecipeData: Decodable {
     let cookingMinutes: Int?
     let extendedIngredients: [TrendingExtendedIngredients]
     let title: String?
-    let image: String? 
+    let image: String?
 }
 
 struct TrendingExtendedIngredients: Decodable {

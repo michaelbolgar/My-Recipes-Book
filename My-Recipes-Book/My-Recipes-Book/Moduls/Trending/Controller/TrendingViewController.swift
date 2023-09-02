@@ -11,6 +11,7 @@ import UIKit
 class TrendingViewController: UIViewController {
 // MARK: - UI element
     private var trandView = TrandingNowView()
+    private var networkManager = NetworkManager()
 
 // MARK: - View controller life cicle
     override func viewDidLoad() {
