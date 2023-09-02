@@ -38,6 +38,7 @@
 		F43422582A9C2BEA0025C556 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422572A9C2BEA0025C556 /* Palette.swift */; };
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
+		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		F43422572A9C2BEA0025C556 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,21 +89,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C1609FA2A9F5640008BAA8F /* View */ = {
+		0A3D3B2D2A9E6B5C00B72054 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3CE672782A9F662900300315 /* ContentView.swift */,
-				F43422442A9C2A8E0025C556 /* Cell */,
+				0A3D3B2F2A9E6BCE00B72054 /* TrendingCollectionViewCell.swift */,
+				0A3D3B312A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift */,
+				0A3D3B332A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift */,
+				0A3D3B352A9E6C2000B72054 /* RecentCollectionViewCell.swift */,
+				0A3D3B372A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift */,
+				0A3D3B432A9F672400B72054 /* HeaderCollectionReusableView.swift */,
 			);
-			path = View;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		3CE672AB2A9FAD8100300315 /* Services */ = {
+		0A3D3B402A9E726400B72054 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3C1609F72A9D2513008BAA8F /* RecipeManager.swift */,
+				0A3D3B3E2A9E725C00B72054 /* SectionType.swift */,
 			);
-			path = Services;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0A726C2C2AA3238000F08A3D /* Services */ = {
@@ -142,6 +148,26 @@
 			path = "My-Recipes-Book/Moduls/Recipe detail/Model";
 			sourceTree = SOURCE_ROOT;
 		};
+		0A726C4A2AA32D0600F08A3D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F434221F2A9C29930025C556 /* AppDelegate.swift */,
+				F43422212A9C29930025C556 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0A726C4B2AA32D1D00F08A3D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F43422592A9C2C550025C556 /* Fonts */,
+				F43422282A9C29950025C556 /* Assets.xcassets */,
+				F43422572A9C2BEA0025C556 /* Palette.swift */,
+				F434222D2A9C29950025C556 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
@@ -153,14 +179,10 @@
 		F434221E2A9C29930025C556 /* My-Recipes-Book */ = {
 			isa = PBXGroup;
 			children = (
-				F434221F2A9C29930025C556 /* AppDelegate.swift */,
-				F43422212A9C29930025C556 /* SceneDelegate.swift */,
+				0A726C4A2AA32D0600F08A3D /* App */,
 				F43422542A9C2B5F0025C556 /* Extension */,
 				F43422332A9C29C50025C556 /* Moduls */,
-				F43422592A9C2C550025C556 /* Fonts */,
-				F43422282A9C29950025C556 /* Assets.xcassets */,
-				F43422572A9C2BEA0025C556 /* Palette.swift */,
-				F434222D2A9C29950025C556 /* Info.plist */,
+				0A726C4B2AA32D1D00F08A3D /* SupportingFiles */,
 			);
 			path = "My-Recipes-Book";
 			sourceTree = "<group>";
@@ -168,6 +190,7 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
 				F43422482A9C2ABE0025C556 /* Saved Recipes */,
@@ -213,7 +236,7 @@
 		F434223C2A9C2A2F0025C556 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F434223F2A9C2A450025C556 /* Model */,
+				0A3D3B402A9E726400B72054 /* Model */,
 				F434223E2A9C2A410025C556 /* View */,
 				F434223D2A9C2A3A0025C556 /* Controller */,
 			);
@@ -231,15 +254,10 @@
 		F434223E2A9C2A410025C556 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A3D3B292A9D1FB500B72054 /* HomeView.swift */,
+				0A3D3B2D2A9E6B5C00B72054 /* Cells */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F434223F2A9C2A450025C556 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F43422422A9C2A710025C556 /* Recipe detail */ = {
@@ -322,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				F43422552A9C2B700025C556 /* UIColor Extension.swift */,
+				0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -330,8 +349,26 @@
 			isa = PBXGroup;
 			children = (
 				F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */,
+				0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */,
+				0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F45B87982AA3229E00E5DBE4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F45B87992AA322A600E5DBE4 /* Controller */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F45B87992AA322A600E5DBE4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +435,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3D3B492A9FCA0F00B72054 /* Poppins-Regular.ttf in Resources */,
+				0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */,
 				F43422292A9C29950025C556 /* Assets.xcassets in Resources */,
 				F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */,
 			);
@@ -413,6 +452,9 @@
 				0A726C432AA324B500F08A3D /* MainImageCell.swift in Sources */,
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
+				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
+				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
+				0A3D3B342A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift in Sources */,
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
 				0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */,
 				0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */,
@@ -422,9 +464,13 @@
 				F43422202A9C29930025C556 /* AppDelegate.swift in Sources */,
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
+				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
+				0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */,
+				0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
+				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				0A726C492AA324C400F08A3D /* Recipe.swift in Sources */,
@@ -559,7 +605,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "My-Recipes-Book/Info.plist";
+				INFOPLIST_FILE = "My-Recipes-Book/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -590,7 +636,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "My-Recipes-Book/Info.plist";
+				INFOPLIST_FILE = "My-Recipes-Book/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
