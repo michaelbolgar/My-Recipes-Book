@@ -10,6 +10,19 @@ import UIKit
 
 final class SavedViewController: UIViewController {
     
+    private let data = [
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
+    ]
+    
     // MARK: Table View with saved recipes
     
     private lazy var tableView: UITableView = {
@@ -62,11 +75,13 @@ extension SavedViewController: UITableViewDelegate {
 
 extension SavedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedTableViewCell.reuseId, for: indexPath) as? SavedTableViewCell else { return UITableViewCell() }
+        guard var cell = tableView.dequeueReusableCell(withIdentifier: SavedTableViewCell.reuseId, for: indexPath) as? SavedTableViewCell else { return UITableViewCell() }
+        var oneCell = data[indexPath.row]
+        cell = SavedTableViewCell(model: oneCell)
         return cell
     }
     
