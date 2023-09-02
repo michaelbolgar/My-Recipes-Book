@@ -39,7 +39,6 @@
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
-		F45B879D2AA3243A00E5DBE4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45B879C2AA3243A00E5DBE4 /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +75,6 @@
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F45B879C2AA3243A00E5DBE4 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +148,26 @@
 			path = "My-Recipes-Book/Moduls/Recipe detail/Model";
 			sourceTree = SOURCE_ROOT;
 		};
+		0A726C4A2AA32D0600F08A3D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F434221F2A9C29930025C556 /* AppDelegate.swift */,
+				F43422212A9C29930025C556 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0A726C4B2AA32D1D00F08A3D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F43422592A9C2C550025C556 /* Fonts */,
+				F43422282A9C29950025C556 /* Assets.xcassets */,
+				F43422572A9C2BEA0025C556 /* Palette.swift */,
+				F434222D2A9C29950025C556 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
@@ -161,15 +179,10 @@
 		F434221E2A9C29930025C556 /* My-Recipes-Book */ = {
 			isa = PBXGroup;
 			children = (
-				F434221F2A9C29930025C556 /* AppDelegate.swift */,
-				F43422212A9C29930025C556 /* SceneDelegate.swift */,
-				F45B879C2AA3243A00E5DBE4 /* Storyboard.storyboard */,
+				0A726C4A2AA32D0600F08A3D /* App */,
 				F43422542A9C2B5F0025C556 /* Extension */,
 				F43422332A9C29C50025C556 /* Moduls */,
-				F43422592A9C2C550025C556 /* Fonts */,
-				F43422282A9C29950025C556 /* Assets.xcassets */,
-				F43422572A9C2BEA0025C556 /* Palette.swift */,
-				F434222D2A9C29950025C556 /* Info.plist */,
+				0A726C4B2AA32D1D00F08A3D /* SupportingFiles */,
 			);
 			path = "My-Recipes-Book";
 			sourceTree = "<group>";
@@ -426,7 +439,6 @@
 				0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */,
 				F43422292A9C29950025C556 /* Assets.xcassets in Resources */,
 				F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */,
-				F45B879D2AA3243A00E5DBE4 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +605,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "My-Recipes-Book/Info.plist";
+				INFOPLIST_FILE = "My-Recipes-Book/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -624,7 +636,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "My-Recipes-Book/Info.plist";
+				INFOPLIST_FILE = "My-Recipes-Book/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
