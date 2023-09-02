@@ -9,7 +9,8 @@
  A note in case I forget the principle of operation.
  First of all, the request configuration (endPoint) is set in the Recipe API.
  After that, based on the configuration, RequestBuilder collects the request into one.
- The collected request is transmitted to the Router, sent to the server and, depending on the response (Status Code), decodes the data or outputs an error message.
+ The collected request is transmitted to the Router, sent to the server and,
+ depending on the response (Status Code), decodes the data or outputs an error message.
 */
 
 import Foundation
@@ -22,8 +23,11 @@ class NetworkManager {
         requestBuilder = RequestBuilder()
         networkRouter = NetworkRouter()
     }
-    
-    func getRecipesData(with endPoint: EndPointType, completion: @escaping (_ recipes: TrendingScreenDataModel?, _ error: String?) -> Void) {
+    // In generic, you specify the type of model to which the data should come.
+    //The main thing is that the model supports the Decodable protocol
+    func getAPIData<T>(with endPoint: EndPointType,
+                           completion: @escaping (_ recipes: T?, _ error: String?) -> Void)
+    where T: Decodable {
         requestBuilder?.assignEndPoint(with: endPoint)
         let assembledRequest = requestBuilder?.buildRequest()
         networkRouter?.sendRequest(to: assembledRequest, completion: { data, response, error in
@@ -41,7 +45,7 @@ class NetworkManager {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(TrendingScreenDataModel.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(T.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)

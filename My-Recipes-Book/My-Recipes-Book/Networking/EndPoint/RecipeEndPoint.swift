@@ -10,11 +10,15 @@ import Foundation
 public typealias HTTPHeaders = [String: String]
 public typealias Parameters = [String: Any]
 
+//Here you need to add what kind of data you want to get
+//(In case the right type was not found)
 enum RecipeAPI {
+//For example, this case means that I want to get data for the "Trending" module
     case trendingRecipesData
 }
 
 extension RecipeAPI: EndPointType {
+//specify what parameters your request type should have.
     var requestParameters: Parameters {
         switch self {
         case .trendingRecipesData:

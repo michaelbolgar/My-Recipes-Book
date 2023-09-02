@@ -16,7 +16,6 @@ class TrandRecipeCell: UITableViewCell {
     private var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.imageFromURL("https://via.placeholder.com/600/d32776", placeHolder: nil)
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         return imageView
@@ -38,7 +37,6 @@ class TrandRecipeCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .white
         label.contentMode = .left
-        label.text = "ghujiudf ufdufwef i wsefiu ief \nghbfhrfyjdcv"
         label.font = UIFont(name: "Poppins-Bold", size: 16)
         return label
     }()
@@ -46,7 +44,6 @@ class TrandRecipeCell: UITableViewCell {
     private var countOfIngredientsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "9 Ingredients"
         label.font = UIFont(name: "Poppins-Bold", size: 12)
         return label
     }()
@@ -54,7 +51,6 @@ class TrandRecipeCell: UITableViewCell {
     private var cookTimeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "25 min"
         label.font = UIFont(name: "Poppins-Bold", size: 12)
         return label
     }()
@@ -85,6 +81,15 @@ class TrandRecipeCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    public func transnferData(recipeData: TrendingRecipeData?) {
+        guard let recipeData = recipeData else { return }
+        dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
+        recipeNameLabel.text = recipeData.title ?? "no title"
+        countOfIngredientsLabel.text = "\(recipeData.extendedIngredients.count) Ingredients"
+        cookTimeLabel.text = "\(recipeData.cookingMinutes ?? 0) min"
+    }
+
 // MARK: - Cell preparation
     private func putToHierarchy() {
         self.addSubview(dishImageView)
@@ -121,10 +126,10 @@ class TrandRecipeCell: UITableViewCell {
         countOfIngredientsLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-16)
-            make.size.equalTo(CGSize(width: 85, height: 18))
+            make.size.equalTo(CGSize(width: 95, height: 18))
         }
         lineSeparatorLabel.snp.makeConstraints { make in
-            make.left.equalTo(countOfIngredientsLabel).offset(88)
+            make.left.equalTo(countOfIngredientsLabel).offset(97)
             make.bottom.equalTo(countOfIngredientsLabel)
             make.size.equalTo(CGSize(width: 2, height: 18))
         }

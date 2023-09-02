@@ -46,4 +46,8 @@ class TrandingNowView: UIView {
         trandingRecipesUITable.dataSource = dataSourse
         trandingRecipesUITable.delegate = delegate
     }
+
+    public func reloadTableView() {
+        trandingRecipesUITable.reloadData()
+    }
 }
