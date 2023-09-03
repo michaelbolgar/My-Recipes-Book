@@ -10,18 +10,7 @@ import UIKit
 
 final class SavedViewController: UIViewController {
     
-    private let data = [
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-        Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make sharwama at home", recipeAuthor: "By Zeelicous Food"),
-    ]
+    private let data = Array(repeating: Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make Shawrma at home?", authorImage: "AuthorImage", authorLabel: "By Zeelicious Food"), count: 10)
     
     // MARK: Table View with saved recipes
     
@@ -36,12 +25,12 @@ final class SavedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.title = "Saved Recipes"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        self.title = "Saved Recipes"
+
         configureUI()
     }
     
@@ -55,13 +44,12 @@ final class SavedViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         // Set tableView frame to superview bounds
-        
-        tableView.frame = view.bounds
+        tableView.frame = view.frame
         
         // make table rows resizable depend on its content
-        
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 140
+        tableView.estimatedRowHeight = 600
+
     }
 }
 
@@ -79,11 +67,9 @@ extension SavedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard var cell = tableView.dequeueReusableCell(withIdentifier: SavedTableViewCell.reuseId, for: indexPath) as? SavedTableViewCell else { return UITableViewCell() }
-        var oneCell = data[indexPath.row]
-        cell = SavedTableViewCell(model: oneCell)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedTableViewCell.reuseId, for: indexPath) as? SavedTableViewCell else { return UITableViewCell() }
+        let recipe = data[indexPath.row]
+        cell.configureCell(with: recipe)
         return cell
     }
-    
-    
 }
