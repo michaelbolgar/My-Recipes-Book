@@ -8,12 +8,13 @@
 import UIKit
 
 final class CreateRecipeView: UIView {
-
+    
     lazy var mainTableView: UITableView = {
         let mainTableView = UITableView(frame: self.bounds, style: .grouped)
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.backgroundColor = .white
+        mainTableView.register(RecipeImageCell.self, forCellReuseIdentifier: "imageCell")
         mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return mainTableView
     }()
@@ -40,17 +41,32 @@ final class CreateRecipeView: UIView {
 
 // MARK: - UITableViewDataSource
 extension CreateRecipeView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        4
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = mainTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        return cell
+        switch indexPath.section {
+        case 0:
+            guard
+                let cell = mainTableView.dequeueReusableCell(
+                    withIdentifier: "imageCell",
+                    for: indexPath) as? RecipeImageCell
+            else {
+                return UITableViewCell()
+            }
+            return cell
+        default:
+            let cell = mainTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            return cell
+            
+            
+        }
     }
-    
-    
 }
 
 // MARK: - UITableViewDelegate
@@ -76,10 +92,10 @@ extension CreateRecipeView: UITableViewDelegate {
         switch section {
         case 0:
             label.text = "Create Recipe"
-            label.font = UIFont(name: "Poppins-Bold", size: 24)
+            label.font = UIFont(name: "Poppins-SemiBold", size: 24)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
-
+            
         default:
             let countItemsLabel = UILabel()
             countItemsLabel.text = ""
@@ -87,7 +103,6 @@ extension CreateRecipeView: UITableViewDelegate {
             countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
             headerView.addSubview(countItemsLabel)
             
-            label.text = "Ingredients"
             
             countItemsLabel.snp.makeConstraints { make in
                 make.right.equalToSuperview().offset(-16)
