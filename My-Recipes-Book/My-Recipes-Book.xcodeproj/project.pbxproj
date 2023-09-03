@@ -150,6 +150,37 @@
 			path = "My-Recipes-Book/Moduls/Recipe detail/Model";
 			sourceTree = SOURCE_ROOT;
 		};
+		3CE673012AA4AED400300315 /* CreateRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				3CE673042AA4AEFD00300315 /* Controllers */,
+				3CE673022AA4AEF100300315 /* View */,
+			);
+			path = CreateRecipe;
+			sourceTree = "<group>";
+		};
+		3CE673022AA4AEF100300315 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CE673032AA4AEF700300315 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CE673032AA4AEF700300315 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3CE673042AA4AEFD00300315 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +208,7 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				3CE673012AA4AED400300315 /* CreateRecipe */,
 				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
