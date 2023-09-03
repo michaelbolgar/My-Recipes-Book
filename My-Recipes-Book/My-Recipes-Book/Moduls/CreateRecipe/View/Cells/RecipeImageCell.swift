@@ -26,6 +26,7 @@ final class RecipeImageCell: UITableViewCell {
         editButton.setImage(UIImage(named: "Edit1"), for: .normal)
         editButton.layer.cornerRadius = 15
         editButton.clipsToBounds = true
+        editButton.addTarget(self, action: #selector(changeButtonDidTapped), for: .touchUpInside)
         return editButton
     }()
     // MARK: - Init
@@ -38,6 +39,17 @@ final class RecipeImageCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Actions
+    @objc private func changeButtonDidTapped() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        if let viewController = findViewController() {
+            viewController.present(imagePicker, animated: true, completion: nil)
+        }
+        
     }
     
     // MARK: - Private Methods
@@ -57,4 +69,23 @@ final class RecipeImageCell: UITableViewCell {
         }
     }
     
+    private func findViewController() -> UIViewController? {
+        var responder: UIResponder? = self
+        while let currentResponder = responder {
+            if let viewController = currentResponder as? UIViewController {
+                return viewController
+            }
+            responder = currentResponder.next
+        }
+        return nil
+    }
+}
+
+extension RecipeImageCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            recipeImageView.image = pickedImage
+        }
+        picker.dismiss(animated: true)
+    }
 }
