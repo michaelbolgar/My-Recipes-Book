@@ -55,5 +55,55 @@ extension CreateRecipeView: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CreateRecipeView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = .white
+        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(label)
+        
+        label.font = UIFont(name: "Poppins-Bold", size: 20)
+        label.textColor = .black
+        label.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
+        
+        switch section {
+        case 0:
+            label.text = "Create Recipe"
+            label.font = UIFont(name: "Poppins-Bold", size: 24)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+
+        default:
+            let countItemsLabel = UILabel()
+            countItemsLabel.text = ""
+            countItemsLabel.textColor = .systemGray
+            countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
+            headerView.addSubview(countItemsLabel)
+            
+            label.text = "Ingredients"
+            
+            countItemsLabel.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.centerY.equalToSuperview()
+            }
+        }
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        indexPath.section == 2 ? 100 : tableView.rowHeight
+    }
+    
     
 }
