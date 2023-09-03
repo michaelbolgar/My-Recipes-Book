@@ -43,8 +43,6 @@ class OnboardingView: UIView {
     
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
-        
-        
         label.text = "100k+ Premium recipes."
         label.textColor = .white
         label.textAlignment = .center
@@ -71,6 +69,7 @@ class OnboardingView: UIView {
     //MARK: - UI Elements
 
     @objc private func getStartedButtonPressed() {
+        
         
     }
     
