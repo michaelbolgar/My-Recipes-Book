@@ -15,6 +15,8 @@ final class SavedTableViewCell: UITableViewCell {
     
     private lazy var recipeImageView: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         image.backgroundColor = .orange
         image.layer.cornerRadius = 16
         return image
@@ -34,11 +36,6 @@ final class SavedTableViewCell: UITableViewCell {
         starView.contentMode = .scaleAspectFit
         starView.image = UIImage(systemName: "star.fill")
         scoreView.addSubview(starView)
-        // вынести скролл вью в отдельную функцию
-        let scoreLabel = UILabel()
-        scoreLabel.frame = CGRect(x: starView.frame.maxX + 3, y: 4, width: 24, height: 20)
-        scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        scoreView.addSubview(scoreLabel)
         
         return scoreView
     }()
@@ -60,7 +57,6 @@ final class SavedTableViewCell: UITableViewCell {
         label.layer.cornerRadius = 16
         label.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.19, alpha: 0.3)
         label.layer.opacity = 0.3
-        label.text = model.time
         return label
     }()
     
@@ -85,22 +81,18 @@ final class SavedTableViewCell: UITableViewCell {
     
     // MARK: Author image with name label
     
-    private lazy var authorView: UIView = {
-        let view = UIView()
-        
-        let authorImage = UIImageView()
-        authorImage.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-        authorImage.image = UIImage(named: "AuthorImage")
-        authorImage.contentMode = .scaleAspectFit
-        
+    private var authorImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "AuthorImage")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private var authorLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: authorImage.frame.maxX + 7, y: 0, width: view.frame.width - authorImage.frame.width - 7, height: 18)
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor(red: 0.57, green: 0.57, blue: 0.57, alpha: 1)
-        
-        view.addSubview(authorImage)
-        view.addSubview(label)
-        return view
+        return label
     }()
     
     // MARK: init base interface
@@ -111,15 +103,33 @@ final class SavedTableViewCell: UITableViewCell {
         contentView.addSubview(bookmarkImage)
         contentView.addSubview(timeLabel)
         contentView.addSubview(recipeNameView)
-        contentView.addSubview(authorView)
+        contentView.addSubview(authorImageView)
+        contentView.addSubview(authorLabel)
     }
     
-    func configureCell(model: Model) {
+    func configureCell(with model: Model) {
         recipeImageView.image = UIImage(named: model.recipeImage)
+        
+        // Add score label to RecipeScoreView
+        let scoreLabel = UILabel()
+        scoreLabel.frame = CGRect(x: recipeScoreView.frame.maxX - 7 - 24, y: 4, width: 24, height: 20)
+        scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        scoreLabel.text = model.score
+        recipeScoreView.addSubview(scoreLabel)
+        
+        // set time label text from current recipe
+        timeLabel.text = model.time
+        // set author image to currentAuthor
+        authorImageView.image = UIImage(named: model.authorImage)
+        
+        // set author name to label
+        authorLabel.text = model.authorLabel
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -148,9 +158,13 @@ final class SavedTableViewCell: UITableViewCell {
                                       y: recipeImageView.frame.maxY + 16,
                                       width: contentView.frame.width - 16 - 16,
                                       height: 22)
-        authorView.frame = CGRect(x: 16,
-                                  y: recipeNameView.frame.maxY + 12,
-                                  width: contentView.frame.width - 16 - 16,
-                                  height: 32)
+        authorImageView.frame = CGRect(x: 16,
+                                       y: recipeNameView.frame.maxY + 12,
+                                       width: 32,
+                                       height: 32)
+        authorLabel.frame = CGRect(x: authorImageView.frame.maxX + 7,
+                                   y: authorImageView.frame.origin.y + authorImageView.frame.height / 2,
+                                   width: contentView.frame.width - 16 - authorImageView.frame.width - 7 - 16,
+                                   height: 18)
     }
 }

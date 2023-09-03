@@ -12,5 +12,6 @@ struct Model {
     let score: String
     let time: String
     let recipeName: String
-    let recipeAuthor: String
+    let authorImage: String
+    let authorLabel: String
 }
