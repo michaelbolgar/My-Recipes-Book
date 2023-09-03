@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainImageCell: UITableViewCell {
+class RecipeImageCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
