@@ -10,9 +10,6 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
-    //MARK: - Category data source
-    let categoriesArray = ["dessert", "appetizer", "salad", "breakfast", "snack", "soup"]
-    
     //MARK: - Propperties
     
     let headerKind = UICollectionView.elementKindSectionHeader
@@ -83,15 +80,15 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case SectionType.trending.rawValue:
-            return 10
+            return 5
         case SectionType.popularCategory.rawValue:
-            return categoriesArray.count
+            return CategoryType.allCases.count
         case SectionType.popularItem.rawValue:
-            return 10
+            return 5
         case SectionType.recentRecipe.rawValue:
-            return 10
+            return 5
         case SectionType.popularCreator.rawValue:
-            return 10
+            return 5
         default: return 0
         }
     }
@@ -100,36 +97,36 @@ extension HomeViewController: UICollectionViewDataSource {
         
         switch indexPath.section {
         case SectionType.trending.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath) as? TrendingCollectionViewCell else {return .init()}
             return cell
         case SectionType.popularCategory.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
-            cell.setup(with: categoriesArray[indexPath.item])
+            let categoryName = CategoryType.allCases[indexPath.item].rawValue
+            cell.setup(with: categoryName)
             return cell
         case SectionType.popularItem.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
             cell.setupCell()
             return cell
         case SectionType.recentRecipe.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath) as? RecentCollectionViewCell else {return .init()}
             return cell
         case SectionType.popularCreator.rawValue:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath) as? PopularCreatorCollectionViewCell else {return UICollectionViewCell()}
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath) as? PopularCreatorCollectionViewCell else {return .init()}
             cell.setupCell()
             return cell
         default:
-            return UICollectionViewCell()
+            return .init()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == headerKind {
-            
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
-            header.setup(setHeaderData(for: indexPath))
-            return header
-        }
-        return .init()
+        guard kind == headerKind else {return .init()}
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
+        header.setup(setHeaderData(for: indexPath))
+        return header
+        
+        
     }
     
     private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
@@ -201,8 +198,8 @@ extension HomeViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(280/375),
-            heightDimension: .fractionalWidth(254/375))
+            widthDimension: .fractionalWidth(280.0/375.0),
+            heightDimension: .fractionalWidth(254.0/375.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         
@@ -244,8 +241,8 @@ extension HomeViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(150/375),
-            heightDimension: .fractionalWidth(231/375))
+            widthDimension: .fractionalWidth(150.0/375.0),
+            heightDimension: .fractionalWidth(231.0/375.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         
@@ -265,8 +262,8 @@ extension HomeViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(124/375),
-            heightDimension: .fractionalWidth(190/375))
+            widthDimension: .fractionalWidth(124.0/375.0),
+            heightDimension: .fractionalWidth(190.0/375.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         
@@ -287,8 +284,8 @@ extension HomeViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(110/375),
-            heightDimension: .fractionalWidth(136/375))
+            widthDimension: .fractionalWidth(110.0/375.0),
+            heightDimension: .fractionalWidth(136.0/375.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         
