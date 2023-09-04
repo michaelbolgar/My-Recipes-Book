@@ -114,7 +114,8 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath)
             return cell
         case SectionType.popularCreator.rawValue:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath) as? PopularCreatorCollectionViewCell else {return UICollectionViewCell()}
+            cell.setupCell()
             return cell
         default:
             return UICollectionViewCell()
