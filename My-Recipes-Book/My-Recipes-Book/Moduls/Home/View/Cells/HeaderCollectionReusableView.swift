@@ -69,6 +69,10 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         }
     }
     
+    @objc func seeAllButtonTapped() {
+        
+    }
+    
     func setup(_ data: (title: String, isHidden: Bool)) {
         leftLabel.text = data.title
         rightLabel.isHidden = data.isHidden
