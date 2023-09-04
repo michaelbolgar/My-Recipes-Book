@@ -10,7 +10,7 @@ import UIKit
 
 class TrendingViewController: UIViewController {
 // MARK: - UI element
-    private var trendingScreenData: TrendingScreenDataModel? 
+    private var trendingScreenData: RecipeDataModelForCell?
     private var trandView = TrandingNowView()
     private var networkManager = NetworkManager()
 
@@ -27,7 +27,7 @@ class TrendingViewController: UIViewController {
     }
     
     private func requestData() {
-        networkManager.getAPIData(with: RecipeAPI.trendingRecipesData) { [weak self] (result: TrendingScreenDataModel?, error: String?) in
+        networkManager.getAPIData(with: .recentRecipe) { [weak self] (result: RecipeDataModelForCell?, error: String?) in
             DispatchQueue.main.async {
                 if let result = result {
                     self?.trendingScreenData = result

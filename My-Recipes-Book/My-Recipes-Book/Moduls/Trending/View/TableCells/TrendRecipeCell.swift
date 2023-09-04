@@ -81,12 +81,12 @@ class TrandRecipeCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    public func transnferData(recipeData: TrendingRecipeData?) {
+//MARK: - Public interface
+    public func transnferData(recipeData: Result?) {
         guard let recipeData = recipeData else { return }
         dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
         recipeNameLabel.text = recipeData.title ?? "no title"
-        countOfIngredientsLabel.text = "\(recipeData.extendedIngredients.count) Ingredients"
+        countOfIngredientsLabel.text = "\(recipeData.extendedIngredients?.count ?? 0) Ingredients"
         cookTimeLabel.text = "\(recipeData.cookingMinutes ?? 0) min"
     }
 

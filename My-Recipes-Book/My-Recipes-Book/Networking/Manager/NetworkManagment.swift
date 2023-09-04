@@ -16,23 +16,19 @@
 import Foundation
 
 class NetworkManager {
-    private var requestBuilder: RequestBuilder?
-    private let networkRouter: NetworkRouter?
+    private var requestBuilder = RequestBuilder()
+    private let networkRouter = NetworkRouter()
     
-    init() {
-        requestBuilder = RequestBuilder()
-        networkRouter = NetworkRouter()
-    }
     // In generic, you specify the type of model to which the data should come.
     //The main thing is that the model supports the Decodable protocol
-    func getAPIData<T>(with endPoint: EndPointType,
+    func getAPIData<T>(with endPoint: RecipeAPI,
                            completion: @escaping (_ recipes: T?, _ error: String?) -> Void)
     where T: Decodable {
-        requestBuilder?.assignEndPoint(with: endPoint)
-        let assembledRequest = requestBuilder?.buildRequest()
-        networkRouter?.sendRequest(to: assembledRequest, completion: { data, response, error in
+        let assembledRequest = requestBuilder.buildRequest(with: endPoint)
+        networkRouter.sendRequest(to: assembledRequest, completion: { data, response, error in
             if error != nil {
                 completion(nil, "Check your internet connection")
+                return
             }
             //the basic logic of this function relies on the URL response.
             //Further actions depend on which statusCode will come
@@ -47,8 +43,8 @@ class NetworkManager {
                     do {
                         let apiResponse = try JSONDecoder().decode(T.self, from: responseData)
                         completion(apiResponse, nil)
-                    } catch {
-                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    } catch (let jsonError) {
+                        completion(nil, jsonError.localizedDescription)
                     }
                 case .failure(let networkFailureError):
                     completion(nil, networkFailureError)

@@ -8,13 +8,7 @@
 import Foundation
 
 struct RequestBuilder {
-    private var endPoint: EndPointType?
-
-    mutating func assignEndPoint(with endPoint: EndPointType) {
-        self.endPoint = endPoint
-    }
-
-    func buildRequest() -> URLRequest? {
+    func buildRequest(with endPoint: EndPointType?) -> URLRequest? {
         guard let endPoint = endPoint else { return nil }
         let url = URL(string: endPoint.path, relativeTo: endPoint.baseURL)
         guard let url = url else { return nil }
