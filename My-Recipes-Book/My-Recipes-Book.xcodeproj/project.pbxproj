@@ -334,6 +334,8 @@
 		F43422502A9C2B200025C556 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4FC0E1482A9CE1B9003610BE /* TrendingView.swift */,
+				4FC0E14E2A9CE337003610BE /* TableCells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,12 +474,15 @@
 				0A726C452AA324B500F08A3D /* IngredientCell.swift in Sources */,
 				0A3D3B382A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift in Sources */,
 				F43422202A9C29930025C556 /* AppDelegate.swift in Sources */,
+				4FC0E1502A9DC415003610BE /* RecipeDataModelForCell.swift in Sources */,
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
 				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
 				0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */,
 				0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
+				4FC0E1632AA1B093003610BE /* EndPointType.swift in Sources */,
+				4FC0E1682AA22AE8003610BE /* NetworkManagment.swift in Sources */,
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
 				0A9C70E42AA4547A007C5ECB /* RecipeModel.swift in Sources */,
