@@ -82,7 +82,7 @@ class TrandRecipeCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 //MARK: - Public interface
-    public func transnferData(recipeData: Result?) {
+    public func transnferData(recipeData: Results?) {
         guard let recipeData = recipeData else { return }
         dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
         recipeNameLabel.text = recipeData.title ?? "no title"
