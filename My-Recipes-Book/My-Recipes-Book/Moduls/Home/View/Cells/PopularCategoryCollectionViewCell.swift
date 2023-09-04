@@ -35,7 +35,7 @@ class PopularCategoryCollectionViewCell: UICollectionViewCell {
     }
     //MARK: - Methods
     func setup(with title: String) {
-        label.text = title
+        label.text = title.capitalized
     }
     
     fileprivate func setViews() {

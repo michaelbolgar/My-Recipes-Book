@@ -10,8 +10,8 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
-    //MARK: - Temporary data source
-    let categoriesArray = ["There will", "Be some more", "Text here", "But not", "Just now"]
+    //MARK: - Category data source
+    let categoriesArray = ["dessert", "appetizer", "salad", "breakfast", "snack", "soup"]
     
     //MARK: - Propperties
     
