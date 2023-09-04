@@ -17,6 +17,7 @@ final class CreateRecipeView: UIView {
         mainTableView.register(RecipeImageCell.self, forCellReuseIdentifier: "imageCell")
         mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         mainTableView.register(NameRecipeCell.self, forCellReuseIdentifier: "nameCell")
+        mainTableView.register(MealDetailsCell.self, forCellReuseIdentifier: "mealDetailsCell")
         return mainTableView
     }()
     
@@ -46,7 +47,12 @@ extension CreateRecipeView: UITableViewDataSource {
         4
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 2 {
+            return 2
+        } else {
+            return 1
+        }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,12 +77,31 @@ extension CreateRecipeView: UITableViewDataSource {
             }
             
             return cell
+        case 2:
+            guard
+                let cell = mainTableView.dequeueReusableCell(
+                    withIdentifier: "mealDetailsCell",
+                    for: indexPath) as? MealDetailsCell
+            else {
+                return UITableViewCell()
+            }
+            
+            if indexPath.row == 0 {
+         
+                return cell
+            } else {
+          
+                return cell
+            }
+       
+        
         default:
             let cell = mainTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
             
             
         }
+//        return UITableViewCell()
     }
 }
 
@@ -120,6 +145,8 @@ extension CreateRecipeView: UITableViewDelegate {
 //        UITableView.automaticDimension
         if section == 1 {
             return 0
+        } else if section == 2{
+            return 0
         } else {
             return 60
         }
@@ -129,6 +156,8 @@ extension CreateRecipeView: UITableViewDelegate {
 //        indexPath.section == 2 ? 100 : tableView.rowHeight
         if indexPath.section == 1 {
             return 50
+        } else if indexPath.section == 2 {
+           return 60
         } else {
             return UITableView.automaticDimension
         }
