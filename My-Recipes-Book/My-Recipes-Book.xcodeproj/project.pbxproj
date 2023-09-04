@@ -28,6 +28,7 @@
 		3CE673062AA4AF9700300315 /* NewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE673052AA4AF9700300315 /* NewRecipeViewController.swift */; };
 		3CE673082AA4AFB400300315 /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE673072AA4AFB400300315 /* CreateRecipeView.swift */; };
 		3CE6730A2AA4B46100300315 /* RecipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE673092AA4B46100300315 /* RecipeImageCell.swift */; };
+		3CE6730C2AA5235700300315 /* NameRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6730B2AA5235700300315 /* NameRecipeCell.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		3CE673052AA4AF9700300315 /* NewRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipeViewController.swift; sourceTree = "<group>"; };
 		3CE673072AA4AFB400300315 /* CreateRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
 		3CE673092AA4B46100300315 /* RecipeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
+		3CE6730B2AA5235700300315 /* NameRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameRecipeCell.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				3CE673092AA4B46100300315 /* RecipeImageCell.swift */,
+				3CE6730B2AA5235700300315 /* NameRecipeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				0A726C432AA324B500F08A3D /* MainImageCell.swift in Sources */,
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
+				3CE6730C2AA5235700300315 /* NameRecipeCell.swift in Sources */,
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
 				0A3D3B342A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift in Sources */,

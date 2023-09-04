@@ -16,6 +16,7 @@ final class CreateRecipeView: UIView {
         mainTableView.backgroundColor = .white
         mainTableView.register(RecipeImageCell.self, forCellReuseIdentifier: "imageCell")
         mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        mainTableView.register(NameRecipeCell.self, forCellReuseIdentifier: "nameCell")
         return mainTableView
     }()
     
@@ -60,6 +61,16 @@ extension CreateRecipeView: UITableViewDataSource {
                 return UITableViewCell()
             }
             return cell
+        case 1:
+            guard
+                let cell = mainTableView.dequeueReusableCell(
+                    withIdentifier: "nameCell",
+                    for: indexPath) as? NameRecipeCell
+            else {
+                return UITableViewCell()
+            }
+            
+            return cell
         default:
             let cell = mainTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
@@ -75,49 +86,53 @@ extension CreateRecipeView: UITableViewDelegate {
         
         let headerView = UIView()
         headerView.backgroundColor = .white
-        
+
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(label)
-        
-        label.font = UIFont(name: "Poppins-Bold", size: 20)
-        label.textColor = .black
-        label.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-        }
-        
-        switch section {
-        case 0:
+
+          
+        if section == 0 {
+     
             label.text = "Create Recipe"
             label.font = UIFont(name: "Poppins-SemiBold", size: 24)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
-            
-        default:
-            let countItemsLabel = UILabel()
-            countItemsLabel.text = ""
-            countItemsLabel.textColor = .systemGray
-            countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
-            headerView.addSubview(countItemsLabel)
-            
-            
-            countItemsLabel.snp.makeConstraints { make in
+
+            label.textColor = .black
+            label.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.left.equalToSuperview().offset(16)
                 make.right.equalToSuperview().offset(-16)
-                make.centerY.equalToSuperview()
             }
+            
+         return headerView
         }
-        return headerView
+    return headerView
+
+       
     }
     
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        UITableView.automaticDimension
+//        UITableView.automaticDimension
+        if section == 1 {
+            return 0
+        } else {
+            return 60
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.section == 2 ? 100 : tableView.rowHeight
+//        indexPath.section == 2 ? 100 : tableView.rowHeight
+        if indexPath.section == 1 {
+            return 50
+        } else {
+            return UITableView.automaticDimension
+        }
+//                UITableView.automaticDimension
     }
     
     

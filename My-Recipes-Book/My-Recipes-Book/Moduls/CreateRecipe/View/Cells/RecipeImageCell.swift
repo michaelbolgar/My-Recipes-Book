@@ -41,6 +41,11 @@ final class RecipeImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        // отключаем выделение ячейки
+    }
+    
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
         let imagePicker = UIImagePickerController()
@@ -58,7 +63,7 @@ final class RecipeImageCell: UITableViewCell {
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview()
         }
         
         editButton.snp.makeConstraints { make in
@@ -81,6 +86,7 @@ final class RecipeImageCell: UITableViewCell {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension RecipeImageCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
