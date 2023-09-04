@@ -7,21 +7,21 @@
 
 import Foundation
 // MARK: - RecipeData
-struct RecipeData: Codable {
-    let results: [Results]
-}
-
-// MARK: - Result
-struct Results: Codable {
-    
-    let cookingMinutes  : Int
-    let creditsText, sourceName: String
-    let id: Int
-    let title: String
-    let readyInMinutes: Int
-    let image: String
-
-}
+//struct RecipeData: Codable {
+//    let results: [Results]
+//}
+//
+//// MARK: - Result
+//struct Results: Codable {
+//
+//    let cookingMinutes  : Int
+//    let creditsText, sourceName: String
+//    let id: Int
+//    let title: String
+//    let readyInMinutes: Int
+//    let image: String
+//
+//}
 
 
 //
