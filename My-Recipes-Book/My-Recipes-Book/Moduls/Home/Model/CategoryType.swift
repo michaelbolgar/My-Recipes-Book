@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum CategoryType: String, CaseIterable {
+    case dessert, appetizer, salad, breakfast, snack, soup
+}
