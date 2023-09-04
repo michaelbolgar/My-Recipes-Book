@@ -60,7 +60,7 @@ final class RecipeImageCell: UITableViewCell {
     // MARK: - Private Methods
     private func setupConstraints() {
         recipeImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(10)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalToSuperview()

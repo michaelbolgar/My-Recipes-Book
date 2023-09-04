@@ -87,10 +87,10 @@ extension CreateRecipeView: UITableViewDataSource {
             }
             
             if indexPath.row == 0 {
-         
+                cell.configure("person.2.fill")
                 return cell
             } else {
-          
+                cell.configure("clock.fill")
                 return cell
             }
        
@@ -157,7 +157,7 @@ extension CreateRecipeView: UITableViewDelegate {
         if indexPath.section == 1 {
             return 50
         } else if indexPath.section == 2 {
-           return 60
+           return 70
         } else {
             return UITableView.automaticDimension
         }
