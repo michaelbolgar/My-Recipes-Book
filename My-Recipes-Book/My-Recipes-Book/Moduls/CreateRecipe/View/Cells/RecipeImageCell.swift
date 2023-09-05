@@ -55,11 +55,10 @@ final class RecipeImageCell: UITableViewCell {
     // MARK: - Private Methods
     private func setupConstraints() {
         recipeImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10
-            )
+            make.top.equalToSuperview().offset(5)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-15)
         }
         
         editButton.snp.makeConstraints { make in

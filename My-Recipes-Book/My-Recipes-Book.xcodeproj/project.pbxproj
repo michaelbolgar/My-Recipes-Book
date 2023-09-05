@@ -30,7 +30,7 @@
 		3CE6730A2AA4B46100300315 /* RecipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE673092AA4B46100300315 /* RecipeImageCell.swift */; };
 		3CE6730C2AA5235700300315 /* NameRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6730B2AA5235700300315 /* NameRecipeCell.swift */; };
 		3CE6730E2AA5E39F00300315 /* MealDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6730D2AA5E39F00300315 /* MealDetailsCell.swift */; };
-		3CE673102AA708A400300315 /* NewIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6730F2AA708A400300315 /* NewIngredientCell.swift */; };
+		3CE673122AA7093900300315 /* NewIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE673112AA7093900300315 /* NewIngredientCell.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -72,7 +72,7 @@
 		3CE673092AA4B46100300315 /* RecipeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
 		3CE6730B2AA5235700300315 /* NameRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameRecipeCell.swift; sourceTree = "<group>"; };
 		3CE6730D2AA5E39F00300315 /* MealDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsCell.swift; sourceTree = "<group>"; };
-		3CE6730F2AA708A400300315 /* NewIngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIngredientCell.swift; sourceTree = "<group>"; };
+		3CE673112AA7093900300315 /* NewIngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIngredientCell.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,7 +149,6 @@
 				0A726C3F2AA324B500F08A3D /* MainImageCell.swift */,
 				0A726C402AA324B500F08A3D /* InstructionCell.swift */,
 				0A726C412AA324B500F08A3D /* IngredientCell.swift */,
-				3CE6730F2AA708A400300315 /* NewIngredientCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -187,6 +186,7 @@
 				3CE673092AA4B46100300315 /* RecipeImageCell.swift */,
 				3CE6730B2AA5235700300315 /* NameRecipeCell.swift */,
 				3CE6730D2AA5E39F00300315 /* MealDetailsCell.swift */,
+				3CE673112AA7093900300315 /* NewIngredientCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -514,7 +514,7 @@
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
 				3CE673062AA4AF9700300315 /* NewRecipeViewController.swift in Sources */,
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
-				3CE673102AA708A400300315 /* NewIngredientCell.swift in Sources */,
+				3CE673122AA7093900300315 /* NewIngredientCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				0A726C492AA324C400F08A3D /* Recipe.swift in Sources */,
