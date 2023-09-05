@@ -20,6 +20,8 @@
 		F43422582A9C2BEA0025C556 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422572A9C2BEA0025C556 /* Palette.swift */; };
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
+		F45B87AB2AA75EE200E5DBE4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B87AA2AA75EE200E5DBE4 /* Model.swift */; };
+		F45B87AD2AA75EE900E5DBE4 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B87AC2AA75EE800E5DBE4 /* SavedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		F43422572A9C2BEA0025C556 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F45B87AA2AA75EE200E5DBE4 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F45B87AC2AA75EE800E5DBE4 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,7 @@
 		F434224A2A9C2AE80025C556 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F45B87AC2AA75EE800E5DBE4 /* SavedTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 		F434224B2A9C2AED0025C556 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F45B87AA2AA75EE200E5DBE4 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,9 +350,11 @@
 				F43422202A9C29930025C556 /* AppDelegate.swift in Sources */,
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
+				F45B87AD2AA75EE900E5DBE4 /* SavedTableViewCell.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
+				F45B87AB2AA75EE200E5DBE4 /* Model.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 			);
