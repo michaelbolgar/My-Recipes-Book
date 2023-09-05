@@ -13,6 +13,9 @@ class HomeViewController: UIViewController {
     //MARK: - Propperties
     
     let headerKind = UICollectionView.elementKindSectionHeader
+    var trendingReccipies: [Results]?
+    var popularItems: [Results]?
+    var popularRecipies: [Results]?
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCompositionalLayout() )
@@ -98,6 +101,7 @@ extension HomeViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case SectionType.trending.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath) as? TrendingCollectionViewCell else {return .init()}
+            cell.setupCell(with: trendingReccipies?[indexPath.row])
             return cell
         case SectionType.popularCategory.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
@@ -106,14 +110,15 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case SectionType.popularItem.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
-            cell.setupCell()
+            cell.setupCell(with: popularItems?[indexPath.row])
             return cell
         case SectionType.recentRecipe.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath) as? RecentCollectionViewCell else {return .init()}
+            cell.setupCell(with: popularRecipies?[indexPath.row])
             return cell
         case SectionType.popularCreator.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath) as? PopularCreatorCollectionViewCell else {return .init()}
-            cell.setupCell()
+            cell.setupCell(with: trendingReccipies?[indexPath.row])
             return cell
         default:
             return .init()

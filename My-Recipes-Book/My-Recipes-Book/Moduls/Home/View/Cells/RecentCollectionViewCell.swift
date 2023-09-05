@@ -71,7 +71,9 @@ class RecentCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setupCell() {
-        
+    func setupCell(with recipe: Results?) {
+        dishImageView.imageFromURL(recipe?.image ?? "", placeHolder: nil)
+        mainLabel.text = recipe?.title
+        creatorNameLabel.text = "By" + (recipe?.sourceName?.capitalized ?? "no data")
     }
 }
