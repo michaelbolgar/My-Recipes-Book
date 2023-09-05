@@ -175,7 +175,6 @@ extension CreateRecipeView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        indexPath.section == 2 ? 100 : tableView.rowHeight
         if indexPath.section == 1 {
             return 50
         } else if indexPath.section == 2 {
@@ -186,16 +185,14 @@ extension CreateRecipeView: UITableViewDelegate {
             return UITableView.automaticDimension
             
         }
-        //                UITableView.automaticDimension
     }
     
     // MARK: - Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 3 {
             let footerView = UIView()
-            footerView.backgroundColor = .white
-            
-            // Создайте и настройте элементы интерфейса для вашего футера
+
+
             let button = UIButton(type: .custom)
             button.setTitle("Add new ingredient", for: .normal)
             button.setTitleColor(.black, for: .normal)
@@ -203,27 +200,24 @@ extension CreateRecipeView: UITableViewDelegate {
             
             let plusImage = UIImage(named: "plus")
             let plusImageView = UIImageView(image: plusImage)
-            plusImageView.tintColor = .black // Настройте цвет изображения
+            plusImageView.tintColor = .black
             
             button.addSubview(plusImageView)
             
-            plusImageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                plusImageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
-                plusImageView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
-                plusImageView.widthAnchor.constraint(equalToConstant: 20), // Ширина изображения
-                plusImageView.heightAnchor.constraint(equalToConstant: 20) // Высота изображения
-            ])
-            //            button.addTarget(self, action: #selector(addIngredientButtonTapped), for: .touchUpInside)
-            
+            plusImageView.snp.makeConstraints { make in
+                make.centerY.equalTo(button.snp.centerY)
+                make.left.equalTo(button.snp.left)
+                make.width.equalTo(20)
+                make.height.equalTo(20)
+            }
             
             footerView.addSubview(button)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                button.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-                button.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 16), // Расстояние от левого края
-                button.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -160) // Расстояние от правого края
-            ])
+            
+            button.snp.makeConstraints { make in
+                make.centerY.equalTo(footerView.snp.centerY)
+                make.left.equalTo(footerView.snp.left).offset(16)
+                make.right.equalTo(footerView.snp.right).offset(-160)
+            }
             
             return footerView
         }
