@@ -8,11 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol HeaderDelegate {
+    func showViewController(with type: SectionType)
+}
+
 class HeaderCollectionReusableView: UICollectionReusableView {
+    
     
    //MARK: - Propperties
     static let reuseID = "HeaderCollectionReusableView"
-    var tapGestureRecognizer: UITapGestureRecognizer!//(target: HeaderCollectionReusableView.self, action: #selector(seeAllButtonTapped))
+    private var sectionType: SectionType?
+    var delegate: HeaderDelegate?
     
     private lazy var leftLabel: UILabel = {
         let label = UILabel()
@@ -78,13 +84,17 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     }
     
     @objc func seeAllButtonTapped() {
-        print("See all pressed")
+        guard let sectionType else {
+            print("No section type")
+            return}
+        delegate?.showViewController(with: sectionType)
     }
     
-    func setup(_ data: (title: String, isHidden: Bool)) {
+    func setup(_ data: (title: String, isHidden: Bool), sectionType: SectionType?) {
         leftLabel.text = data.title
         rightLabel.isHidden = data.isHidden
         arrowImageView.isHidden = data.isHidden
+        self.sectionType = sectionType
     }
     
 }

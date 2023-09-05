@@ -123,10 +123,10 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == headerKind else {return .init()}
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
-        header.setup(setHeaderData(for: indexPath))
+        let sectionType = SectionType(rawValue: indexPath.section)
+        header.setup(setHeaderData(for: indexPath), sectionType: (sectionType ?? nil))
+        header.delegate = self
         return header
-        
-        
     }
     
     private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
@@ -295,5 +295,14 @@ extension HomeViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [createSectionHeader()]
         return section
+    }
+}
+
+//MARK: - HeaderDelegate
+extension HomeViewController: HeaderDelegate {
+    
+    func showViewController(with type: SectionType) {
+        let detailedVC = TrendingViewController()//(screen type: type)
+        navigationController?.pushViewController(detailedVC, animated: true)
     }
 }
