@@ -24,7 +24,6 @@
 		0A726C442AA324B500F08A3D /* InstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C402AA324B500F08A3D /* InstructionCell.swift */; };
 		0A726C452AA324B500F08A3D /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C412AA324B500F08A3D /* IngredientCell.swift */; };
 		0A726C462AA324B500F08A3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C422AA324B500F08A3D /* ContentView.swift */; };
-		0A726C492AA324C400F08A3D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C482AA324C400F08A3D /* Recipe.swift */; };
 		0AA95B8B2AA5F33C009326D2 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95B8A2AA5F33B009326D2 /* DataBase.swift */; };
 		0AA95B8D2AA649BC009326D2 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95B8C2AA649BC009326D2 /* CategoryType.swift */; };
 		0AA95B902AA66403009326D2 /* RecipeDataModelForCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95B8F2AA66402009326D2 /* RecipeDataModelForCell.swift */; };
@@ -70,7 +69,6 @@
 		0A726C402AA324B500F08A3D /* InstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionCell.swift; sourceTree = "<group>"; };
 		0A726C412AA324B500F08A3D /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		0A726C422AA324B500F08A3D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		0A726C482AA324C400F08A3D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		0AA95B8A2AA5F33B009326D2 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		0AA95B8C2AA649BC009326D2 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		0AA95B8F2AA66402009326D2 /* RecipeDataModelForCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDataModelForCell.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 		0A726C472AA324C400F08A3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A726C482AA324C400F08A3D /* Recipe.swift */,
 			);
 			name = Model;
 			path = "My-Recipes-Book/Moduls/Recipe detail/Model";
@@ -350,6 +347,7 @@
 		F43422422A9C2A710025C556 /* Recipe detail */ = {
 			isa = PBXGroup;
 			children = (
+				0A726C3D2AA324B500F08A3D /* View */,
 				F43422452A9C2A920025C556 /* Model */,
 				F43422432A9C2A890025C556 /* Controller */,
 			);
@@ -376,7 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				0A726C472AA324C400F08A3D /* Model */,
-				0A726C3D2AA324B500F08A3D /* View */,
 				0A726C2C2AA3238000F08A3D /* Services */,
 				F43422492A9C2AE30025C556 /* Controller */,
 			);
@@ -574,7 +571,6 @@
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
-				0A726C492AA324C400F08A3D /* Recipe.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 				0A726C2B2AA3233500F08A3D /* Recipe.swift in Sources */,
 			);
