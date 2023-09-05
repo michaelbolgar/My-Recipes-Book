@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import NotificationCenter
 
 final class NewIngredientCell: UITableViewCell {
+    
+    var tableView: UITableView?
     
     // MARK: - UI Properties
     private lazy var mainView: UIView = {
@@ -44,12 +47,16 @@ final class NewIngredientCell: UITableViewCell {
     lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
+        nameTF.delegate = self
+        nameTF.autocorrectionType = .no
         return nameTF
     }()
     
     lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
+        quantityTF.delegate = self
+        quantityTF.autocorrectionType = .no
         return quantityTF
     }()
     
@@ -58,6 +65,7 @@ final class NewIngredientCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
         setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -122,4 +130,16 @@ final class NewIngredientCell: UITableViewCell {
         
     }
     
+}
+
+// MARK: - UITextFieldDelegate
+extension NewIngredientCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        tableView?.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        tableView?.setContentOffset(CGPoint(x: 0, y: -100), animated: true)
+
+    }
 }

@@ -42,5 +42,4 @@ final class ButtonCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-5)
         }
     }
-    
 }

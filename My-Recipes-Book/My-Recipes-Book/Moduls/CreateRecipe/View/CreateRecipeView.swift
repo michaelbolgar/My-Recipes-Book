@@ -135,6 +135,7 @@ extension CreateRecipeView: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+            cell.tableView = mainTableView
             return cell
             
         default:
