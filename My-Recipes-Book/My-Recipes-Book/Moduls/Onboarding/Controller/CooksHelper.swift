@@ -10,4 +10,6 @@ import UIKit
 struct CooksHelper {
     var name = String()
     var image = UIImage()
+    var buttonText = String()
+    var subButton = String()
 }

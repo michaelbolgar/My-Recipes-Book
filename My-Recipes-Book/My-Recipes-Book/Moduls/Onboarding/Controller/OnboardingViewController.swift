@@ -11,8 +11,6 @@ import UIKit
 class OnboardingViewController: UIViewController {
 
     //MARK: - Properties
-//    var startPageView = UIImageView()
-//    let startPageImage = UIImage(named: "startPage")
     let onboardingView = OnboardingView()
 
     //MARK: - Init
@@ -20,11 +18,7 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         layout()
-//        setupImage()
     }
 
     //MARK: - Methods
@@ -43,21 +37,4 @@ class OnboardingViewController: UIViewController {
             ])
     }
     
-//    private func setupImage() {
-//        startPageView = UIImageView(image: startPageImage)
-//        startPageView.contentMode = .scaleAspectFill
-//
-//        view.addSubview(startPageView)
-//
-//        startPageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//
-//            startPageView.topAnchor.constraint(equalTo: view.topAnchor),
-//            startPageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            startPageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            startPageView.widthAnchor.constraint(equalTo: view.widthAnchor)
-//
-//        ])
-//    }
 }

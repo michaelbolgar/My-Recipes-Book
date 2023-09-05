@@ -10,19 +10,19 @@ import UIKit
 class PageViewController: UIPageViewController {
     
     // MARK: - Variable
+    
     var cooks = [CooksHelper]()
     let firstPageImage = UIImage(named: "cookPage1")
     let secondPageImage = UIImage(named: "cookPage2")
     let thirdPageImage = UIImage(named: "cookPage3")
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
-        let firstPage = CooksHelper(name: "Recipes from all over the World", image: firstPageImage!)
-        let secondPage = CooksHelper(name: "Recipes from all over the World", image: secondPageImage!)
-        let thirdPage = CooksHelper(name: "Recipes from all over the World", image: thirdPageImage!)
+  
+        let firstPage = CooksHelper(name: "Recipes from all over the World", image: firstPageImage!,buttonText: "Continue", subButton: "Skip")
+        let secondPage = CooksHelper(name: "Recipes with each every detali", image: secondPageImage!,buttonText: "Continue", subButton: "Skip")
+        let thirdPage = CooksHelper(name: "Cook it now or save it for later", image: thirdPageImage!, buttonText: "Start Cooking", subButton: "")
         
         cooks.append(firstPage)
         cooks.append(secondPage)
@@ -67,9 +67,12 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
             if index > 0 {
                 return arrayCookVC[index - 1]
             }
+            
         }
         return nil
     }
+    
+    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewController = viewController as? CookViewController else {return nil}

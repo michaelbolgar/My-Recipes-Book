@@ -70,7 +70,6 @@ class OnboardingView: UIView {
 
     @objc private func getStartedButtonPressed() {
         
-        
     }
     
     //MARK: - Init
