@@ -47,16 +47,21 @@ final class SavedViewController: UIViewController {
         tableView.frame = view.frame
         
         // make table rows resizable depend on its content
+        tableView.estimatedRowHeight = 275
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
-
     }
 }
 
     // MARK: TableViewDelegate
 
 extension SavedViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.delegate?.tableView(self, didDeselectRowAt: indexPath)
+//    }
 }
 
     // MARK: TableView DataSource

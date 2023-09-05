@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SavedTableViewCell: UITableViewCell {
-        
     static var reuseId: String {
         String(describing: Self.self)
     }
@@ -25,19 +25,39 @@ final class SavedTableViewCell: UITableViewCell {
     // MARK: Score with Star image
     
     private lazy var recipeScoreView: UIView = {
-        let scoreView = UIView()
-        scoreView.frame = CGRect(x: 8, y: 8, width: 58, height: 27.6)
-        scoreView.layer.cornerRadius = 16
-        scoreView.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.19, alpha: 0.3)
-        scoreView.layer.opacity = 0.3
         
-        let starView = UIImageView()
-        starView.frame = CGRect(x: 8, y: 5.8, width: 16, height: 16)
-        starView.contentMode = .scaleAspectFit
-        starView.image = UIImage(systemName: "star.fill")
-        scoreView.addSubview(starView)
+        let scoreView = UIView()
+        scoreView.layer.cornerRadius = 10
+        scoreView.clipsToBounds = true
+        
+        // blur background effect
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = scoreView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = 10
+        blurEffectView.layer.opacity = 0.7
+        scoreView.addSubview(blurEffectView)
         
         return scoreView
+    }()
+    
+    private lazy var scoreStarImage: UIImageView = {
+        // star view
+        let starView = UIImageView()
+        starView.tintColor = .black
+        starView.contentMode = .scaleAspectFill
+        starView.image = UIImage(systemName: "star.fill")
+        recipeScoreView.addSubview(starView)
+        return starView
+    }()
+    
+    private lazy var recipeScoreLabel: UILabel = {
+        let scoreLabel = UILabel()
+        scoreLabel.numberOfLines = 0
+        scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        recipeScoreView.addSubview(scoreLabel)
+        return scoreLabel
     }()
     
     // MARK: Bookmark Image
@@ -108,17 +128,15 @@ final class SavedTableViewCell: UITableViewCell {
     }
     
     func configureCell(with model: Model) {
+        // set recipeImage to UIImageView
         recipeImageView.image = UIImage(named: model.recipeImage)
         
         // Add score label to RecipeScoreView
-        let scoreLabel = UILabel()
-        scoreLabel.frame = CGRect(x: recipeScoreView.frame.maxX - 7 - 24, y: 4, width: 24, height: 20)
-        scoreLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        scoreLabel.text = model.score
-        recipeScoreView.addSubview(scoreLabel)
+        recipeScoreLabel.text = model.score
         
         // set time label text from current recipe
         timeLabel.text = model.time
+        
         // set author image to currentAuthor
         authorImageView.image = UIImage(named: model.authorImage)
         
@@ -128,43 +146,47 @@ final class SavedTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         configureUI()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setConstraints() {
+        recipeImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(12)
+            make.bottom.equalToSuperview().inset(60)
+            make.height.equalTo(recipeImageView.snp.width).multipliedBy(215.0 / 343.0)
+        }
+        
+        recipeScoreView.snp.makeConstraints { make in
+            make.leading.equalTo(recipeImageView).inset(8)
+            make.top.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(277)
+            make.height.equalTo(recipeScoreView.snp.width).multipliedBy(27.6 / 58)
+        }
+        
+        recipeScoreLabel.snp.makeConstraints { make in
+            make.leading.equalTo(recipeScoreView.snp.leading).inset(27)
+            make.top.equalTo(recipeScoreView.snp.top).inset(4)
+            make.trailing.equalTo(recipeScoreView.snp.trailing).inset(7)
+            make.bottom.equalTo(recipeScoreView.snp.bottom).inset(3.6)
+//            make.height.equalTo(recipeScoreLabel.snp.width).multipliedBy(20.0 / 24.0)
+        }
+        /*  27
+            4
+            7
+            3.6
+         */
+    }
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        recipeImageView.frame = CGRect(x: 16,
-                                       y: contentView.safeAreaInsets.bottom,
-                                       width: contentView.frame.width - 16 - 16,
-                                       height: 215)
-        recipeScoreView.frame = CGRect(x: recipeImageView.frame.minX + 8,
-                                       y: recipeImageView.frame.origin.y + 8,
-                                       width: 58,
-                                       height: 27.6)
-        bookmarkImage.frame = CGRect(x: recipeImageView.frame.maxX - 8 - 32,
-                                     y: recipeImageView.frame.origin.y + 8,
-                                     width: 32,
-                                     height: 32)
-        timeLabel.frame = CGRect(x: recipeImageView.frame.maxX - 8 - 41,
-                                 y: recipeImageView.frame.maxY - 8,
-                                 width: 41,
-                                 height: 25)
-        recipeNameView.frame = CGRect(x: 16,
-                                      y: recipeImageView.frame.maxY + 16,
-                                      width: contentView.frame.width - 16 - 16,
-                                      height: 22)
-        authorImageView.frame = CGRect(x: 16,
-                                       y: recipeNameView.frame.maxY + 12,
-                                       width: 32,
-                                       height: 32)
-        authorLabel.frame = CGRect(x: authorImageView.frame.maxX + 7,
-                                   y: authorImageView.frame.origin.y + authorImageView.frame.height / 2,
-                                   width: contentView.frame.width - 16 - authorImageView.frame.width - 7 - 16,
-                                   height: 18)
+        
     }
 }
