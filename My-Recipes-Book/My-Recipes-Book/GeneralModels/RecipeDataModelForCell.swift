@@ -8,10 +8,10 @@
 import Foundation
 
 struct RecipeDataModelForCell: Decodable {
-    let results: [Result]?
+    let results: [Results]?
 }
 
-struct Result: Decodable {
+struct Results: Decodable {
     let cookingMinutes: Int?
     let extendedIngredients: [ExtendedIngredients]?
     let title: String?
