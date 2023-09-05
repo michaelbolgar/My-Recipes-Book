@@ -9,6 +9,7 @@ import UIKit
 
 final class CreateRecipeView: UIView {
     
+    // MARK: - Public UI Properties
     lazy var mainTableView: UITableView = {
         let mainTableView = UITableView(frame: self.bounds, style: .grouped)
         mainTableView.delegate = self
@@ -29,6 +30,10 @@ final class CreateRecipeView: UIView {
         mainTableView.register(
             NewIngredientCell.self,
             forCellReuseIdentifier: "newIngredientCell"
+        )
+        mainTableView.register(
+            ButtonCell.self,
+            forCellReuseIdentifier: "buttonCell"
         )
         return mainTableView
     }()
@@ -71,7 +76,7 @@ final class CreateRecipeView: UIView {
 // MARK: - UITableViewDataSource
 extension CreateRecipeView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,12 +127,21 @@ extension CreateRecipeView: UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
             }
-            
-        default:
+        case 3:
             guard
                 let cell = mainTableView.dequeueReusableCell(
                     withIdentifier: "newIngredientCell",
                     for: indexPath) as? NewIngredientCell
+            else {
+                return UITableViewCell()
+            }
+            return cell
+            
+        default:
+            guard
+                let cell = mainTableView.dequeueReusableCell(
+                    withIdentifier: "buttonCell",
+                    for: indexPath) as? ButtonCell
             else {
                 return UITableViewCell()
             }
@@ -138,6 +152,33 @@ extension CreateRecipeView: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CreateRecipeView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 1:
+            return 50
+        case 2:
+            return 80
+        case 3:
+            return 65
+        case 4:
+          return 70
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell is MealDetailsCell {
+            }
+            cell.setHighlighted(false, animated: false)
+        }
+    }
+}
+
+// MARK: - HeaderView
+extension CreateRecipeView {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .white
@@ -180,21 +221,10 @@ extension CreateRecipeView: UITableViewDelegate {
             return 0
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 1:
-            return 50
-        case 2:
-            return 80
-        case 3:
-            return 65
-        default:
-            return UITableView.automaticDimension
-        }
-    }
-    
-    // MARK: - Footer
+}
+
+// MARK: - FooterView
+extension CreateRecipeView {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 3 {
             let footerView = UIView()
@@ -222,7 +252,7 @@ extension CreateRecipeView: UITableViewDelegate {
             button.snp.makeConstraints { make in
                 make.centerY.equalTo(footerView.snp.centerY)
                 make.left.equalTo(footerView.snp.left).offset(16)
-                make.right.equalTo(footerView.snp.right).offset(-160)
+                make.right.equalTo(footerView.snp.right).offset(-140)
             }
             
             return footerView
@@ -235,3 +265,5 @@ extension CreateRecipeView: UITableViewDelegate {
         return section == 3 ? 50.0 : 0.0
     }
 }
+
+

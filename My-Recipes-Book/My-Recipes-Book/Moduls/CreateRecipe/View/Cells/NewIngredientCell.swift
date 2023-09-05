@@ -79,14 +79,14 @@ final class NewIngredientCell: UITableViewCell {
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-5)
-            make.width.equalTo(170)
+            make.width.equalTo(160)
         }
         
         quantityView.snp.makeConstraints { make in
             make.left.equalTo(itemNameView.snp.right).offset(15)
             make.top.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-5)
-            make.width.equalTo(120)
+            make.width.equalTo(110)
         }
         
         mainButton.snp.makeConstraints { make in
