@@ -12,6 +12,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
    //MARK: - Propperties
     static let reuseID = "HeaderCollectionReusableView"
+    var tapGestureRecognizer: UITapGestureRecognizer!//(target: HeaderCollectionReusableView.self, action: #selector(seeAllButtonTapped))
     
     private lazy var leftLabel: UILabel = {
         let label = UILabel()
@@ -22,6 +23,9 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     private lazy var rightLabel: UILabel = {
         let label = UILabel()
         label.text = "See all"
+        label.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(seeAllButtonTapped))
+        label.addGestureRecognizer(tapGestureRecognizer)
         label.font = .poppins(weight: .bold, size: 14)
         label.textColor = Palette.redPrimary50
         return label
@@ -29,6 +33,9 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     private lazy var arrowImageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "Arrow-Right"))
+        view.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(seeAllButtonTapped))
+        view.addGestureRecognizer(tapGestureRecognizer)
         return view
     }()
     
@@ -45,6 +52,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     }
     
     //MARK: - Methods
+    
     fileprivate func setOutlets() {
         addSubview(leftLabel)
         addSubview(arrowImageView)
@@ -70,7 +78,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     }
     
     @objc func seeAllButtonTapped() {
-        
+        print("See all pressed")
     }
     
     func setup(_ data: (title: String, isHidden: Bool)) {
