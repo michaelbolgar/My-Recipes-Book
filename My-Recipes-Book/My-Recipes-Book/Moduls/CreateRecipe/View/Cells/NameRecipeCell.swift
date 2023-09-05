@@ -24,6 +24,7 @@ final class NameRecipeCell: UITableViewCell {
         mainTextField.placeholder = "type name recipe"
         mainTextField.text = "Naija lunch box ideas for work|"
         mainTextField.autocorrectionType = .no
+        mainTextField.delegate = self
         return mainTextField
     }()
     
@@ -57,5 +58,13 @@ final class NameRecipeCell: UITableViewCell {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension NameRecipeCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

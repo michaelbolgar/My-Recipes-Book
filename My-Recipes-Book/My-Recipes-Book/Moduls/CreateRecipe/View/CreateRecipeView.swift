@@ -30,11 +30,20 @@ final class CreateRecipeView: UIView {
         
         mainTableView.separatorStyle = .none
         mainTableView.showsVerticalScrollIndicator = false
+        
+        //при тапе на экран, клавиатура будет скрываться
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.addGestureRecognizer(tapGesture)
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Actions
+    @objc private func handleTap() {
+        self.endEditing(true)
     }
     
     // MARK: - Private Methods
@@ -191,8 +200,7 @@ extension CreateRecipeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 3 {
             let footerView = UIView()
-
-
+            
             let button = UIButton(type: .custom)
             button.setTitle("Add new ingredient", for: .normal)
             button.setTitleColor(.black, for: .normal)
