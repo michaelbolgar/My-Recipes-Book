@@ -66,6 +66,7 @@ extension CreateRecipeView: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
         case 1:
             guard
@@ -75,7 +76,7 @@ extension CreateRecipeView: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            
+            cell.selectionStyle = .none
             return cell
         case 2:
             guard
@@ -87,14 +88,15 @@ extension CreateRecipeView: UITableViewDataSource {
             }
             
             if indexPath.row == 0 {
-                cell.configure("person.2.fill")
+                cell.configure("person.2.fill", detail: "Serves", detailLabel: "03")
+                cell.selectionStyle = .none
                 return cell
             } else {
-                cell.configure("clock.fill")
+                cell.configure("clock.fill", detail: "Cook time", detailLabel: "20 min")
+                cell.selectionStyle = .none
                 return cell
             }
        
-        
         default:
             let cell = mainTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
@@ -133,6 +135,19 @@ extension CreateRecipeView: UITableViewDelegate {
             }
             
          return headerView
+        } else if section == 3 {
+            label.text = "Ingredients"
+            label.font = UIFont(name: "Poppins-SemiBold", size: 20)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+
+            label.textColor = .black
+            label.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.left.equalToSuperview().offset(16)
+                make.right.equalToSuperview().offset(-16)
+            }
         }
     return headerView
 
@@ -147,9 +162,9 @@ extension CreateRecipeView: UITableViewDelegate {
             return 0
         } else if section == 2{
             return 0
-        } else {
-            return 60
-        }
+        } else if section == 3{
+            return 30
+        } else { return 60}
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

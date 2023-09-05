@@ -23,7 +23,7 @@ final class NameRecipeCell: UITableViewCell {
         var mainTextField = UITextField()
         mainTextField.placeholder = "type name recipe"
         mainTextField.text = "Naija lunch box ideas for work|"
-        
+        mainTextField.autocorrectionType = .no
         return mainTextField
     }()
     
@@ -33,18 +33,14 @@ final class NameRecipeCell: UITableViewCell {
         contentView.addSubview(mainView)
         mainView.addSubview(mainTextField)
         
+        
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Override Methods
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        // отключаем выделение ячейки
-    }
-    
+
     // MARK: - Private Methods
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in

@@ -21,7 +21,6 @@ final class MealDetailsCell: UITableViewCell {
         var iconView = UIView()
         iconView.backgroundColor = .white
         iconView.layer.cornerRadius = 12
-        
         return iconView
     }()
     
@@ -29,18 +28,41 @@ final class MealDetailsCell: UITableViewCell {
        var iconImageView = UIImageView()
         iconImageView.image = UIImage(systemName: "person.2.fill")
         iconImageView.tintColor = .black
-        
         return iconImageView
-        
     }()
-
+    
+    lazy var nameDetailLabel: UILabel = {
+        var nameDetailLabel = UILabel()
+        nameDetailLabel.font = UIFont(name: "Poppins-SemiBold", size: 16)
+        nameDetailLabel.textColor = .black
+        return nameDetailLabel
+    }()
+    
+    private lazy var arrowButton: UIButton = {
+        var arrowButton = UIButton(type: .system)
+        arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
+        arrowButton.tintColor = .black
+        return arrowButton
+    }()
+    
+    lazy var detailLabel: UILabel = {
+        var detailLabel = UILabel()
+        detailLabel.font = UIFont(name: "Poppins-Regular", size: 14)
+        detailLabel.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
+        detailLabel.text = "??"
+        return detailLabel
+    }()
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(mainView)
         mainView.addSubview(iconView)
         iconView.addSubview(iconImageView)
-        
+        mainView.addSubview(nameDetailLabel)
+        mainView.addSubview(arrowButton)
+        mainView.addSubview(detailLabel)
+                
         setupConstraints()
     }
     
@@ -48,14 +70,15 @@ final class MealDetailsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Override Methods
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        // отключаем выделение ячейки
+    @objc private func showPickerView() {
+        
     }
     
     // MARK: - Public Methods
-    func configure(_ imageName: String) {
+    func configure(_ imageName: String, detail: String, detailLabel: String) {
         iconImageView.image = UIImage(systemName: imageName)
+        nameDetailLabel.text = detail
+        self.detailLabel.text = detailLabel
     }
     
     // MARK: - Private Methods
@@ -80,6 +103,22 @@ final class MealDetailsCell: UITableViewCell {
             make.right.equalToSuperview().offset(-9)
             make.left.equalToSuperview().offset(9)
         }
+        
+        nameDetailLabel.snp.makeConstraints { make in
+            make.left.equalTo(iconView.snp.right).offset(16)
+            make.centerY.equalTo(iconView.snp.centerY)
+        }
+        
+        arrowButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-16)
+            make.centerY.equalToSuperview()
+        }
+        
+        detailLabel.snp.makeConstraints { make in
+            make.right.equalTo(arrowButton.snp.left).offset(-16)
+            make.centerY.equalToSuperview()
+        }
+
     }
-    
 }
+
