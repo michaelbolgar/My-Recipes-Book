@@ -14,11 +14,22 @@ final class CreateRecipeView: UIView {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.backgroundColor = .white
-        mainTableView.register(RecipeImageCell.self, forCellReuseIdentifier: "imageCell")
-        mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        mainTableView.register(NameRecipeCell.self, forCellReuseIdentifier: "nameCell")
-        mainTableView.register(MealDetailsCell.self, forCellReuseIdentifier: "mealDetailsCell")
-        mainTableView.register(NewIngredientCell.self, forCellReuseIdentifier: "newIngredientCell")
+        mainTableView.register(
+            RecipeImageCell.self,
+            forCellReuseIdentifier: "imageCell"
+        )
+        mainTableView.register(
+            NameRecipeCell.self,
+            forCellReuseIdentifier: "nameCell"
+        )
+        mainTableView.register(
+            MealDetailsCell.self,
+            forCellReuseIdentifier: "mealDetailsCell"
+        )
+        mainTableView.register(
+            NewIngredientCell.self,
+            forCellReuseIdentifier: "newIngredientCell"
+        )
         return mainTableView
     }()
     
@@ -32,7 +43,10 @@ final class CreateRecipeView: UIView {
         mainTableView.showsVerticalScrollIndicator = false
         
         //при тапе на экран, клавиатура будет скрываться
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap)
+        )
         self.addGestureRecognizer(tapGesture)
         setupConstraints()
     }
@@ -59,17 +73,16 @@ extension CreateRecipeView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         4
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
             return 2
         } else {
             return 1
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.section {
         case 0:
             guard
@@ -126,7 +139,6 @@ extension CreateRecipeView: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension CreateRecipeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerView = UIView()
         headerView.backgroundColor = .white
         
@@ -134,65 +146,51 @@ extension CreateRecipeView: UITableViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(label)
         
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = .black
+        label.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
         
-        if section == 0 {
-            
+        switch section {
+        case 0:
             label.text = "Create Recipe"
             label.font = UIFont(name: "Poppins-SemiBold", size: 24)
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            
-            label.textColor = .black
-            label.snp.makeConstraints { make in
-                make.top.equalToSuperview()
-                make.bottom.equalToSuperview()
-                make.left.equalToSuperview().offset(16)
-                make.right.equalToSuperview().offset(-16)
-            }
-            
-            return headerView
-        } else if section == 3 {
+        case 3:
             label.text = "Ingredients"
             label.font = UIFont(name: "Poppins-SemiBold", size: 20)
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            
-            label.textColor = .black
-            label.snp.makeConstraints { make in
-                make.top.equalToSuperview()
-                make.bottom.equalToSuperview()
-                make.left.equalToSuperview().offset(16)
-                make.right.equalToSuperview().offset(-16)
-            }
+        default:
+            break
         }
+        
         return headerView
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        //        UITableView.automaticDimension
-        if section == 1 {
-            return 0
-        } else if section == 2{
-            return 0
-        } else if section == 3{
-            return 45
-        } else {
+        switch section {
+        case 0:
             return 60
+        case 3:
+            return 45
+        default:
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1 {
+        switch indexPath.section {
+        case 1:
             return 50
-        } else if indexPath.section == 2 {
+        case 2:
             return 80
-        } else if indexPath.section == 3 {
+        case 3:
             return 65
-        } else {
+        default:
             return UITableView.automaticDimension
-            
         }
     }
     
@@ -234,14 +232,6 @@ extension CreateRecipeView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 3 {
-            // Установите желаемую высоту для вашего футера
-            return 50.0 // Измените на нужное значение
-        }
-        
-        return 0.0 // Возвращает 0 для всех остальных секций
+        return section == 3 ? 50.0 : 0.0
     }
-    
-    
-    
 }

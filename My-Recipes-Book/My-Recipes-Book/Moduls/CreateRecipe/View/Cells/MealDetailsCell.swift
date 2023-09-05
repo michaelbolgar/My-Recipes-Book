@@ -9,7 +9,7 @@ import UIKit
 
 final class MealDetailsCell: UITableViewCell {
     
-    // MARK: - UI Properties
+    // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
         mainView.backgroundColor = #colorLiteral(red: 0.9450979829, green: 0.9450979829, blue: 0.9450979829, alpha: 1)
@@ -24,8 +24,16 @@ final class MealDetailsCell: UITableViewCell {
         return iconView
     }()
     
+    private lazy var arrowImageView: UIImageView = {
+        var arrowImageView = UIImageView()
+        arrowImageView.image = UIImage(systemName: "arrow.right")
+        arrowImageView.tintColor = .black
+        return arrowImageView
+    }()
+    
+    // MARK: - Public UI Properties
     lazy var iconImageView: UIImageView = {
-       var iconImageView = UIImageView()
+        var iconImageView = UIImageView()
         iconImageView.image = UIImage(systemName: "person.2.fill")
         iconImageView.tintColor = .black
         return iconImageView
@@ -36,13 +44,6 @@ final class MealDetailsCell: UITableViewCell {
         nameDetailLabel.font = UIFont(name: "Poppins-SemiBold", size: 16)
         nameDetailLabel.textColor = .black
         return nameDetailLabel
-    }()
-    
-    private lazy var arrowButton: UIButton = {
-        var arrowButton = UIButton(type: .system)
-        arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
-        arrowButton.tintColor = .black
-        return arrowButton
     }()
     
     lazy var detailLabel: UILabel = {
@@ -56,22 +57,13 @@ final class MealDetailsCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(mainView)
-        mainView.addSubview(iconView)
-        iconView.addSubview(iconImageView)
-        mainView.addSubview(nameDetailLabel)
-        mainView.addSubview(arrowButton)
-        mainView.addSubview(detailLabel)
-                
+        addViews()
+        
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func showPickerView() {
-        
     }
     
     // MARK: - Public Methods
@@ -109,16 +101,24 @@ final class MealDetailsCell: UITableViewCell {
             make.centerY.equalTo(iconView.snp.centerY)
         }
         
-        arrowButton.snp.makeConstraints { make in
+        arrowImageView.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
         }
         
         detailLabel.snp.makeConstraints { make in
-            make.right.equalTo(arrowButton.snp.left).offset(-16)
+            make.right.equalTo(arrowImageView.snp.left).offset(-16)
             make.centerY.equalToSuperview()
         }
-
+    }
+    
+    private func addViews() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(iconView)
+        iconView.addSubview(iconImageView)
+        mainView.addSubview(nameDetailLabel)
+        mainView.addSubview(arrowImageView)
+        mainView.addSubview(detailLabel)
     }
 }
 

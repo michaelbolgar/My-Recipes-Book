@@ -9,21 +9,18 @@ import UIKit
 
 final class NewIngredientCell: UITableViewCell {
     
-    
     // MARK: - UI Properties
-    
     private lazy var mainView: UIView = {
         var mainView = UIView()
-        
         return mainView
     }()
+    
     private lazy var itemNameView: UIView = {
         var itemNameView = UIView()
         itemNameView.layer.borderColor = UIColor.systemGray5.cgColor
         itemNameView.layer.borderWidth = 1
         itemNameView.layer.cornerRadius = 10
         itemNameView.backgroundColor = .white
-        
         return itemNameView
     }()
     
@@ -33,10 +30,10 @@ final class NewIngredientCell: UITableViewCell {
         quantityView.layer.borderWidth = 1
         quantityView.layer.cornerRadius = 10
         quantityView.backgroundColor = .white
-        
         return quantityView
     }()
     
+    // MARK: - Public UI Properties
     lazy var mainButton: UIButton = {
         var mainButton = UIButton(type: .system)
         mainButton.setImage(UIImage(named: "minus"), for: .normal)
@@ -59,13 +56,7 @@ final class NewIngredientCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(mainView)
-        mainView.addSubview(itemNameView)
-        mainView.addSubview(quantityView)
-        mainView.addSubview(mainButton)
-        itemNameView.addSubview(nameTextField)
-        quantityView.addSubview(quantityTextField)
-        
+        addViews()
         setupConstraints()
     }
     
@@ -119,6 +110,16 @@ final class NewIngredientCell: UITableViewCell {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    private func addViews() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(itemNameView)
+        mainView.addSubview(quantityView)
+        mainView.addSubview(mainButton)
+        itemNameView.addSubview(nameTextField)
+        quantityView.addSubview(quantityTextField)
+        
     }
     
 }

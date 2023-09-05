@@ -34,14 +34,13 @@ final class NameRecipeCell: UITableViewCell {
         contentView.addSubview(mainView)
         mainView.addSubview(mainTextField)
         
-        
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in

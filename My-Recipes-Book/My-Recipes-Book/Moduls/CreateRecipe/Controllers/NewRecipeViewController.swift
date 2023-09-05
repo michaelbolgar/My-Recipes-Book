@@ -9,8 +9,9 @@ import UIKit
 
 final class NewRecipeViewController: UIViewController {
     
+    // MARK: - Private UI Properties
     private var mainTableView = CreateRecipeView()
-
+    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()

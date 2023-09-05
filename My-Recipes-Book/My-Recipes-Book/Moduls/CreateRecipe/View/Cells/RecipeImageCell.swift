@@ -15,7 +15,6 @@ final class RecipeImageCell: UITableViewCell {
         recipeImageView.layer.cornerRadius = 10
         recipeImageView.clipsToBounds = true
         recipeImageView.image = UIImage(named: "testImage")
-        
         return recipeImageView
     }()
     
@@ -29,6 +28,7 @@ final class RecipeImageCell: UITableViewCell {
         editButton.addTarget(self, action: #selector(changeButtonDidTapped), for: .touchUpInside)
         return editButton
     }()
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,7 +40,7 @@ final class RecipeImageCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
         let imagePicker = UIImagePickerController()
@@ -49,7 +49,6 @@ final class RecipeImageCell: UITableViewCell {
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }
-        
     }
     
     // MARK: - Private Methods
