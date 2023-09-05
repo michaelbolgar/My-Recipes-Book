@@ -27,7 +27,6 @@ class PageViewController: UIPageViewController {
         cooks.append(firstPage)
         cooks.append(secondPage)
         cooks.append(thirdPage)
-        
     }
     
     // MARK: - create vc
@@ -55,7 +54,18 @@ class PageViewController: UIPageViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    func goToNextPage() {
+        guard let currentViewController = viewControllers?.first as? CookViewController,
+            let currentIndex = arrayCookVC.firstIndex(of: currentViewController) else {
+                return
+        }
+
+        let nextIndex = currentIndex + 1
+        if nextIndex < arrayCookVC.count {
+            setViewControllers([arrayCookVC[nextIndex]], direction: .forward, animated: true, completion: nil)
+        }
+    }
 }
 
 

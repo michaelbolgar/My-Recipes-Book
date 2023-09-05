@@ -99,11 +99,13 @@ class CookViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func nextButtonPressed() {
-        
+        if let pageViewController = self.parent as? PageViewController {
+            pageViewController.goToNextPage()
+        }
     }
-    
+
     @objc func skipButtonPressed(){
         
     }

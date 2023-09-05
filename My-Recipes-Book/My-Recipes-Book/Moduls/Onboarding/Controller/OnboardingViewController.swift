@@ -19,6 +19,10 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         layout()
+        onboardingView.getStartedButtonPressedHandler = { [weak self] in
+            let pageVC = PageViewController()
+            self?.navigationController?.pushViewController(pageVC, animated: true)
+        }
     }
 
     //MARK: - Methods
@@ -26,7 +30,7 @@ class OnboardingViewController: UIViewController {
     private func layout() {
         view.addSubview(onboardingView)
 
-                
+
         NSLayoutConstraint.activate([
 
             onboardingView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -34,7 +38,6 @@ class OnboardingViewController: UIViewController {
             onboardingView.widthAnchor.constraint(equalTo: view.widthAnchor),
             onboardingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
-            ])
+        ])
     }
-    
 }

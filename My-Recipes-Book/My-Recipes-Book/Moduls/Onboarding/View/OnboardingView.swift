@@ -14,6 +14,7 @@ class OnboardingView: UIView {
     //MARK: - Properties
 
     let color = Palette.redPrimary80
+    var getStartedButtonPressedHandler: (() -> Void)?
     
     private var startPageView: UIImageView = {
         let imageView = UIImageView()
@@ -69,7 +70,7 @@ class OnboardingView: UIView {
     //MARK: - UI Elements
 
     @objc private func getStartedButtonPressed() {
-        
+        getStartedButtonPressedHandler?()
     }
     
     //MARK: - Init
@@ -128,11 +129,6 @@ class OnboardingView: UIView {
 
 //    MARK: - Methods
 
-    
-
-
-    //MARK: - Extension
-
-    
-    
 }
+
+//MARK: - Extension
