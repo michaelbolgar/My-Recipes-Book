@@ -18,7 +18,6 @@
 		0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */; };
 		0A3D3B492A9FCA0F00B72054 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */; };
 		0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */; };
-		0A726C2B2AA3233500F08A3D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C2A2AA3233500F08A3D /* Recipe.swift */; };
 		0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C322AA323FB00F08A3D /* RecipeManager.swift */; };
 		0A726C432AA324B500F08A3D /* MainImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C3F2AA324B500F08A3D /* MainImageCell.swift */; };
 		0A726C442AA324B500F08A3D /* InstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C402AA324B500F08A3D /* InstructionCell.swift */; };
@@ -63,7 +62,6 @@
 		0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		0A726C2A2AA3233500F08A3D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		0A726C322AA323FB00F08A3D /* RecipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
 		0A726C3F2AA324B500F08A3D /* MainImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainImageCell.swift; sourceTree = "<group>"; };
 		0A726C402AA324B500F08A3D /* InstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionCell.swift; sourceTree = "<group>"; };
@@ -347,6 +345,7 @@
 		F43422422A9C2A710025C556 /* Recipe detail */ = {
 			isa = PBXGroup;
 			children = (
+				0A726C2C2AA3238000F08A3D /* Services */,
 				0A726C3D2AA324B500F08A3D /* View */,
 				F43422452A9C2A920025C556 /* Model */,
 				F43422432A9C2A890025C556 /* Controller */,
@@ -365,7 +364,6 @@
 		F43422452A9C2A920025C556 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A726C2A2AA3233500F08A3D /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				0A726C472AA324C400F08A3D /* Model */,
-				0A726C2C2AA3238000F08A3D /* Services */,
 				F43422492A9C2AE30025C556 /* Controller */,
 			);
 			path = "Saved Recipes";
@@ -572,7 +569,6 @@
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
-				0A726C2B2AA3233500F08A3D /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
