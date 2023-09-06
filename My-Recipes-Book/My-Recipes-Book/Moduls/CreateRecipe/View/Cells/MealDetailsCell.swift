@@ -8,6 +8,7 @@
 import UIKit
 
 final class MealDetailsCell: UITableViewCell {
+
     
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
@@ -60,6 +61,7 @@ final class MealDetailsCell: UITableViewCell {
         addViews()
         
         setupConstraints()
+
     }
     
     required init?(coder: NSCoder) {
@@ -120,5 +122,21 @@ final class MealDetailsCell: UITableViewCell {
         mainView.addSubview(arrowImageView)
         mainView.addSubview(detailLabel)
     }
+    
+    func updateValueLabel(with selectedValue: String) {
+          detailLabel.text = selectedValue
+      }
+    
+
 }
 
+extension MealDetailsCell: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        10
+    }
+
+}

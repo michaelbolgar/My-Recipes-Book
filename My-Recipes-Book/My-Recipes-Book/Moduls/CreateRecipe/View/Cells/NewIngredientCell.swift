@@ -10,31 +10,8 @@ import NotificationCenter
 
 final class NewIngredientCell: UITableViewCell {
     
+    // MARK: Public Properties
     var tableView: UITableView?
-    
-    // MARK: - UI Properties
-    private lazy var mainView: UIView = {
-        var mainView = UIView()
-        return mainView
-    }()
-    
-    private lazy var itemNameView: UIView = {
-        var itemNameView = UIView()
-        itemNameView.layer.borderColor = UIColor.systemGray5.cgColor
-        itemNameView.layer.borderWidth = 1
-        itemNameView.layer.cornerRadius = 10
-        itemNameView.backgroundColor = .white
-        return itemNameView
-    }()
-    
-    private lazy var quantityView: UIView = {
-        var quantityView = UIView()
-        quantityView.layer.borderColor = UIColor.systemGray5.cgColor
-        quantityView.layer.borderWidth = 1
-        quantityView.layer.cornerRadius = 10
-        quantityView.backgroundColor = .white
-        return quantityView
-    }()
     
     // MARK: - Public UI Properties
     lazy var mainButton: UIButton = {
@@ -58,6 +35,30 @@ final class NewIngredientCell: UITableViewCell {
         quantityTF.delegate = self
         quantityTF.autocorrectionType = .no
         return quantityTF
+    }()
+    
+    // MARK: - Private UI Properties
+    private lazy var mainView: UIView = {
+        var mainView = UIView()
+        return mainView
+    }()
+    
+    private lazy var itemNameView: UIView = {
+        var itemNameView = UIView()
+        itemNameView.layer.borderColor = UIColor.systemGray5.cgColor
+        itemNameView.layer.borderWidth = 1
+        itemNameView.layer.cornerRadius = 10
+        itemNameView.backgroundColor = .white
+        return itemNameView
+    }()
+    
+    private lazy var quantityView: UIView = {
+        var quantityView = UIView()
+        quantityView.layer.borderColor = UIColor.systemGray5.cgColor
+        quantityView.layer.borderWidth = 1
+        quantityView.layer.cornerRadius = 10
+        quantityView.backgroundColor = .white
+        return quantityView
     }()
     
     // MARK: - Init
@@ -129,7 +130,6 @@ final class NewIngredientCell: UITableViewCell {
         quantityView.addSubview(quantityTextField)
         
     }
-    
 }
 
 // MARK: - UITextFieldDelegate
@@ -140,6 +140,6 @@ extension NewIngredientCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         tableView?.setContentOffset(CGPoint(x: 0, y: -100), animated: true)
-
+        
     }
 }

@@ -46,6 +46,7 @@ final class RecipeImageCell: UITableViewCell {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
+    
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }

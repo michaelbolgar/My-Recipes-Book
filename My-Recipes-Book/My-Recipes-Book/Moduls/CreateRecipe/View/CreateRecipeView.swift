@@ -172,6 +172,7 @@ extension CreateRecipeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell is MealDetailsCell {
+                print(indexPath.row)
             }
             cell.setHighlighted(false, animated: false)
         }
