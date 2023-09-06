@@ -22,7 +22,9 @@ class OnboardingViewController: UIViewController {
         onboardingView.getStartedButtonPressedHandler = { [weak self] in
             let pageVC = PageViewController()
             self?.navigationController?.pushViewController(pageVC, animated: true)
+            
         }
+        
     }
 
     //MARK: - Methods

@@ -16,17 +16,21 @@ class PageViewController: UIPageViewController {
     let secondPageImage = UIImage(named: "cookPage2")
     let thirdPageImage = UIImage(named: "cookPage3")
     
+    var nextIndex = 0
+    
+    var text1 = ""
         
     override func viewDidLoad() {
         super.viewDidLoad()
-  
-        let firstPage = CooksHelper(name: "Recipes from all over the World", image: firstPageImage!,buttonText: "Continue", subButton: "Skip")
+        
+        let firstPage = CooksHelper(name: "Recipes from all over the World ", image: firstPageImage!,buttonText: "Continue", subButton: "Skip")
         let secondPage = CooksHelper(name: "Recipes with each every detali", image: secondPageImage!,buttonText: "Continue", subButton: "Skip")
         let thirdPage = CooksHelper(name: "Cook it now or save it for later", image: thirdPageImage!, buttonText: "Start Cooking", subButton: "")
         
         cooks.append(firstPage)
         cooks.append(secondPage)
         cooks.append(thirdPage)
+        self.navigationItem.hidesBackButton = true
     }
     
     // MARK: - create vc
@@ -61,14 +65,18 @@ class PageViewController: UIPageViewController {
                 return
         }
 
-        let nextIndex = currentIndex + 1
-        if nextIndex < arrayCookVC.count {
+        nextIndex = currentIndex + 1
+        if nextIndex < arrayCookVC.count && nextIndex != 3 {
             setViewControllers([arrayCookVC[nextIndex]], direction: .forward, animated: true, completion: nil)
+        } else if nextIndex == 3 {
+            guard let skipVC = viewControllers?.first as? CookViewController else {return}
+            skipVC.skipButtonPressed()
         }
     }
 }
 
 
+// MARK: - extension
 extension PageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -98,7 +106,9 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         return cooks.count
     }
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        return nextIndex
     }
     
 }
+
+

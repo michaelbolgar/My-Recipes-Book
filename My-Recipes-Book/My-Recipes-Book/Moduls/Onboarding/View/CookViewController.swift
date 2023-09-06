@@ -43,7 +43,7 @@ class CookViewController: UIViewController {
     private lazy var subButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.backgroundColor = .clear
         button.tintColor = .white
         return button
@@ -68,31 +68,28 @@ class CookViewController: UIViewController {
         cookImage.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.top.equalToSuperview()
-//            make.leading.equalToSuperview()
-//            make.trailing.equalToSuperview()
-//            make.centerX.equalToSuperview()
             make.edges.equalToSuperview()
         }
         
         cookLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(-200)
+            make.bottom.equalTo(-150)
             make.width.greaterThanOrEqualTo(200)
             make.width.lessThanOrEqualTo(320)
         }
         
         nextButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(-40)
+            make.bottom.equalTo(-60)
             make.width.equalTo(193)
             make.height.equalTo(44)
         }
         
         subButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nextButton).offset(45)
-            make.width.equalTo(50)
-            make.height.equalTo(30)
+            make.top.equalTo(nextButton).offset(55)
+            make.width.equalTo(70)
+            make.height.equalTo(40)
         }
     }
     
@@ -107,7 +104,9 @@ class CookViewController: UIViewController {
     }
 
     @objc func skipButtonPressed(){
-        
+        let vc = HomeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
