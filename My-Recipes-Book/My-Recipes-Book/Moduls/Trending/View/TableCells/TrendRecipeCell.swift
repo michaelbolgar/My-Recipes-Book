@@ -12,6 +12,20 @@ import SnapKit
 class TrandRecipeCell: UITableViewCell {
 // MARK: - Properties
     static let cellID = "TrandRecipeCell"
+    //The API does not return an image of the creators
+    private var defaultCreatorsImaegs = [
+        "images-2",
+        "images-3",
+        "images-4",
+        "images-5",
+        "images-6",
+        "images-7",
+        "images-8",
+        "images-9",
+        "images-10",
+        "images-11",
+        "images"
+    ]
 
     private var dishImageView: UIImageView = {
         let imageView = UIImageView()
@@ -62,6 +76,14 @@ class TrandRecipeCell: UITableViewCell {
         label.font = UIFont(name: "Poppins-Bold", size: 18)
         return label
     }()
+
+    private var creatorNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "George Filladelfia"
+        label.textColor = .white
+        label.font = UIFont(name: "Poppins-Bold", size: 12)
+        return label
+    }()
 // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,14 +104,18 @@ class TrandRecipeCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 //MARK: - Public interface
-    public func transnferData(recipeData: Results?) {
-        guard let recipeData = recipeData else { return }
-        dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
-        recipeNameLabel.text = recipeData.title ?? "no title"
-        countOfIngredientsLabel.text = "\(recipeData.extendedIngredients?.count ?? 0) Ingredients"
-        cookTimeLabel.text = "\(recipeData.cookingMinutes ?? 0) min"
+    public func transnferData(recipe data: Results?, section type: SectionType, row number: Int) {
+        switch type {
+        case .trending:
+            adaptCellForTrendingNow(recipeData: data)
+        case .recentRecipe:
+            adaptCellForRecentRecipe(recipeData: data)
+        case .popularCreator:
+            adaptCellForPopularCreators(recipeData: data, rowNumber: number)
+        default:
+            print("No options for this case")
+        }
     }
-
 // MARK: - Cell preparation
     private func putToHierarchy() {
         self.addSubview(dishImageView)
@@ -98,6 +124,7 @@ class TrandRecipeCell: UITableViewCell {
         dishImageView.addSubview(lineSeparatorLabel)
         dishImageView.addSubview(cookTimeLabel)
         dishImageView.addSubview(pointScoreView)
+        dishImageView.addSubview(creatorNameLabel)
     }
     //This scoreLabel will have a value only after the cell is loaded.
     //It cannot be declared in the context of pointScoreView,
@@ -107,6 +134,39 @@ class TrandRecipeCell: UITableViewCell {
         scoreLabel.text = score
         scoreLabel.textColor = .white
         pointScoreView.addSubview(scoreLabel)
+    }
+    //Changes the appearance of the cell for Trending now section type
+    private func adaptCellForTrendingNow(recipeData: Results?) {
+        guard let recipeData = recipeData else { return }
+        dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
+        recipeNameLabel.text = recipeData.title ?? "no title"
+        countOfIngredientsLabel.text = "\(recipeData.extendedIngredients?.count ?? 0) Ingredients"
+        cookTimeLabel.text = "\(recipeData.cookingMinutes ?? 0) min"
+        creatorNameLabel.isHidden = true
+    }
+    //Changes the appearance of the cell for Recent recipe section type
+    private func adaptCellForRecentRecipe(recipeData: Results?) {
+        guard let recipeData = recipeData else { return }
+        dishImageView.imageFromURL(recipeData.image ?? "", placeHolder: nil)
+        recipeNameLabel.text = recipeData.title ?? "no title"
+        countOfIngredientsLabel.isHidden = true
+        cookTimeLabel.isHidden = true
+        creatorNameLabel.isHidden = true
+        lineSeparatorLabel.isHidden = true
+    }
+    //Changes the appearance of the cell for Popular creators section type
+    private func adaptCellForPopularCreators(recipeData: Results?, rowNumber: Int) {
+        guard let recipeData = recipeData else { return }
+        dishImageView.image = UIImage(named: defaultCreatorsImaegs[rowNumber])
+        //recipeNameLabel used to display the creator's name.
+        //Otherwise, you would have to change the label configuration and change its location.
+        //It's easier this way
+        recipeNameLabel.text = recipeData.creditsText ?? "no title"
+        countOfIngredientsLabel.isHidden = true
+        cookTimeLabel.isHidden = true
+        creatorNameLabel.isHidden = true
+        lineSeparatorLabel.isHidden = true
+        pointScoreView.isHidden = true
     }
 
     private func setLayouts() {
@@ -138,5 +198,11 @@ class TrandRecipeCell: UITableViewCell {
             make.bottom.equalTo(countOfIngredientsLabel)
             make.size.equalTo(CGSize(width: 100, height: 18))
         }
+        creatorNameLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-16)
+            make.size.equalTo(CGSize(width: 150, height: 18))
+        }
+
     }
 }
