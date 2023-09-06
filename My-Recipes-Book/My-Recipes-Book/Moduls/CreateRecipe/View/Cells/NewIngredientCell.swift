@@ -66,6 +66,7 @@ final class NewIngredientCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
         setupConstraints()
+
         
     }
     
@@ -135,11 +136,11 @@ final class NewIngredientCell: UITableViewCell {
 // MARK: - UITextFieldDelegate
 extension NewIngredientCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+        tableView?.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: -100), animated: true)
-        
+        tableView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+
     }
 }

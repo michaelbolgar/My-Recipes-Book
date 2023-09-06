@@ -7,8 +7,19 @@
 
 import UIKit
 
-final class MealDetailsCell: UITableViewCell {
-
+final class MealDetailsCell: UITableViewCell{
+    
+    // MARK: - Picker Properties
+    private lazy var pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        return pickerView
+    }()
+    
+    var currentValue = ""
+    var currentRow: Int?
+    var cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
     
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
@@ -47,12 +58,11 @@ final class MealDetailsCell: UITableViewCell {
         return nameDetailLabel
     }()
     
-    lazy var detailLabel: UILabel = {
-        var detailLabel = UILabel()
-        detailLabel.font = UIFont(name: "Poppins-Regular", size: 14)
-        detailLabel.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
-        detailLabel.text = "??"
-        return detailLabel
+    lazy var detailTextField: UITextField = {
+        var detailTextField = UITextField()
+        detailTextField.font = UIFont(name: "Poppins-Regular", size: 14)
+        detailTextField.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
+        return detailTextField
     }()
     
     // MARK: - Init
@@ -61,7 +71,7 @@ final class MealDetailsCell: UITableViewCell {
         addViews()
         
         setupConstraints()
-
+        setupPicker(pickerView, textField: detailTextField, action: #selector(doneAction))
     }
     
     required init?(coder: NSCoder) {
@@ -69,10 +79,17 @@ final class MealDetailsCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(_ imageName: String, detail: String, detailLabel: String) {
+    func configure(_ imageName: String, detail: String, detailLabel: String, rowNumber: Int) {
         iconImageView.image = UIImage(systemName: imageName)
         nameDetailLabel.text = detail
-        self.detailLabel.text = detailLabel
+        self.detailTextField.text = detailLabel
+        self.currentRow = rowNumber
+    }
+    
+    @objc func doneAction() {
+        detailTextField.text = currentValue
+        
+        contentView.endEditing(true)
     }
     
     // MARK: - Private Methods
@@ -108,10 +125,12 @@ final class MealDetailsCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
         
-        detailLabel.snp.makeConstraints { make in
+        detailTextField.snp.makeConstraints { make in
             make.right.equalTo(arrowImageView.snp.left).offset(-16)
             make.centerY.equalToSuperview()
         }
+        
+
     }
     
     private func addViews() {
@@ -120,23 +139,42 @@ final class MealDetailsCell: UITableViewCell {
         iconView.addSubview(iconImageView)
         mainView.addSubview(nameDetailLabel)
         mainView.addSubview(arrowImageView)
-        mainView.addSubview(detailLabel)
+        mainView.addSubview(detailTextField)
     }
     
-    func updateValueLabel(with selectedValue: String) {
-          detailLabel.text = selectedValue
-      }
-    
-
+    private func setupPicker(_ picker: UIPickerView, textField: UITextField, action: Selector) {
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.frame.size.width = UIScreen.main.bounds.width
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: action)
+        toolbar.setItems([doneButton], animated: true)
+        
+        textField.inputAccessoryView = toolbar
+        
+        textField.inputView = picker
+        
+    }
 }
 
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
 extension MealDetailsCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        10
+        currentRow == 0 ? 10 : cookTimes.count
     }
-
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        currentRow == 0 ? String(row) : "\(cookTimes[row]) min"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedValue = pickerView.selectedRow(inComponent: component)
+        
+        currentValue = currentRow == 0 ? selectedValue.formatted() : "\(cookTimes[selectedValue]) min"
+    }
 }
+

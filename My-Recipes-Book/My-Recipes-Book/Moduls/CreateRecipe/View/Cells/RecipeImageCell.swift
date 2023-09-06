@@ -25,7 +25,11 @@ final class RecipeImageCell: UITableViewCell {
         editButton.setImage(UIImage(named: "Edit1"), for: .normal)
         editButton.layer.cornerRadius = 15
         editButton.clipsToBounds = true
-        editButton.addTarget(self, action: #selector(changeButtonDidTapped), for: .touchUpInside)
+        editButton.addTarget(
+            self,
+            action: #selector(changeButtonDidTapped),
+            for: .touchUpInside
+        )
         return editButton
     }()
     
@@ -46,7 +50,7 @@ final class RecipeImageCell: UITableViewCell {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-    
+        
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }

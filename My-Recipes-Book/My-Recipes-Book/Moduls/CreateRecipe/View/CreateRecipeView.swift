@@ -119,11 +119,11 @@ extension CreateRecipeView: UITableViewDataSource {
             }
             
             if indexPath.row == 0 {
-                cell.configure("person.2.fill", detail: "Serves", detailLabel: "03")
+                cell.configure("person.2.fill", detail: "Serves", detailLabel: "03", rowNumber: 0)
                 cell.selectionStyle = .none
                 return cell
             } else {
-                cell.configure("clock.fill", detail: "Cook time", detailLabel: "20 min")
+                cell.configure("clock.fill", detail: "Cook time", detailLabel: "20 min", rowNumber: 1)
                 cell.selectionStyle = .none
                 return cell
             }
@@ -177,6 +177,9 @@ extension CreateRecipeView: UITableViewDelegate {
             cell.setHighlighted(false, animated: false)
         }
     }
+    
+
+
 }
 
 // MARK: - HeaderView
