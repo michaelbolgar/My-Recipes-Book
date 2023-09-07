@@ -119,18 +119,14 @@ extension HomeViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case SectionType.trending.rawValue:
             id = trendingReccipies?[row].id ?? 715449
-            print("Trending id: \(id)")
         case SectionType.popularCategory.rawValue:
             return
         case SectionType.popularItem.rawValue:
             id = popularItems?[row].id ?? 715449
-            print("Popular item id: \(id)")
         case SectionType.recentRecipe.rawValue:
             id = recentRecipies?[row].id ?? 715449
-            print("Recent recipe id: \(id)")
         case SectionType.popularCreator.rawValue:
             id = trendingReccipies?[row].id ?? 715449
-            print("Popular creator id: \(id)")
         default: return
         }
         navigationController?.pushViewController(DetailsViewController(id: id), animated: true)
