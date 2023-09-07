@@ -8,16 +8,22 @@
 import UIKit
 import NotificationCenter
 
+protocol NewIngredientCellDelegate: AnyObject {
+    func didTapDeleteButton(cell: NewIngredientCell)
+}
+
 final class NewIngredientCell: UITableViewCell {
     
     // MARK: Public Properties
     var tableView: UITableView?
+    var delegate: NewIngredientCellDelegate?
     
     // MARK: - Public UI Properties
     lazy var mainButton: UIButton = {
         var mainButton = UIButton(type: .system)
         mainButton.setImage(UIImage(named: "minus"), for: .normal)
         mainButton.tintColor = .black
+        mainButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         return mainButton
     }()
     
@@ -66,16 +72,17 @@ final class NewIngredientCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
         setupConstraints()
-
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public Methods
-    
+    // MARK: - Actions
+    @objc func deleteButtonTapped() {
+        delegate?.didTapDeleteButton(cell: self)
+    }
+
     // MARK: - Private Methods
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
@@ -129,7 +136,6 @@ final class NewIngredientCell: UITableViewCell {
         mainView.addSubview(mainButton)
         itemNameView.addSubview(nameTextField)
         quantityView.addSubview(quantityTextField)
-        
     }
 }
 

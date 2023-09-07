@@ -86,12 +86,13 @@ final class MealDetailsCell: UITableViewCell{
         self.currentRow = rowNumber
     }
     
-    @objc func doneAction() {
+    // MARK: - Private Actions
+    @objc private func doneAction() {
         detailTextField.text = currentValue
         
         contentView.endEditing(true)
     }
-    
+
     // MARK: - Private Methods
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
@@ -129,8 +130,6 @@ final class MealDetailsCell: UITableViewCell{
             make.right.equalTo(arrowImageView.snp.left).offset(-16)
             make.centerY.equalToSuperview()
         }
-        
-
     }
     
     private func addViews() {
@@ -143,17 +142,13 @@ final class MealDetailsCell: UITableViewCell{
     }
     
     private func setupPicker(_ picker: UIPickerView, textField: UITextField, action: Selector) {
-        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         toolbar.frame.size.width = UIScreen.main.bounds.width
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: action)
         toolbar.setItems([doneButton], animated: true)
-        
         textField.inputAccessoryView = toolbar
-        
         textField.inputView = picker
-        
     }
 }
 

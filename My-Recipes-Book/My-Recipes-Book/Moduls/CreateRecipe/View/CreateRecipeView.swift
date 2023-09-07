@@ -38,6 +38,9 @@ final class CreateRecipeView: UIView {
         return mainTableView
     }()
     
+    // MARK: - Private Properties
+    private var ingredientData = [NewIngredient(name: "", quantity: 0)]
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +50,6 @@ final class CreateRecipeView: UIView {
         mainTableView.separatorStyle = .none
         mainTableView.showsVerticalScrollIndicator = false
         
-        //при тапе на экран, клавиатура будет скрываться
         let tapGesture = UITapGestureRecognizer(
             target: self,
             action: #selector(handleTap)
@@ -63,6 +65,13 @@ final class CreateRecipeView: UIView {
     // MARK: - Private Actions
     @objc private func handleTap() {
         self.endEditing(true)
+    }
+    
+    @objc private func addIngredient() {
+        let newIngredient = NewIngredient(name: "", quantity: 0)
+        
+        ingredientData.append(newIngredient)
+        mainTableView.reloadData()
     }
     
     // MARK: - Private Methods
@@ -82,6 +91,8 @@ extension CreateRecipeView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
             return 2
+        } else if section == 3 {
+            return ingredientData.count
         } else {
             return 1
         }
@@ -136,6 +147,7 @@ extension CreateRecipeView: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.tableView = mainTableView
+            cell.delegate = self
             return cell
             
         default:
@@ -163,9 +175,9 @@ extension CreateRecipeView: UITableViewDelegate {
         case 3:
             return 65
         case 4:
-          return 70
+            return 70
         default:
-            return UITableView.automaticDimension
+            return 240
         }
     }
     
@@ -177,9 +189,6 @@ extension CreateRecipeView: UITableViewDelegate {
             cell.setHighlighted(false, animated: false)
         }
     }
-    
-
-
 }
 
 // MARK: - HeaderView
@@ -238,6 +247,7 @@ extension CreateRecipeView {
             button.setTitle("Add new ingredient", for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
+            button.addTarget(self, action: #selector(addIngredient), for: .touchUpInside)
             
             let plusImage = UIImage(named: "plus")
             let plusImageView = UIImageView(image: plusImage)
@@ -271,4 +281,16 @@ extension CreateRecipeView {
     }
 }
 
-
+// MARK: - NewIngredientCellDelegate
+extension CreateRecipeView: NewIngredientCellDelegate {
+    func didTapDeleteButton(cell: NewIngredientCell) {
+        guard
+            let indexPath = mainTableView.indexPath(for: cell)
+        else {
+            return
+        }
+        ingredientData.remove(at: indexPath.row)
+        
+        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+}
