@@ -22,6 +22,7 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
     private lazy var dishImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .blue
+        view.clipsToBounds = true
         view.layer.cornerRadius = view.frame.height / 2
         return view
     }()
@@ -78,10 +79,6 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(timeLabel)
         contentView.addSubview(mainLabel)
         contentView.addSubview(bookmarkImageView)
-//        contentView.backgroundColor = .cyan
-//        contentView.layer.borderColor = UIColor.black.cgColor
-//        contentView.layer.borderWidth = 1
-//        contentView.layer.cornerRadius = 10
     }
     
     private func setConstraints() {
@@ -107,10 +104,6 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
             make.bottom.equalTo(timeValueLabel.snp.top).inset(4)
         }
         
-        mainLabel.snp.makeConstraints { make in
-            make.center.equalTo(grayView)
-            make.leading.equalTo(timeValueLabel)
-        }
         bookmarkImageView.snp.makeConstraints { make in
             make.bottom.equalTo(-11)
             make.trailing.equalTo(-12)
@@ -118,6 +111,15 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(bookmarkImageView.snp.width)
             
         }
+        
+        mainLabel.snp.makeConstraints { make in
+            //make.center.equalTo(grayView)
+            make.leading.equalTo(timeValueLabel)
+            make.trailing.equalTo(bookmarkImageView)
+            make.top.equalTo(dishImageView.snp.bottom).inset(-8)
+            make.bottom.equalTo(timeLabel.snp.top).inset(-8).priority(.high)
+        }
+        
     }
     
     override func layoutSubviews() {
