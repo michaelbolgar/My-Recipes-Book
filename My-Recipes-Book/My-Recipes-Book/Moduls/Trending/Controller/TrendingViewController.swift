@@ -26,6 +26,7 @@ class TrendingViewController: UIViewController {
 // MARK: - View controller life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationViewTitle()
         trandView.transferDelegates(dataSourse: self, delegate: self)
         requestData()
     }
@@ -73,6 +74,19 @@ class TrendingViewController: UIViewController {
             return nil
         }
     }
+    
+    private func configureNavigationViewTitle() {
+        switch sectionType {
+        case .trending:
+            navigationItem.title = "Trending now"
+        case .recentRecipe:
+            navigationItem.title = "Recent recipe"
+        case.popularCreator:
+            navigationItem.title = "Popular creators"
+        default:
+            print("This section type cannot be used")
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -93,5 +107,11 @@ extension TrendingViewController: UITableViewDataSource {
 extension TrendingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = trendingScreenData?.results?[indexPath.row].id else { return }
+        guard let navigationController = navigationController else { return }
+        navigationController.pushViewController(DetailsViewController(id: id), animated: true)
     }
 }

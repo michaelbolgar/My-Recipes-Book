@@ -368,7 +368,7 @@ extension HomeViewController {
 extension HomeViewController: HeaderDelegate {
     
     func showViewController(with type: SectionType) {
-        let detailedVC = TrendingViewController(section: .trending)
+        let detailedVC = TrendingViewController(section: type)
         navigationController?.pushViewController(detailedVC, animated: true)
     }
 }
