@@ -33,5 +33,6 @@ struct Palette {
     
     static let neutral10 = UIColor.fromHex(0xF0F0F0)
     static let neutral30 = UIColor.fromHex(0xC1C1C1)
+    static let neutral50 = UIColor.fromHex(0x919191)
     static let neutral100 = UIColor.fromHex(0x181818)
 }
