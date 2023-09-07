@@ -48,7 +48,7 @@ extension RecipeAPI: EndPointType {
                 "fillIngredients": false,
                 "includeNutrition": false,
                 "instructionsRequired": false,
-                "addRecipeInformation": false,
+                "addRecipeInformation": true,
                 "addRecipeNutrition": false
             ]
         case .recentRecipe:
@@ -58,7 +58,7 @@ extension RecipeAPI: EndPointType {
                 "fillIngredients": false,
                 "includeNutrition": false,
                 "instructionsRequired": false,
-                "addRecipeInformation": false,
+                "addRecipeInformation": true,
                 "addRecipeNutrition": false
             ]
         case .recipeDetail:

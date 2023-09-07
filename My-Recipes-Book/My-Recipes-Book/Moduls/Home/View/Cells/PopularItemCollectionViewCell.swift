@@ -27,10 +27,18 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    private lazy var whiteBokkmarkView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private lazy var bookmarkImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .blue
-        view.layer.cornerRadius = view.frame.height / 2
+        //view.backgroundColor = .blue
+        view.clipsToBounds = true
+        //view.contentMode = .scaleAspectFill
+        view.image = UIImage(named: "bookmarkInactive")
         return view
     }()
     
@@ -78,7 +86,8 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(timeValueLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(mainLabel)
-        contentView.addSubview(bookmarkImageView)
+        contentView.addSubview(whiteBokkmarkView)
+        whiteBokkmarkView.addSubview(bookmarkImageView)
     }
     
     private func setConstraints() {
@@ -101,23 +110,23 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         
         timeLabel.snp.makeConstraints { make in
             make.leading.equalTo(timeValueLabel)
-            make.bottom.equalTo(timeValueLabel.snp.top).inset(4)
+            make.bottom.equalTo(timeValueLabel.snp.top).inset(-4)
+        }
+        
+        whiteBokkmarkView.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+            make.trailing.bottom.equalToSuperview().inset(11)
         }
         
         bookmarkImageView.snp.makeConstraints { make in
-            make.bottom.equalTo(-11)
-            make.trailing.equalTo(-12)
-            make.width.equalToSuperview().dividedBy(150.0 / 24)
-            make.height.equalTo(bookmarkImageView.snp.width)
-            
+            make.edges.equalToSuperview().inset(4)
         }
         
         mainLabel.snp.makeConstraints { make in
-            //make.center.equalTo(grayView)
             make.leading.equalTo(timeValueLabel)
             make.trailing.equalTo(bookmarkImageView)
             make.top.equalTo(dishImageView.snp.bottom).inset(-8)
-            make.bottom.equalTo(timeLabel.snp.top).inset(-8).priority(.high)
+            make.bottom.lessThanOrEqualTo(timeLabel.snp.top).inset(-8)
         }
         
     }
@@ -125,11 +134,12 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         dishImageView.layer.cornerRadius = dishImageView.frame.height / 2
+        whiteBokkmarkView.layer.cornerRadius = whiteBokkmarkView.frame.height / 2
     }
     
     func setupCell(with recipe: Results?) {
         dishImageView.imageFromURL(recipe?.image ?? "", placeHolder: nil)
-        timeValueLabel.text = "\(recipe?.cookingMinutes ?? 0)"
+        timeValueLabel.text = "\(recipe?.cookingMinutes ?? 0) Mins"
         mainLabel.text = recipe?.title
     }
 }
