@@ -13,6 +13,22 @@ class HomeViewController: UIViewController {
     //MARK: - Propperties
     
     let headerKind = UICollectionView.elementKindSectionHeader
+    var trendingReccipies: [Results]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    var popularItems: [Results]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    var recentRecipies: [Results]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    private let networkManager = NetworkManager()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCompositionalLayout() )
@@ -26,7 +42,6 @@ class HomeViewController: UIViewController {
         collectionView.register(RecentCollectionViewCell.self, forCellWithReuseIdentifier: RecentCollectionViewCell.reuseID)
         collectionView.register(PopularCreatorCollectionViewCell.self, forCellWithReuseIdentifier: PopularCreatorCollectionViewCell.reuseID)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: headerKind, withReuseIdentifier: HeaderCollectionReusableView.reuseID)
-        //collectionView.backgroundColor = .yellow
         return collectionView
     }()
     
@@ -42,6 +57,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setOutlets()
         setupConstraints()
+        fetchData()
     }
     
     //MARK: - Methods
@@ -61,12 +77,60 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func fetchData() {
+        //Trending now data source
+        networkManager.getAPIData(with: .trendingNowMainScreen) { [weak self] (result: RecipeDataModelForCell?, error: String?) in
+            DispatchQueue.main.async {
+                    self?.trendingReccipies = result?.results
+                if let error {
+                    print(error)
+                }
+            }
+        }
+        //Popular items data source
+        networkManager.getAPIData(with: .popularItems(type: CategoryType.salad.rawValue)) { [weak self] (recipes: RecipeDataModelForCell?, error: String?) in
+            DispatchQueue.main.async {
+                self?.popularItems = recipes?.results
+                if let error {
+                    print(error)
+                }
+            }
+        }
+        //Recent recipies data source
+        networkManager.getAPIData(with: .recentRecipe) { [weak self] (recipes: RecipeDataModelForCell?, error: String?) in
+            DispatchQueue.main.async {
+                self?.recentRecipies = recipes?.results
+                if let error {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
 }
 
 //MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = indexPath.row
+        var id: Int
+        switch indexPath.section {
+        case SectionType.trending.rawValue:
+            id = trendingReccipies?[row].id ?? 715449
+        case SectionType.popularCategory.rawValue:
+            return
+        case SectionType.popularItem.rawValue:
+            id = popularItems?[row].id ?? 715449
+        case SectionType.recentRecipe.rawValue:
+            id = recentRecipies?[row].id ?? 715449
+        case SectionType.popularCreator.rawValue:
+            id = trendingReccipies?[row].id ?? 715449
+        default: return
+        }
+        navigationController?.pushViewController(DetailsViewController(id: id), animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -98,6 +162,7 @@ extension HomeViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case SectionType.trending.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.reuseID, for: indexPath) as? TrendingCollectionViewCell else {return .init()}
+            cell.setupCell(with: trendingReccipies?[indexPath.row])
             return cell
         case SectionType.popularCategory.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoryCollectionViewCell.reuseID, for: indexPath) as? PopularCategoryCollectionViewCell else {return .init()}
@@ -106,14 +171,15 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case SectionType.popularItem.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularItemCollectionViewCell.reuseID, for: indexPath) as? PopularItemCollectionViewCell else {return.init()}
-            cell.setupCell()
+            cell.setupCell(with: popularItems?[indexPath.row])
             return cell
         case SectionType.recentRecipe.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCollectionViewCell.reuseID, for: indexPath) as? RecentCollectionViewCell else {return .init()}
+            cell.setupCell(with: recentRecipies?[indexPath.row])
             return cell
         case SectionType.popularCreator.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCreatorCollectionViewCell.reuseID, for: indexPath) as? PopularCreatorCollectionViewCell else {return .init()}
-            cell.setupCell()
+            cell.setupCell(with: trendingReccipies?[indexPath.row])
             return cell
         default:
             return .init()
@@ -123,10 +189,10 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == headerKind else {return .init()}
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseID, for: indexPath) as? HeaderCollectionReusableView else {return .init()}
-        header.setup(setHeaderData(for: indexPath))
+        let sectionType = SectionType(rawValue: indexPath.section)
+        header.setup(setHeaderData(for: indexPath), sectionType: (sectionType ?? nil))
+        header.delegate = self
         return header
-        
-        
     }
     
     private func setHeaderData(for indexPath: IndexPath) -> (title: String, isHidden: Bool) {
@@ -295,5 +361,14 @@ extension HomeViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [createSectionHeader()]
         return section
+    }
+}
+
+//MARK: - HeaderDelegate
+extension HomeViewController: HeaderDelegate {
+    
+    func showViewController(with type: SectionType) {
+        let detailedVC = TrendingViewController()//(screen type: type)
+        navigationController?.pushViewController(detailedVC, animated: true)
     }
 }

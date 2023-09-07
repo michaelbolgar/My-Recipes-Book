@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PopularItemCollectionViewCell: UICollectionViewCell {
     //MARK: - Variables
@@ -124,6 +125,9 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         dishImageView.layer.cornerRadius = dishImageView.frame.height / 2
     }
     
-    func setupCell() {
+    func setupCell(with recipe: Results?) {
+        dishImageView.imageFromURL(recipe?.image ?? "", placeHolder: nil)
+        timeValueLabel.text = "\(recipe?.cookingMinutes ?? 0)"
+        mainLabel.text = recipe?.title
     }
 }

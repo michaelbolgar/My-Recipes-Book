@@ -61,7 +61,8 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setupCell() {
+    func setupCell(with recipe: Results?) {
         creatorImageView.image = DataBase.shared.creatorImagesArray.randomElement() as? UIImage
+        creatorNameLabel.text = "By " + (recipe?.creditsText?.capitalized ?? "No data")
     }
 }

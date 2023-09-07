@@ -27,7 +27,7 @@ class RecipeManager {
     private init() {}
     
     // MARK: - Public Methods
-    func fetch(from url: String, completion: @escaping (Result<Recipe,NetworkError> ) -> Void) {
+    func fetch(from url: String, completion: @escaping (Result<Results,NetworkError> ) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -40,7 +40,7 @@ class RecipeManager {
             }
             
             do {
-                let recipe = try JSONDecoder().decode(Recipe.self, from: data)
+                let recipe = try JSONDecoder().decode(Results.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(recipe))
                 }
