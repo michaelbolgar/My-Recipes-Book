@@ -23,7 +23,7 @@ class PopularItemCollectionViewCell: UICollectionViewCell {
         let view = UIImageView()
         view.backgroundColor = .blue
         view.clipsToBounds = true
-        view.layer.cornerRadius = view.frame.height / 2
+        view.contentMode = .scaleAspectFill
         return view
     }()
     

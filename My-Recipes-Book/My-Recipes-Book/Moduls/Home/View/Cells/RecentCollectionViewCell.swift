@@ -14,6 +14,7 @@ class RecentCollectionViewCell: UICollectionViewCell {
         let view = UIImageView()
         view.backgroundColor = .gray
         view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 10
         return view
     }()
