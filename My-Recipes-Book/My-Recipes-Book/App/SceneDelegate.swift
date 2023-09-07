@@ -16,47 +16,59 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = createTabBarController()
+
+        let customTabBar = CustomTabBarController()
+
+        window.rootViewController = customTabBar
         window.makeKeyAndVisible()
         self.window = window
     }
 
-    func createTabBarController() -> UITabBarController {
-        let tabbarController = UITabBarController()
-        tabbarController.tabBar.backgroundColor = .cyan
-        tabbarController.viewControllers = [
-            createHomeViewController(),
-            createSavedViewController(),
-            createDetailsViewController(),
-            createProfileViewController()
-        ]
-
-        return tabbarController
-    }
-
-    func createHomeViewController() -> UINavigationController {
-        let homeVC = HomeViewController()
-        homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "HomeInactive"), tag: 0)
-        return UINavigationController(rootViewController: homeVC)
-    }
-
-    func createSavedViewController() -> UINavigationController {
-        let savedVC = SavedViewController()
-        savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "BookmarkInactive"), tag: 1)
-        return UINavigationController(rootViewController: savedVC)
-    }
-
-    func createDetailsViewController() -> UINavigationController {
-        let detailsVC = DetailsViewController()
-        detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "NotificationInactive"), tag: 2)
-        return UINavigationController(rootViewController: detailsVC)
-    }
-
-    func createProfileViewController() -> UINavigationController {
-        let profileVC = ProfileViewController()
-        profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "ProfileInactive"), tag: 3)
-        return UINavigationController(rootViewController: profileVC)
-    }
+//    func createTabBarController() -> UITabBarController {
+//        let tabbarController = UITabBarController()
+////        tabbarController.delegate = self
+//        tabbarController.tabBar.backgroundColor = .white
+//        tabbarController.viewControllers = [
+//            createHomeViewController(),
+//            createSavedViewController(),
+//            createCreateRecipeViewController(),
+//            createDetailsViewController(),
+//            createProfileViewController()
+//        ]
+//
+//        return tabbarController
+//    }
+//
+//    func createHomeViewController() -> UINavigationController {
+//        let homeVC = HomeViewController()
+//        homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "HomeInactive"), tag: 0)
+//        return UINavigationController(rootViewController: homeVC)
+//    }
+//
+//    func createSavedViewController() -> UINavigationController {
+//        let savedVC = SavedViewController()
+//        savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "BookmarkInactive"), tag: 1)
+//        return UINavigationController(rootViewController: savedVC)
+//    }
+//
+//    func createCreateRecipeViewController() -> UINavigationController {
+//        let createRecipe = TrendingViewController()
+//        //поменять на новый экран от Кирилла
+//        createRecipe.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "createRecipe"), tag: 2)
+//        return UINavigationController(rootViewController: createRecipe)
+//    }
+//
+//    func createDetailsViewController() -> UINavigationController {
+//        let detailsVC = DetailsViewController()
+//        detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "NotificationInactive"), tag: 3)
+//        return UINavigationController(rootViewController: detailsVC)
+//    }
+//
+//    func createProfileViewController() -> UINavigationController {
+//        let profileVC = ProfileViewController()
+//        profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(named: "ProfileInactive"), tag: 4)
+//        return UINavigationController(rootViewController: profileVC)
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -85,7 +97,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-
