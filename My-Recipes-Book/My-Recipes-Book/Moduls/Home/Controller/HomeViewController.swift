@@ -11,7 +11,7 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     //MARK: - Propperties
-    
+        
     let headerKind = UICollectionView.elementKindSectionHeader
     var trendingReccipies: [Results]? {
         didSet {
@@ -62,7 +62,6 @@ class HomeViewController: UIViewController {
     
     //MARK: - Methods
     private func setOutlets() {
-        view.backgroundColor = .cyan
         title = "Get amazing recepies for cooking"
         //navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
