@@ -11,7 +11,7 @@
  After that, based on the configuration, RequestBuilder collects the request into one.
  The collected request is transmitted to the Router, sent to the server and,
  depending on the response (Status Code), decodes the data or outputs an error message.
-*/
+ */
 
 import Foundation
 
@@ -22,7 +22,7 @@ class NetworkManager {
     // In generic, you specify the type of model to which the data should come.
     //The main thing is that the model supports the Decodable protocol
     func getAPIData<T>(with endPoint: RecipeAPI,
-                           completion: @escaping (_ recipes: T?, _ error: String?) -> Void)
+                       completion: @escaping (_ recipes: T?, _ error: String?) -> Void)
     where T: Decodable {
         let assembledRequest = requestBuilder.buildRequest(with: endPoint)
         networkRouter.sendRequest(to: assembledRequest, completion: { data, response, error in

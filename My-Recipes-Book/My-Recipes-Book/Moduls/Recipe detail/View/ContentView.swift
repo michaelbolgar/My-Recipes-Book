@@ -9,7 +9,7 @@ import UIKit
 
 final class ContentView: UIView {
     
-    // MARK: - UI Properties
+    // MARK: - Public UI Properties
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.bounds, style: .grouped)
         tableView.delegate = self

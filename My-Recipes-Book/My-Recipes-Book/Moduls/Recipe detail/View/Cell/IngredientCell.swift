@@ -20,6 +20,8 @@ final class IngredientCell: UITableViewCell{
         ingrLabel.textColor = .black
         ingrLabel.font = UIFont(name: "Poppins-Bold", size: 15)
         ingrLabel.numberOfLines = 0
+        ingrLabel.adjustsFontSizeToFitWidth = true
+        ingrLabel.minimumScaleFactor = 0.5
         return ingrLabel
     }()
     

@@ -17,6 +17,8 @@ final class DetailsViewController: UIViewController {
     private var recipeURLbyID: String { "https://api.spoonacular.com/recipes/\(recipeID ?? 715449)/information?apiKey=5ae93d38d7cf4f94912465f822fa82eb&includeNutrition=false"
     }
     
+    private var networkManager = NetworkManager()
+    
     //MARK: - Init
     convenience init(id: Int){
         self.init()
@@ -28,6 +30,7 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(contentView)
         setupConstraints()
+        
         fetchRecipe(with: recipeURLbyID)
     }
     
