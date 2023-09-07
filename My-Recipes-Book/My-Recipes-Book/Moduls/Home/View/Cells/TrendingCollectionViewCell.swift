@@ -21,4 +21,11 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    //MARK: - Methods
+    func setupCell(with recipe: Results?) {
+        guard let recipe else {return}
+//        dishImageView.imageFromURL(recipe.image ?? "", placeHolder: nil)
+//        timeValueLabel.text = "\(recipe.cookingMinutes ?? 0)"
+//        mainLabel.text = recipe.title
+    }
 }
