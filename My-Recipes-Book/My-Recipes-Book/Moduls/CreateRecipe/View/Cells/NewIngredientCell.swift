@@ -8,6 +8,7 @@
 import UIKit
 import NotificationCenter
 
+//MARK: - NewIngredientCellDelegate
 protocol NewIngredientCellDelegate: AnyObject {
     func didTapDeleteButton(cell: NewIngredientCell)
 }
@@ -82,8 +83,17 @@ final class NewIngredientCell: UITableViewCell {
     @objc func deleteButtonTapped() {
         delegate?.didTapDeleteButton(cell: self)
     }
-
+    
     // MARK: - Private Methods
+    private func addViews() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(itemNameView)
+        mainView.addSubview(quantityView)
+        mainView.addSubview(mainButton)
+        itemNameView.addSubview(nameTextField)
+        quantityView.addSubview(quantityTextField)
+    }
+    
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
@@ -128,15 +138,6 @@ final class NewIngredientCell: UITableViewCell {
             make.bottom.equalToSuperview()
         }
     }
-    
-    private func addViews() {
-        contentView.addSubview(mainView)
-        mainView.addSubview(itemNameView)
-        mainView.addSubview(quantityView)
-        mainView.addSubview(mainButton)
-        itemNameView.addSubview(nameTextField)
-        quantityView.addSubview(quantityTextField)
-    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -144,9 +145,9 @@ extension NewIngredientCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         tableView?.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         tableView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-
+        
     }
 }

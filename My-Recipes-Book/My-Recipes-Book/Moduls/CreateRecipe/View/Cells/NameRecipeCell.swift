@@ -33,7 +33,6 @@ final class NameRecipeCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(mainView)
         mainView.addSubview(mainTextField)
-        
         setupConstraints()
     }
     

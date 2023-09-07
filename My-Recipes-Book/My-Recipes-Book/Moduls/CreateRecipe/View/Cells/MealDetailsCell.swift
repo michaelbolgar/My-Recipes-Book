@@ -17,9 +17,9 @@ final class MealDetailsCell: UITableViewCell{
         return pickerView
     }()
     
-    var currentValue = ""
-    var currentRow: Int?
-    var cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
+    private var currentValue = ""
+    private var currentRow: Int?
+    private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
     
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
@@ -69,9 +69,12 @@ final class MealDetailsCell: UITableViewCell{
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
-        
         setupConstraints()
-        setupPicker(pickerView, textField: detailTextField, action: #selector(doneAction))
+        setupPicker(
+            pickerView,
+            textField: detailTextField,
+            action: #selector(doneAction)
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -82,17 +85,16 @@ final class MealDetailsCell: UITableViewCell{
     func configure(_ imageName: String, detail: String, detailLabel: String, rowNumber: Int) {
         iconImageView.image = UIImage(systemName: imageName)
         nameDetailLabel.text = detail
-        self.detailTextField.text = detailLabel
-        self.currentRow = rowNumber
+        detailTextField.text = detailLabel
+        currentRow = rowNumber
     }
     
     // MARK: - Private Actions
     @objc private func doneAction() {
         detailTextField.text = currentValue
-        
         contentView.endEditing(true)
     }
-
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
@@ -152,8 +154,8 @@ final class MealDetailsCell: UITableViewCell{
     }
 }
 
-// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
-extension MealDetailsCell: UIPickerViewDelegate, UIPickerViewDataSource {
+// MARK: - UIPickerViewDataSource
+extension MealDetailsCell: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -161,7 +163,10 @@ extension MealDetailsCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         currentRow == 0 ? 10 : cookTimes.count
     }
-    
+}
+
+// MARK: - UIPickerViewDelegate
+extension MealDetailsCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         currentRow == 0 ? String(row) : "\(cookTimes[row]) min"
     }
@@ -169,7 +174,8 @@ extension MealDetailsCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedValue = pickerView.selectedRow(inComponent: component)
         
-        currentValue = currentRow == 0 ? selectedValue.formatted() : "\(cookTimes[selectedValue]) min"
+        currentValue = currentRow == 0
+        ? selectedValue.formatted()
+        : "\(cookTimes[selectedValue]) min"
     }
 }
-
