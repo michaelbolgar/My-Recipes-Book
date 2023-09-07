@@ -20,7 +20,7 @@ final class MealDetailsCell: UITableViewCell{
     private var currentValue = ""
     private var currentRow: Int?
     private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
-    
+    private let serves = Array(1...10)
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
@@ -62,6 +62,7 @@ final class MealDetailsCell: UITableViewCell{
         var detailTextField = UITextField()
         detailTextField.font = UIFont(name: "Poppins-Regular", size: 14)
         detailTextField.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
+
         return detailTextField
     }()
     
@@ -149,8 +150,9 @@ final class MealDetailsCell: UITableViewCell{
         toolbar.frame.size.width = UIScreen.main.bounds.width
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: action)
         toolbar.setItems([doneButton], animated: true)
-        textField.inputAccessoryView = toolbar
         textField.inputView = picker
+        textField.inputAccessoryView = toolbar
+
     }
 }
 
@@ -161,21 +163,21 @@ extension MealDetailsCell: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        currentRow == 0 ? 10 : cookTimes.count
+        currentRow == 0 ? serves.count : cookTimes.count
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension MealDetailsCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        currentRow == 0 ? String(row) : "\(cookTimes[row]) min"
+        currentRow == 0 ? "\(serves[row])" : "\(cookTimes[row]) min"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedValue = pickerView.selectedRow(inComponent: component)
         
         currentValue = currentRow == 0
-        ? selectedValue.formatted()
+        ? "\(serves[selectedValue])"
         : "\(cookTimes[selectedValue]) min"
     }
 }

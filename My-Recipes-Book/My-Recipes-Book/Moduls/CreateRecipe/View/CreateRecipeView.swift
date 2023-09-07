@@ -39,7 +39,7 @@ final class CreateRecipeView: UIView {
     }()
     
     // MARK: - Private Properties
-    private var ingredientData = [NewIngredient(name: "", quantity: 0)]
+    private var ingredientData: [NewIngredient] = []
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -71,7 +71,23 @@ final class CreateRecipeView: UIView {
         let newIngredient = NewIngredient(name: "", quantity: 0)
         
         ingredientData.append(newIngredient)
-        mainTableView.reloadData()
+        
+        let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
+
+        mainTableView.beginUpdates()
+        mainTableView.insertRows(at: [indexPath], with: .automatic)
+        mainTableView.endUpdates()
+
+        mainTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    func deleteIngredient(at indexPath: IndexPath) {
+        ingredientData.remove(at: indexPath.row)
+
+        // Обновите таблицу с анимацией
+        mainTableView.beginUpdates()
+        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+        mainTableView.endUpdates()
     }
     
     // MARK: - Private Methods
@@ -130,7 +146,7 @@ extension CreateRecipeView: UITableViewDataSource {
             }
             
             if indexPath.row == 0 {
-                cell.configure("person.2.fill", detail: "Serves", detailLabel: "03", rowNumber: 0)
+                cell.configure("person.2.fill", detail: "Serves", detailLabel: "1", rowNumber: 0)
                 cell.selectionStyle = .none
                 return cell
             } else {
@@ -178,15 +194,6 @@ extension CreateRecipeView: UITableViewDelegate {
             return 70
         default:
             return 240
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            if cell is MealDetailsCell {
-                print(indexPath.row)
-            }
-            cell.setHighlighted(false, animated: false)
         }
     }
 }
@@ -284,13 +291,9 @@ extension CreateRecipeView {
 // MARK: - NewIngredientCellDelegate
 extension CreateRecipeView: NewIngredientCellDelegate {
     func didTapDeleteButton(cell: NewIngredientCell) {
-        guard
-            let indexPath = mainTableView.indexPath(for: cell)
-        else {
-            return
-        }
-        ingredientData.remove(at: indexPath.row)
-        
-        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+
+        if let indexPath = mainTableView.indexPath(for: cell) {
+              deleteIngredient(at: indexPath)
+          }
     }
 }
