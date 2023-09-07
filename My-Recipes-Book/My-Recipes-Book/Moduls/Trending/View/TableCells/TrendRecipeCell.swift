@@ -12,20 +12,6 @@ import SnapKit
 class TrandRecipeCell: UITableViewCell {
 // MARK: - Properties
     static let cellID = "TrandRecipeCell"
-    //The API does not return an image of the creators
-    private var defaultCreatorsImaegs = [
-        "images-2",
-        "images-3",
-        "images-4",
-        "images-5",
-        "images-6",
-        "images-7",
-        "images-8",
-        "images-9",
-        "images-10",
-        "images-11",
-        "images"
-    ]
 
     private var dishImageView: UIImageView = {
         let imageView = UIImageView()
@@ -157,7 +143,7 @@ class TrandRecipeCell: UITableViewCell {
     //Changes the appearance of the cell for Popular creators section type
     private func adaptCellForPopularCreators(recipeData: Results?, rowNumber: Int) {
         guard let recipeData = recipeData else { return }
-        dishImageView.image = UIImage(named: defaultCreatorsImaegs[rowNumber])
+        dishImageView.image = DataBase.shared.creatorImagesArray[rowNumber]
         //recipeNameLabel used to display the creator's name.
         //Otherwise, you would have to change the label configuration and change its location.
         //It's easier this way
