@@ -13,6 +13,8 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
     private lazy var creatorImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .yellow
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     
@@ -59,7 +61,8 @@ class PopularCreatorCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setupCell() {
-        
+    func setupCell(with recipe: Results?) {
+        creatorImageView.image = DataBase.shared.creatorImagesArray.randomElement() as? UIImage
+        creatorNameLabel.text = "By " + (recipe?.creditsText?.capitalized ?? "No data")
     }
 }

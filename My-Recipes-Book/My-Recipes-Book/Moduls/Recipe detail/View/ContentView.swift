@@ -19,7 +19,7 @@ final class ContentView: UIView {
     }()
     
     // MARK: - Public Properties
-    var recipe: Recipe?
+    var recipe: Results?
     
     // MARK: - Private Properties
     private var buttonStates: [IndexPath: Bool] = [:]
@@ -83,9 +83,9 @@ extension ContentView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
-            return recipe?.extendedIngredients.count ?? 1
+            return recipe?.extendedIngredients?.count ?? 1
         } else {
-            return section == 0 ? 1 : recipe?.analyzedInstructions.first?.steps.count ?? 1
+            return section == 0 ? 1 : recipe?.analyzedInstructions?.first?.steps.count ?? 1
         }
     }
     
@@ -112,7 +112,7 @@ extension ContentView: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            let step = recipe?.analyzedInstructions.first?.steps[indexPath.row]
+            let step = recipe?.analyzedInstructions?.first?.steps[indexPath.row]
             cell.configure(step)
             cell.backgroundColor = .white
             
@@ -125,7 +125,7 @@ extension ContentView: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            let ingredient = recipe?.extendedIngredients[indexPath.row]
+            let ingredient = recipe?.extendedIngredients?[indexPath.row]
             cell.configure(with: ingredient)
             cell.isButtonPressed = buttonStates[indexPath] ?? false
             cell.buttonTapHandler = { [weak self] isPressed in
@@ -169,7 +169,7 @@ extension ContentView: UITableViewDelegate {
             label.font = UIFont(name: "Poppins-Bold", size: 20)
         default:
             let countItemsLabel = UILabel()
-            countItemsLabel.text = "\(recipe?.extendedIngredients.count ?? 0) Items"
+            countItemsLabel.text = "\(recipe?.extendedIngredients?.count ?? 0) Items"
             countItemsLabel.textColor = .systemGray
             countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
             headerView.addSubview(countItemsLabel)

@@ -13,6 +13,8 @@ class RecentCollectionViewCell: UICollectionViewCell {
     private lazy var dishImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .gray
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 10
         return view
     }()
@@ -29,7 +31,7 @@ class RecentCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Kelewele Ghanian Recipe"
         label.numberOfLines = 2
-        label.adjustsFontSizeToFitWidth = true
+        //label.adjustsFontSizeToFitWidth = true
         label.textColor = Palette.neutral100
         label.font = .poppins(weight: .bold, size: 14)
         return label
@@ -47,6 +49,7 @@ class RecentCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
+    
     private func setViews() {
         contentView.addSubview(dishImageView)
         contentView.addSubview(creatorNameLabel)
@@ -71,7 +74,9 @@ class RecentCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setupCell() {
-        
+    func setupCell(with recipe: Results?) {
+        dishImageView.imageFromURL(recipe?.image ?? "", placeHolder: nil)
+        mainLabel.text = recipe?.title
+        creatorNameLabel.text = "By " + (recipe?.sourceName?.capitalized ?? "No data")
     }
 }
