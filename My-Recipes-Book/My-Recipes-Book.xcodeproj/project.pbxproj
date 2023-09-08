@@ -48,7 +48,6 @@
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
-		F45B87BB2AA7792B00E5DBE4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B87BA2AA7792B00E5DBE4 /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,7 +93,6 @@
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F45B87BA2AA7792B00E5DBE4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,7 +272,6 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
-				F489D3332AA9F7620002F58A /* Tabbar */,
 				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
@@ -458,14 +455,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F489D3332AA9F7620002F58A /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				F45B87BA2AA7792B00E5DBE4 /* CustomTabBarController.swift */,
-			);
-			path = Tabbar;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,7 +556,6 @@
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
 				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
-				F45B87BB2AA7792B00E5DBE4 /* CustomTabBarController.swift in Sources */,
 				0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */,
 				0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */,
 				F434223B2A9C2A150025C556 /* OnboardingView.swift in Sources */,
