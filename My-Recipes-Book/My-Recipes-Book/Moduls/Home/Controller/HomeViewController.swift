@@ -62,7 +62,8 @@ class HomeViewController: UIViewController {
     
     //MARK: - Methods
     private func setOutlets() {
-        title = "Get amazing recepies for cooking"
+        view.backgroundColor = .cyan
+//        title = "Get amazing recepies for cooking"
         //navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
