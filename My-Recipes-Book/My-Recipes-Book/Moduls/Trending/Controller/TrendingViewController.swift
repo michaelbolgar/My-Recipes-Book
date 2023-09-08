@@ -100,6 +100,7 @@ extension TrendingViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TrandRecipeCell.cellID, for: indexPath) as? TrandRecipeCell
         guard let trendingScreenData = trendingScreenData else { return UITableViewCell() }
         cell?.transnferData(recipe: trendingScreenData.results?[indexPath.row], section: sectionType, row: indexPath.row)
+        cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }
 }

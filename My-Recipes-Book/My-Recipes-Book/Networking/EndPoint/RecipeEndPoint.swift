@@ -18,7 +18,7 @@ enum RecipeAPI {
     case trendingNowMainScreen
     case popularItems(type: String)
     case recentRecipe
-    case recipeDetail(recipeID: String)
+    case recipeDetail(recipeID: Int)
 }
 
 extension RecipeAPI: EndPointType {
