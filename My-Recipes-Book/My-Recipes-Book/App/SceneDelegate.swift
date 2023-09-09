@@ -16,8 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = createTabBarController()
+        let onboardingVC = OnboardingViewController()
+
+        let navigationController = UINavigationController(rootViewController: onboardingVC)
+
+
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+
         self.window = window
     }
 
@@ -37,7 +43,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createHomeViewController() -> UINavigationController {
         let homeVC = HomeViewController()
         homeVC.tabBarItem = UITabBarItem (title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        return UINavigationController(rootViewController: homeVC)
+        let navVC =  UINavigationController(rootViewController: homeVC)
+//
+//            let leftBarButtonItem = UIBarButtonItem(
+//                image: UIImage(named: "arrow"),
+//                style: .done, target: self,
+//                action: #selector(backButtonTapped)
+//            )
+//
+//            leftBarButtonItem.tintColor = .black
+//
+//            navigationItem.leftBarButtonItem = leftBarButtonItem
+//        }
+        
+        return navVC
     }
 
     func createSavedViewController() -> UINavigationController {
