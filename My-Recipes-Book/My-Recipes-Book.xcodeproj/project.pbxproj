@@ -48,6 +48,7 @@
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
+		F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F4D7B06D2AAC685900028005 /* CustomTabbar */,
 				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
@@ -455,6 +458,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F4D7B06D2AAC685900028005 /* CustomTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */,
+			);
+			path = CustomTabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -539,6 +550,7 @@
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
+				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,
 				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
 				0A3D3B342A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift in Sources */,
 				0AA95B9B2AA664AB009326D2 /* RequestBuilding.swift in Sources */,
