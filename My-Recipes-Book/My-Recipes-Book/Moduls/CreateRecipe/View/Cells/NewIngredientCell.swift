@@ -145,9 +145,9 @@ extension NewIngredientCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         tableView?.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        
+        tableView?.setContentOffset(CGPoint(x: 0, y: -50), animated: true)
+
     }
 }
