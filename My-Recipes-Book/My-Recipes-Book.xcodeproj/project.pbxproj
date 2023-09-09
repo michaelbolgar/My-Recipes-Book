@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C873B6B62AA1F044005BE459 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6B52AA1F044005BE459 /* PageViewController.swift */; };
-		C873B6BC2AA1F104005BE459 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6BB2AA1F104005BE459 /* CookViewController.swift */; };
-		C873B6BE2AA1F321005BE459 /* CooksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6BD2AA1F321005BE459 /* CooksHelper.swift */; };
 		0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B292A9D1FB500B72054 /* HomeView.swift */; };
 		0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B2F2A9E6BCE00B72054 /* TrendingCollectionViewCell.swift */; };
 		0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B312A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift */; };
@@ -52,6 +49,9 @@
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
 		F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */; };
+		F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0702AAC7BFA00028005 /* PageViewController.swift */; };
+		F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0722AAC7C0000028005 /* CooksHelper.swift */; };
+		F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0742AAC7C3B00028005 /* CookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +98,9 @@
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
+		F4D7B0702AAC7BFA00028005 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/Controller/PageViewController.swift"; sourceTree = SOURCE_ROOT; };
+		F4D7B0722AAC7C0000028005 /* CooksHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CooksHelper.swift; path = "My-Recipes-Book/Moduls/Onboarding/Model/CooksHelper.swift"; sourceTree = SOURCE_ROOT; };
+		F4D7B0742AAC7C3B00028005 /* CookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CookViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/View/CookViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +304,7 @@
 		F43422352A9C29D90025C556 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4D7B0722AAC7C0000028005 /* CooksHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -309,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				F434223A2A9C2A150025C556 /* OnboardingView.swift */,
-				C873B6BB2AA1F104005BE459 /* CookViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,9 +320,9 @@
 		F43422372A9C29E20025C556 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F4D7B0742AAC7C3B00028005 /* CookViewController.swift */,
+				F4D7B0702AAC7BFA00028005 /* PageViewController.swift */,
 				F43422382A9C29FD0025C556 /* OnboardingViewController.swift */,
-				C873B6B52AA1F044005BE459 /* PageViewController.swift */,
-				C873B6BD2AA1F321005BE459 /* CooksHelper.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -556,11 +559,13 @@
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
+				F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */,
 				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,
 				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
 				0A3D3B342A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift in Sources */,
 				0AA95B9B2AA664AB009326D2 /* RequestBuilding.swift in Sources */,
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
+				F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */,
 				0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */,
 				0AA95BA62AA66549009326D2 /* UIImageViewExtension.swift in Sources */,
 				0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */,
@@ -583,6 +588,7 @@
 				0AA95B9D2AA664AB009326D2 /* RecipeEndPoint.swift in Sources */,
 				0AA95B902AA66403009326D2 /* RecipeDataModelForCell.swift in Sources */,
 				0AA95B8D2AA649BC009326D2 /* CategoryType.swift in Sources */,
+				F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */,
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
