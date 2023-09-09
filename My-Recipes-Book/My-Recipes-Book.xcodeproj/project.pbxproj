@@ -48,10 +48,13 @@
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
+		F4D7B0782AAC829E00028005 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0772AAC829E00028005 /* SavedTableViewCell.swift */; };
+		F4D7B07A2AAC830900028005 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0792AAC830900028005 /* Model.swift */; };
 		F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */; };
 		F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0702AAC7BFA00028005 /* PageViewController.swift */; };
 		F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0722AAC7C0000028005 /* CooksHelper.swift */; };
 		F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0742AAC7C3B00028005 /* CookViewController.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,10 +100,13 @@
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F4D7B0772AAC829E00028005 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavedTableViewCell.swift; path = "My-Recipes-Book/Moduls/Saved Recipes/View/SavedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		F4D7B0792AAC830900028005 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		F4D7B0702AAC7BFA00028005 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/Controller/PageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F4D7B0722AAC7C0000028005 /* CooksHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CooksHelper.swift; path = "My-Recipes-Book/Moduls/Onboarding/Model/CooksHelper.swift"; sourceTree = SOURCE_ROOT; };
 		F4D7B0742AAC7C3B00028005 /* CookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CookViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/View/CookViewController.swift"; sourceTree = SOURCE_ROOT; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +176,7 @@
 		0A726C472AA324C400F08A3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4D7B0792AAC830900028005 /* Model.swift */,
 			);
 			name = Model;
 			path = "My-Recipes-Book/Moduls/Recipe detail/Model";
@@ -393,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				F434224D2A9C2B100025C556 /* SavedViewController.swift */,
+				F4D7B0772AAC829E00028005 /* SavedTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -556,6 +564,7 @@
 				0A726C432AA324B500F08A3D /* MainImageCell.swift in Sources */,
 				0AA95B8B2AA5F33C009326D2 /* DataBase.swift in Sources */,
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
+				F4D7B0782AAC829E00028005 /* SavedTableViewCell.swift in Sources */,
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
@@ -591,6 +600,7 @@
 				F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */,
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
+				F4D7B07A2AAC830900028005 /* Model.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 			);
