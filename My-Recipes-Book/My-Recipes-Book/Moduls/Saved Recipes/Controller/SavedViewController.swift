@@ -29,7 +29,7 @@ final class SavedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Saved Recipes"
+//        self.title = "Saved Recipes"
 
         configureUI()
     }

@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func createHomeViewController() -> UINavigationController {
         let homeVC = HomeViewController()
-        homeVC.tabBarItem = UITabBarItem (title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
         let navVC =  UINavigationController(rootViewController: homeVC)
 //
 //            let leftBarButtonItem = UIBarButtonItem(
@@ -61,19 +61,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func createSavedViewController() -> UINavigationController {
         let savedVC = SavedViewController()
-        savedVC.tabBarItem = UITabBarItem (title: "Saved", image: UIImage(systemName: "bookmark"), tag: 1)
+        savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bookmark"), tag: 1)
         return UINavigationController(rootViewController: savedVC)
     }
 
     func createDetailsViewController() -> UINavigationController {
         let detailsVC = DetailsViewController()
-        detailsVC.tabBarItem = UITabBarItem (title: "Details", image: UIImage(systemName: "bell"), tag: 2)
+        detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bell"), tag: 2)
         return UINavigationController(rootViewController: detailsVC)
     }
 
     func createProfileViewController() -> UINavigationController {
         let profileVC = ProfileViewController()
-        profileVC.tabBarItem = UITabBarItem (title: "Profile", image: UIImage(systemName: "person"), tag: 3)
+        profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "person"), tag: 3)
         return UINavigationController(rootViewController: profileVC)
     }
 
