@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C873B6B62AA1F044005BE459 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6B52AA1F044005BE459 /* PageViewController.swift */; };
+		C873B6BC2AA1F104005BE459 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6BB2AA1F104005BE459 /* CookViewController.swift */; };
+		C873B6BE2AA1F321005BE459 /* CooksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873B6BD2AA1F321005BE459 /* CooksHelper.swift */; };
 		0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B292A9D1FB500B72054 /* HomeView.swift */; };
 		0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B2F2A9E6BCE00B72054 /* TrendingCollectionViewCell.swift */; };
 		0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B312A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift */; };
@@ -306,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				F434223A2A9C2A150025C556 /* OnboardingView.swift */,
+				C873B6BB2AA1F104005BE459 /* CookViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,6 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				F43422382A9C29FD0025C556 /* OnboardingViewController.swift */,
+				C873B6B52AA1F044005BE459 /* PageViewController.swift */,
+				C873B6BD2AA1F321005BE459 /* CooksHelper.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
