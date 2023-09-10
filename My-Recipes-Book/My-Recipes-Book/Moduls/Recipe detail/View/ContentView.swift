@@ -160,7 +160,7 @@ extension ContentView: UITableViewDelegate {
         
         switch section {
         case 0:
-            label.text = "How to make \(recipe?.title ?? "")"
+            label.text = "\(recipe?.title ?? "")"
             label.font = UIFont(name: "Poppins-Bold", size: 24)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping

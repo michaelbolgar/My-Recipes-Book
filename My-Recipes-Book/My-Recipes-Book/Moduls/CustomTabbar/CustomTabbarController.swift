@@ -16,7 +16,6 @@ class CustomTabBarController: UITabBarController {
         self.delegate = self
         self.selectedIndex = 0
 
-        navigationController?.setNavigationBarHidden(true, animated: true)
         generateViewController()
         setTabbar()
         setupMiddleButton()
@@ -63,7 +62,6 @@ class CustomTabBarController: UITabBarController {
         let holeWidth = 60 + 30 //middleButton.width + insets
         let holeHeight = 48
         let leftXUntilHole = Int(frameWidth/2) - Int(holeWidth/2)
-//        let centerWidth = self.view.frame.width / 2
 
         bezierPath.move(to: CGPoint (x: 0, y: 0))
         bezierPath.addLine(to: CGPoint(x: leftXUntilHole , y: 0))
