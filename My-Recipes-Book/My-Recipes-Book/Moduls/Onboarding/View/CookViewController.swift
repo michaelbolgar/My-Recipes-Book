@@ -106,6 +106,7 @@ class CookViewController: UIViewController {
     @objc func skipButtonPressed(){
         let vc = CustomTabBarController()
 //        vc.modalPresentationStyle = .fullScreen
+        AppSettingsManager.setOnboardingCompleted(true)
         navigationController?.pushViewController(vc, animated: true)
     }
     

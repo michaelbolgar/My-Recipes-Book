@@ -16,12 +16,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let onboardingVC = OnboardingViewController()
+        let isOnboardingCompleted = AppSettingsManager.isOnboardingCompleted()
 
-        let navigationController = UINavigationController(rootViewController: onboardingVC)
+        if isOnboardingCompleted {
+            let mainVC = CustomTabBarController()
+            let navigationController = UINavigationController(rootViewController: mainVC)
+            window.rootViewController = navigationController
+        } else {
+            let onboardingVC = OnboardingViewController()
+            let navigationController = UINavigationController(rootViewController: onboardingVC)
+            window.rootViewController = navigationController
+        }
 
-
-        window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
         self.window = window
