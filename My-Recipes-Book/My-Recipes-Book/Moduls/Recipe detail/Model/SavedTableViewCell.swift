@@ -66,7 +66,7 @@ final class SavedTableViewCell: UITableViewCell {
         let bookmarkImage = UIImageView()
         bookmarkImage.contentMode = .scaleAspectFit
         bookmarkImage.backgroundColor = .clear
-        bookmarkImage.image = UIImage(named: "Bookmark")
+        bookmarkImage.image = UIImage(named: "BookmarkActive")
         return bookmarkImage
     }()
     

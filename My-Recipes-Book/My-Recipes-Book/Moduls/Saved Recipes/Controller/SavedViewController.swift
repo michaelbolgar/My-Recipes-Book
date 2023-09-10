@@ -10,7 +10,7 @@ import UIKit
 
 final class SavedViewController: UIViewController {
     
-    private let data = Array(repeating: Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make Shawrma at home?", authorImage: "AuthorImage", authorLabel: "By Zeelicious Food"), count: 10)
+    private let data = Array(repeating: Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make Shawrma at home?", authorImage: "AuthorImage", authorLabel: "By Zeelicious Food"), count: 3)
     
     // MARK: Table View with saved recipes
     
