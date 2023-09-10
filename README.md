@@ -15,9 +15,6 @@ My Recipe Book - твой личный помощник на кухне. Нах�
 <a href="https://github.com/michaelbolgar" style="text-decoration:none;">Michael Bolgar</a> (Тимлид)   
 <a href="https://github.com/etozhekolyan" style="text-decoration:none;">etozhekolyan</a>   
 <a href="https://github.com/Kirilloao" style="text-decoration:none;">Kirill Taraturin</a>   
-
 <a href="https://github.com/DmitryLorents" style="text-decoration:none;">DmitryLorents</a>
-
 <a href="https://github.com/GerashchenkoDmitry" style="text-decoration:none;">GerashchenkoDmitry</a>
-
 <a href="https://github.com/Fokusnik909" style="text-decoration:none;">Fokusnik909</a>
