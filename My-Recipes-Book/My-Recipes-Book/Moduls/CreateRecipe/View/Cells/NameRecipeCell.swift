@@ -22,8 +22,7 @@ final class NameRecipeCell: UITableViewCell {
 
     lazy var mainTextField: UITextField = {
         var mainTextField = UITextField()
-        mainTextField.placeholder = "type name recipe"
-        mainTextField.text = "Naija lunch box ideas for work|"
+        mainTextField.placeholder = "Recipe name"
         mainTextField.autocorrectionType = .no
         mainTextField.delegate = self
         return mainTextField
