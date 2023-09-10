@@ -54,6 +54,14 @@
 		F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0742AAC7C3B00028005 /* CookViewController.swift */; };
 		F4D7B0782AAC829E00028005 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0772AAC829E00028005 /* SavedTableViewCell.swift */; };
 		F4D7B07A2AAC830900028005 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0792AAC830900028005 /* Model.swift */; };
+		F4D7B07E2AAD890C00028005 /* NewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B07D2AAD890C00028005 /* NewRecipeViewController.swift */; };
+		F4D7B0822AAD895400028005 /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0812AAD895400028005 /* CreateRecipeView.swift */; };
+		F4D7B0842AAD89A800028005 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0832AAD89A800028005 /* ButtonCell.swift */; };
+		F4D7B0862AAD89CF00028005 /* MealDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0852AAD89CF00028005 /* MealDetailsCell.swift */; };
+		F4D7B0882AAD89EE00028005 /* NameRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0872AAD89EE00028005 /* NameRecipeCell.swift */; };
+		F4D7B08A2AAD8A2300028005 /* NewIngredientCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0892AAD8A2300028005 /* NewIngredientCellDelegate.swift */; };
+		F4D7B08C2AAD8A4E00028005 /* RecipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B08B2AAD8A4E00028005 /* RecipeImageCell.swift */; };
+		F4D7B08F2AAD8A7A00028005 /* NewRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +113,14 @@
 		F4D7B0742AAC7C3B00028005 /* CookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CookViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/View/CookViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F4D7B0772AAC829E00028005 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavedTableViewCell.swift; path = "My-Recipes-Book/Moduls/Recipe detail/Model/SavedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		F4D7B0792AAC830900028005 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F4D7B07D2AAD890C00028005 /* NewRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipeViewController.swift; sourceTree = "<group>"; };
+		F4D7B0812AAD895400028005 /* CreateRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
+		F4D7B0832AAD89A800028005 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		F4D7B0852AAD89CF00028005 /* MealDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsCell.swift; sourceTree = "<group>"; };
+		F4D7B0872AAD89EE00028005 /* NameRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameRecipeCell.swift; sourceTree = "<group>"; };
+		F4D7B0892AAD8A2300028005 /* NewIngredientCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIngredientCellDelegate.swift; sourceTree = "<group>"; };
+		F4D7B08B2AAD8A4E00028005 /* RecipeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
+		F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +306,7 @@
 				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
+				F4D7B07B2AAD88D500028005 /* CreateRecipe */,
 				F43422482A9C2ABE0025C556 /* Saved Recipes */,
 				F43422422A9C2A710025C556 /* Recipe detail */,
 				F434224C2A9C2AF30025C556 /* Trending */,
@@ -481,6 +498,53 @@
 			path = CustomTabbar;
 			sourceTree = "<group>";
 		};
+		F4D7B07B2AAD88D500028005 /* CreateRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B08D2AAD8A5B00028005 /* Model */,
+				F4D7B07F2AAD893300028005 /* View */,
+				F4D7B07C2AAD88EC00028005 /* Controller */,
+			);
+			path = CreateRecipe;
+			sourceTree = "<group>";
+		};
+		F4D7B07C2AAD88EC00028005 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B07D2AAD890C00028005 /* NewRecipeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F4D7B07F2AAD893300028005 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B0812AAD895400028005 /* CreateRecipeView.swift */,
+				F4D7B0802AAD893800028005 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4D7B0802AAD893800028005 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B0832AAD89A800028005 /* ButtonCell.swift */,
+				F4D7B0852AAD89CF00028005 /* MealDetailsCell.swift */,
+				F4D7B0872AAD89EE00028005 /* NameRecipeCell.swift */,
+				F4D7B0892AAD8A2300028005 /* NewIngredientCellDelegate.swift */,
+				F4D7B08B2AAD8A4E00028005 /* RecipeImageCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4D7B08D2AAD8A5B00028005 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -559,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D7B08F2AAD8A7A00028005 /* NewRecipe.swift in Sources */,
 				0A726C432AA324B500F08A3D /* MainImageCell.swift in Sources */,
 				0AA95B8B2AA5F33C009326D2 /* DataBase.swift in Sources */,
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
@@ -567,12 +632,15 @@
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
 				F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */,
+				F4D7B0822AAD895400028005 /* CreateRecipeView.swift in Sources */,
 				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,
 				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
+				F4D7B0862AAD89CF00028005 /* MealDetailsCell.swift in Sources */,
 				0A3D3B342A9E6C0B00B72054 /* PopularItemCollectionViewCell.swift in Sources */,
 				0AA95B9B2AA664AB009326D2 /* RequestBuilding.swift in Sources */,
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
 				F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */,
+				F4D7B08C2AAD8A4E00028005 /* RecipeImageCell.swift in Sources */,
 				0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */,
 				0AA95BA62AA66549009326D2 /* UIImageViewExtension.swift in Sources */,
 				0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */,
@@ -585,6 +653,7 @@
 				F43422202A9C29930025C556 /* AppDelegate.swift in Sources */,
 				F434224E2A9C2B100025C556 /* SavedViewController.swift in Sources */,
 				F43422562A9C2B700025C556 /* UIColor Extension.swift in Sources */,
+				F4D7B07E2AAD890C00028005 /* NewRecipeViewController.swift in Sources */,
 				0A3D3B2A2A9D1FB500B72054 /* HomeView.swift in Sources */,
 				0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */,
 				0A3D3B322A9E6BF900B72054 /* PopularCategoryCollectionViewCell.swift in Sources */,
@@ -595,12 +664,15 @@
 				0AA95B9D2AA664AB009326D2 /* RecipeEndPoint.swift in Sources */,
 				0AA95B902AA66403009326D2 /* RecipeDataModelForCell.swift in Sources */,
 				0AA95B8D2AA649BC009326D2 /* CategoryType.swift in Sources */,
+				F4D7B0842AAD89A800028005 /* ButtonCell.swift in Sources */,
+				F4D7B08A2AAD8A2300028005 /* NewIngredientCellDelegate.swift in Sources */,
 				F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */,
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				F4D7B07A2AAC830900028005 /* Model.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
+				F4D7B0882AAD89EE00028005 /* NameRecipeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

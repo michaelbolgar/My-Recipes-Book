@@ -16,6 +16,7 @@ class CustomTabBarController: UITabBarController {
         self.delegate = self
         self.selectedIndex = 0
 
+        navigationController?.setNavigationBarHidden(true, animated: true)
         generateViewController()
         setTabbar()
         setupMiddleButton()
@@ -30,9 +31,9 @@ class CustomTabBarController: UITabBarController {
         viewControllers = [
             getViewController(HomeViewController(), image: UIImage (named: "HomeInactive")),
             getViewController(SavedViewController(), image: UIImage (named: "BookmarkInactive")),
-//            getViewController(TrendingViewController(), image: UIImage (named: "")), //изменить после мёрджа
-            getViewController(DetailsViewController(), image: UIImage (named: "NotificationInactive")), //изменить после мёрджа
-            getViewController(ProfileViewController(), image: UIImage (named: "ProfileInactive"))
+            getViewController(NewRecipeViewController(), image: UIImage (named: "")),
+            getViewController(ProfileViewController(), image: UIImage (named: "NotificationInactive")), //заглушка на первое время
+            getViewController(ProfileViewController(), image: UIImage (named: "ProfileInactive")) //заглушка на первое время
         ]
     }
 
