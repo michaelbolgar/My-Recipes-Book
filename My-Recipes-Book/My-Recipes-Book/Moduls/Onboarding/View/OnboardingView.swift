@@ -127,16 +127,16 @@ class OnboardingView: UIView {
         }
         
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).offset(480)
+            make.bottom.equalTo(secondLabel.snp.top).inset(-20)
             make.centerX.equalToSuperview()
-            
+
             make.width.greaterThanOrEqualTo(100)
             make.width.lessThanOrEqualTo(200)
         }
         
         secondLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(mainLabel.snp.top).offset(170)
+            make.bottom.equalTo(getStartedButton.snp.top).inset(-20)
         }
         
         startPageView.snp.makeConstraints { make in
@@ -148,7 +148,7 @@ class OnboardingView: UIView {
         
         getStartedButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(-90)
+            make.bottom.equalTo(self.snp.bottom).inset(50)
             make.width.equalTo(156)
             make.height.equalTo(56)
         }
