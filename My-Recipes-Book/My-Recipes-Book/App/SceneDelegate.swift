@@ -20,68 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if isOnboardingCompleted {
             let mainVC = CustomTabBarController()
-            //let navigationController = UINavigationController(rootViewController: mainVC)
-            window.rootViewController = mainVC//navigationController
+            window.rootViewController = mainVC
         } else {
             let onboardingVC = OnboardingViewController()
-            //let navigationController = UINavigationController(rootViewController: onboardingVC)
-            window.rootViewController = onboardingVC//navigationController
+            window.rootViewController = onboardingVC
         }
         self.window = window
         window.makeKeyAndVisible()
 
         
-    }
-
-    func createTabBarController() -> UITabBarController {
-        let tabbarController = UITabBarController()
-        tabbarController.viewControllers = [
-            createHomeViewController(),
-            createSavedViewController(),
-            createDetailsViewController(),
-            createProfileViewController()
-        ]
-
-        return tabbarController
-    }
-
-    func createHomeViewController() -> UIViewController {
-        let homeVC = HomeViewController()
-        //homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
-        let navVC =  UINavigationController(rootViewController: homeVC)
-//
-//            let leftBarButtonItem = UIBarButtonItem(
-//                image: UIImage(named: "arrow"),
-//                style: .done, target: self,
-//                action: #selector(backButtonTapped)
-//            )
-//
-//            leftBarButtonItem.tintColor = .black
-//
-//            navigationItem.leftBarButtonItem = leftBarButtonItem
-//        }
-        
-        return navVC
-    }
-
-    func createSavedViewController() -> UIViewController {
-        let savedVC = SavedViewController()
-        savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bookmark"), tag: 1)
-        return UINavigationController(rootViewController: savedVC)
-    }
-
-    func createDetailsViewController() -> UIViewController {
-        let detailsVC = DetailsViewController()
-        detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bell"), tag: 2)
-        //return UINavigationController(rootViewController: detailsVC)
-        return detailsVC
-    }
-
-    func createProfileViewController() -> UIViewController {
-        let profileVC = ProfileViewController()
-        profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "person"), tag: 3)
-        //return UINavigationController(rootViewController: profileVC)
-        return profileVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

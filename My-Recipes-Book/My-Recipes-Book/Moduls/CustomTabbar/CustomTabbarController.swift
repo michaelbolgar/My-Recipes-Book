@@ -27,8 +27,10 @@ class CustomTabBarController: UITabBarController {
     }
 
     private func generateViewController() {
+        
+        
         viewControllers = [
-            getViewController(HomeViewController(), image: UIImage (named: "HomeInactive")),
+            getViewController(createHomeViewController(), image: UIImage (named: "HomeInactive")),
             getViewController(SavedViewController(), image: UIImage (named: "BookmarkInactive")),
             getViewController(NewRecipeViewController(), image: UIImage (named: "")),
             getViewController(ProfileViewController(), image: UIImage (named: "NotificationInactive")), //заглушка на первое время
@@ -110,6 +112,45 @@ class CustomTabBarController: UITabBarController {
     private func middleButtonAction(sender: UIButton) {
         self.selectedIndex = 2
     }
+}
+
+func createHomeViewController() -> UIViewController {
+    let homeVC = HomeViewController()
+    //homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
+    let navVC =  UINavigationController(rootViewController: homeVC)
+//
+//            let leftBarButtonItem = UIBarButtonItem(
+//                image: UIImage(named: "arrow"),
+//                style: .done, target: self,
+//                action: #selector(backButtonTapped)
+//            )
+//
+//            leftBarButtonItem.tintColor = .black
+//
+//            navigationItem.leftBarButtonItem = leftBarButtonItem
+//        }
+    
+    return navVC
+}
+
+func createSavedViewController() -> UIViewController {
+    let savedVC = SavedViewController()
+    savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bookmark"), tag: 1)
+    return UINavigationController(rootViewController: savedVC)
+}
+
+func createDetailsViewController() -> UIViewController {
+    let detailsVC = DetailsViewController()
+    detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bell"), tag: 2)
+    //return UINavigationController(rootViewController: detailsVC)
+    return detailsVC
+}
+
+func createProfileViewController() -> UIViewController {
+    let profileVC = ProfileViewController()
+    profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "person"), tag: 3)
+    //return UINavigationController(rootViewController: profileVC)
+    return profileVC
 }
 
 //extension UIImage {

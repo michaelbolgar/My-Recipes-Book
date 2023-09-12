@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - Methods
     private func setOutlets() {
-        title = "Get amazing recepies for cooking"
+        title = "Get amazing recepies \nfor cooking"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -128,7 +128,6 @@ extension HomeViewController: UICollectionViewDelegate {
             id = trendingReccipies?[row].id ?? 715449
         default: return
         }
-        print(("Select item"))
         navigationController?.pushViewController(DetailsViewController(id: id), animated: true)
     }
 }
