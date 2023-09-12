@@ -16,6 +16,6 @@ struct AppSettingsManager {
     }
 
     static func isOnboardingCompleted() -> Bool {
-           return UserDefaults.standard.bool(forKey: onboardingCompletedKey)
+           UserDefaults.standard.bool(forKey: onboardingCompletedKey)
    }
 }

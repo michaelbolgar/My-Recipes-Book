@@ -20,22 +20,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if isOnboardingCompleted {
             let mainVC = CustomTabBarController()
-            let navigationController = UINavigationController(rootViewController: mainVC)
-            window.rootViewController = navigationController
+            //let navigationController = UINavigationController(rootViewController: mainVC)
+            window.rootViewController = mainVC//navigationController
         } else {
             let onboardingVC = OnboardingViewController()
-            let navigationController = UINavigationController(rootViewController: onboardingVC)
-            window.rootViewController = navigationController
+            //let navigationController = UINavigationController(rootViewController: onboardingVC)
+            window.rootViewController = onboardingVC//navigationController
         }
-
+        self.window = window
         window.makeKeyAndVisible()
 
-        self.window = window
+        
     }
 
     func createTabBarController() -> UITabBarController {
         let tabbarController = UITabBarController()
-        tabbarController.tabBar.backgroundColor = .cyan
         tabbarController.viewControllers = [
             createHomeViewController(),
             createSavedViewController(),
@@ -46,9 +45,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return tabbarController
     }
 
-    func createHomeViewController() -> UINavigationController {
+    func createHomeViewController() -> UIViewController {
         let homeVC = HomeViewController()
-        homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
+        //homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
         let navVC =  UINavigationController(rootViewController: homeVC)
 //
 //            let leftBarButtonItem = UIBarButtonItem(
@@ -65,22 +64,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return navVC
     }
 
-    func createSavedViewController() -> UINavigationController {
+    func createSavedViewController() -> UIViewController {
         let savedVC = SavedViewController()
         savedVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bookmark"), tag: 1)
         return UINavigationController(rootViewController: savedVC)
     }
 
-    func createDetailsViewController() -> UINavigationController {
+    func createDetailsViewController() -> UIViewController {
         let detailsVC = DetailsViewController()
         detailsVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "bell"), tag: 2)
-        return UINavigationController(rootViewController: detailsVC)
+        //return UINavigationController(rootViewController: detailsVC)
+        return detailsVC
     }
 
-    func createProfileViewController() -> UINavigationController {
+    func createProfileViewController() -> UIViewController {
         let profileVC = ProfileViewController()
         profileVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "person"), tag: 3)
-        return UINavigationController(rootViewController: profileVC)
+        //return UINavigationController(rootViewController: profileVC)
+        return profileVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
