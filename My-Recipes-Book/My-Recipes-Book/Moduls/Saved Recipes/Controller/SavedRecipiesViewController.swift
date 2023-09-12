@@ -29,13 +29,13 @@ final class SavedRecipiesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.title = "Saved Recipes"
-
         configureUI()
     }
     
     private func configureUI() {
         view.addSubview(tableView)
+        self.title = "Saved Recipes"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
