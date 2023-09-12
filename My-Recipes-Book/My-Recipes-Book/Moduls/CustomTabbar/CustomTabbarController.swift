@@ -59,6 +59,7 @@ class CustomTabBarController: UITabBarController {
         let notificationInactiveImage = UIImage(named: "NotificationInactive")?.withRenderingMode(.alwaysOriginal)
         let notificationsItem = UITabBarItem(title: nil, image: notificationInactiveImage, selectedImage: notificationActiveImage)
         notificationVC.tabBarItem = notificationsItem
+        notificationVC.view.backgroundColor = .systemBackground
         
         //profile VC
         let profileVC = ProfileViewController()
@@ -66,6 +67,7 @@ class CustomTabBarController: UITabBarController {
         let profileInactiveImage = UIImage(named: "ProfileInactive")?.withRenderingMode(.alwaysOriginal)
         let profileItem = UITabBarItem(title: nil, image: profileInactiveImage, selectedImage: profileActiveImage)
         profileVC.tabBarItem = profileItem
+        profileVC.view.backgroundColor = .systemBackground
         
         //set view controllers
         viewControllers = [

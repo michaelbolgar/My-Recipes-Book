@@ -9,20 +9,22 @@ import UIKit
 
 class NotificationsViewController: UIViewController {
     
-    private var label: UILabel {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "This screen is in progress of development"
         label.font = .poppins(weight: .bold, size: 24)
+        label.textColor = .label
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
-    }
+    }()
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        
+        setConstraints()
     }
     
 //MARK: - Methods
@@ -34,6 +36,7 @@ class NotificationsViewController: UIViewController {
     private func setConstraints() {
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
