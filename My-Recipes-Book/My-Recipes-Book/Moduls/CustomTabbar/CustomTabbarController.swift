@@ -13,30 +13,16 @@ class CustomTabBarController: UITabBarController {
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.delegate = self
-        self.selectedIndex = 0
-        
         generateViewController()
-        setTabbar()
+        setTabbarAppearance()
         setupMiddleButton()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard let items = self.tabBar.items else {return}
-        for item in items {
-            item.title = nil
-        }
+        tabBar.tintColor = .clear
     }
     
     //MARK: - Methods
-    private func getViewController(_ viewController: UIViewController, image: UIImage?) -> UIViewController {
-        viewController.tabBarItem.image = image
-        return viewController
-    }
     
     private func generateViewController() {
+        delegate = self
         //Home VC
         let homeVC = HomeViewController()
         let navigationHomeVC =  UINavigationController(rootViewController: homeVC)
@@ -94,7 +80,7 @@ class CustomTabBarController: UITabBarController {
     }
     
     
-    private func setTabbar() {
+    private func setTabbarAppearance() {
         
         let shapeLayer = CAShapeLayer()
         let bezierPath = UIBezierPath()
@@ -203,9 +189,7 @@ func createHomeViewController() -> UIViewController {
 //        return image
 //    }
 //}
-
+//MARK: - TabBar delegate
 extension CustomTabBarController: UITabBarControllerDelegate {
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        //code
-    }
+    
 }
