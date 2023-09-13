@@ -30,7 +30,6 @@ class TrendingViewController: UIViewController {
         configureNavigationViewTitle()
         trandView.transferDelegates(dataSourse: self, delegate: self)
         requestData()
-        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.poppins(weight: .semibold, size: 24) as Any]
     }
     
     override func loadView() {
@@ -52,6 +51,8 @@ class TrendingViewController: UIViewController {
         let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Arrow-Left"), style: .done, target: self, action: #selector(backButtonAction))
         backBarButtonItem.tintColor = UIColor.black
         navigationItem.leftBarButtonItem = backBarButtonItem
+        //adjust title size
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.poppins(weight: .semibold, size: 24) as Any]
     }
     
     @objc private func backButtonAction() {
