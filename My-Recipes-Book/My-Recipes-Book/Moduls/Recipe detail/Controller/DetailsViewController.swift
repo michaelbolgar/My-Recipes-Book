@@ -26,12 +26,26 @@ final class DetailsViewController: UIViewController {
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(contentView)
+        setViews()
         setupConstraints()
         fetchRecipe(with: recipeURLbyID)
+        
     }
     
     // MARK: - Private Methods
+    
+    private func setViews() {
+        view.addSubview(contentView)
+        //set back button image
+        let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Arrow-Left"), style: .done, target: self, action: #selector(backButtonAction))
+        backBarButtonItem.tintColor = UIColor.black
+        navigationItem.leftBarButtonItem = backBarButtonItem
+    }
+    
+    @objc private func backButtonAction() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func setupConstraints() {
         contentView.snp.makeConstraints { make in
             make.top.equalToSuperview()

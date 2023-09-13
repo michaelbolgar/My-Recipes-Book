@@ -11,7 +11,7 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     //MARK: - Propperties
-        
+    
     let headerKind = UICollectionView.elementKindSectionHeader
     var trendingReccipies: [Results]? {
         didSet {
@@ -62,8 +62,9 @@ class HomeViewController: UIViewController {
     
     //MARK: - Methods
     private func setOutlets() {
-//        title = "Get amazing recepies for cooking"
-        //navigationController?.navigationBar.prefersLargeTitles = true
+        //adjust title size
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.poppins(weight: .semibold, size: 24) as Any]
+        title = "Get amazing recepies"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         view.addSubview(collectionView)
@@ -80,7 +81,7 @@ class HomeViewController: UIViewController {
         //Trending now data source
         networkManager.getAPIData(with: .trendingNowMainScreen) { [weak self] (result: RecipeDataModelForCell?, error: String?) in
             DispatchQueue.main.async {
-                    self?.trendingReccipies = result?.results
+                self?.trendingReccipies = result?.results
                 if let error {
                     print(error)
                 }

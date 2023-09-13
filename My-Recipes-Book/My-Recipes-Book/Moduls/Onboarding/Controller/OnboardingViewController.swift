@@ -21,7 +21,8 @@ class OnboardingViewController: UIViewController {
         layout()
         onboardingView.getStartedButtonPressedHandler = { [weak self] in
             let pageVC = PageViewController()
-            self?.navigationController?.pushViewController(pageVC, animated: true)
+            pageVC.modalPresentationStyle = .fullScreen
+            self?.present(pageVC, animated: true)
             
         }
         

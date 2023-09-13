@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-final class SavedViewController: UIViewController {
+final class SavedRecipiesViewController: UIViewController {
     
     private let data = Array(repeating: Model(recipeImage: "RecipeImage", score: "5.0", time: "15:10", recipeName: "How to make Shawrma at home?", authorImage: "AuthorImage", authorLabel: "By Zeelicious Food"), count: 3)
     
@@ -29,13 +29,13 @@ final class SavedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.title = "Saved Recipes"
-
         configureUI()
     }
     
     private func configureUI() {
         view.addSubview(tableView)
+        self.title = "Saved Recipes"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -54,7 +54,7 @@ final class SavedViewController: UIViewController {
 
     // MARK: TableViewDelegate
 
-extension SavedViewController: UITableViewDelegate {
+extension SavedRecipiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -66,7 +66,7 @@ extension SavedViewController: UITableViewDelegate {
 
     // MARK: TableView DataSource
 
-extension SavedViewController: UITableViewDataSource {
+extension SavedRecipiesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
     }
