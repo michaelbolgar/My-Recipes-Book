@@ -22,11 +22,11 @@ class CustomTabBarController: UITabBarController {
     private func generateViewController() {
         //Home VC
         let homeVC = HomeViewController()
-        let navigationHomeVC =  UINavigationController(rootViewController: homeVC)
         let homeActiveImage = UIImage(named: "HomeActive")?.withRenderingMode(.alwaysOriginal)
         let homeInActiveImage = UIImage(named: "HomeInactive")?.withRenderingMode(.alwaysOriginal)
         let homeItem = UITabBarItem(title: nil, image: homeInActiveImage, selectedImage: homeActiveImage)
         homeVC.tabBarItem = homeItem
+        let navigationHomeVC =  UINavigationController(rootViewController: homeVC)
         
         //Saved recipies VC
         let savedRecipiesVC = SavedRecipiesViewController()
@@ -83,14 +83,12 @@ class CustomTabBarController: UITabBarController {
     
     
     private func setTabbarAppearance() {
-        delegate = self
         tabBar.tintColor = .clear
         tabBar.unselectedItemTintColor = .clear
         view.backgroundColor = .systemBackground
         
         let shapeLayer = CAShapeLayer()
         let bezierPath = UIBezierPath()
-        let whiteColor = UIColor.white.cgColor
         
         let frameWidth = self.tabBar.bounds.width
         let frameHeight = UIScreen.main.bounds.height - self.view.safeAreaInsets.bottom
@@ -142,57 +140,4 @@ class CustomTabBarController: UITabBarController {
     @objc private func middleButtonAction(sender: UIButton) {
         self.selectedIndex = 2
     }
-}
-
-func createHomeViewController() -> UIViewController {
-    let homeVC = HomeViewController()
-    //homeVC.tabBarItem = UITabBarItem (title: "", image: UIImage(systemName: "house"), tag: 0)
-    let navVC =  UINavigationController(rootViewController: homeVC)
-    
-    //
-    //        let appearance = UINavigationBarAppearance()
-    //        appearance.titleTextAttributes = [
-    //            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
-    //            NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .white
-    //        ]
-    //
-    //        let leftBarButtonItem = UIBarButtonItem(
-    //            image: UIImage(named: "arrow"),
-    //            style: .done, target: self,
-    //            action: #selector(backButtonTapped)
-    //        )
-    //
-    //        leftBarButtonItem.tintColor = .black
-    
-    //        navigationItem.leftBarButtonItem = leftBarButtonItem
-    //        navigationController?.navigationBar.standardAppearance = appearance
-    //    }
-    //
-    //            let leftBarButtonItem = UIBarButtonItem(
-    //                image: UIImage(named: "arrow"),
-    //                style: .done, target: self,
-    //                action: #selector(backButtonTapped)
-    //            )
-    //
-    //            leftBarButtonItem.tintColor = .black
-    //
-    //            navigationItem.leftBarButtonItem = leftBarButtonItem
-    //        }
-    
-    return navVC
-}
-
-//extension UIImage {
-//    static func imageWithLayer(layer: CALayer) -> UIImage {
-//        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, UIScreen.main.scale)
-//        guard let context = UIGraphicsGetCurrentContext() else { return UIImage() }
-//        layer.render(in: context)
-//        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
-//        UIGraphicsEndImageContext()
-//        return image
-//    }
-//}
-//MARK: - TabBar delegate
-extension CustomTabBarController: UITabBarControllerDelegate {
-    
 }
