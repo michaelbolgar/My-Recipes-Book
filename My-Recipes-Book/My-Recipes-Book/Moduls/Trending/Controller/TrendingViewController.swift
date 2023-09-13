@@ -6,7 +6,7 @@
 //
 
 /*
-    DESCRIPTION
+ DESCRIPTION
  On the main screen there are category sections that display the first few items.
  When you click on the "See all" button, the user gets to this screen.
  This screen displays the full list of the selected category
@@ -16,35 +16,48 @@ import Foundation
 import UIKit
 
 class TrendingViewController: UIViewController {
-// MARK: - UI element
+    // MARK: - UI element
     private var trendingScreenData: RecipeDataModelForCell?
     private var trandView = TrandingNowView()
     private var networkManager = NetworkManager()
     //Defines the type of request and the appearance of the cell
     private var sectionType: SectionType
-
-// MARK: - View controller life cicle
+    
+    // MARK: - View controller life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViews()
         configureNavigationViewTitle()
         trandView.transferDelegates(dataSourse: self, delegate: self)
         requestData()
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.poppins(weight: .semibold, size: 24) as Any]
     }
-
+    
     override func loadView() {
         super.loadView()
         self.view = trandView
     }
-
+    
     init(section type: SectionType) {
         sectionType = type
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    //MARK: - Methods
+    private func setViews() {
+        //set back button image
+        let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Arrow-Left"), style: .done, target: self, action: #selector(backButtonAction))
+        backBarButtonItem.tintColor = UIColor.black
+        navigationItem.leftBarButtonItem = backBarButtonItem
+    }
+    
+    @objc private func backButtonAction() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func requestData() {
         guard let requestType = checkSectionType() else { return }
         networkManager.getAPIData(with: requestType) { [weak self] (result: RecipeDataModelForCell?, error: String?) in
@@ -91,11 +104,11 @@ class TrendingViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 extension TrendingViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trendingScreenData?.results?.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TrandRecipeCell.cellID, for: indexPath) as? TrandRecipeCell
         guard let trendingScreenData = trendingScreenData else { return UITableViewCell() }
