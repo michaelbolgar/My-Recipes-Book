@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 09.09.2023.
 //
 
-import Foundation
 import UIKit
 
 class CustomTabBarController: UITabBarController {
@@ -16,13 +15,11 @@ class CustomTabBarController: UITabBarController {
         generateViewController()
         setTabbarAppearance()
         setupMiddleButton()
-        tabBar.tintColor = .clear
     }
     
     //MARK: - Methods
     
     private func generateViewController() {
-        delegate = self
         //Home VC
         let homeVC = HomeViewController()
         let navigationHomeVC =  UINavigationController(rootViewController: homeVC)
@@ -38,6 +35,11 @@ class CustomTabBarController: UITabBarController {
         let savedRecipiesItem = UITabBarItem(title: nil, image: bookmarkInactiveImage, selectedImage: bookmakrActiveImage)
         savedRecipiesVC.tabBarItem = savedRecipiesItem
         let navigationSavedVC = UINavigationController(rootViewController: savedRecipiesVC)
+        
+        //Create recipe VC
+        let createRecipeVC = NewRecipeViewController()
+        createRecipeVC.view.backgroundColor = .systemBackground
+        
         
         //Notiffication VC
         let notificationVC = NotificationsViewController()
@@ -59,7 +61,7 @@ class CustomTabBarController: UITabBarController {
         viewControllers = [
             navigationHomeVC,
             navigationSavedVC,
-            NewRecipeViewController(),
+            createRecipeVC,
             notificationVC, //have to be developed later
             profileVC //have to be developed later
         ]
@@ -81,6 +83,10 @@ class CustomTabBarController: UITabBarController {
     
     
     private func setTabbarAppearance() {
+        delegate = self
+        tabBar.tintColor = .clear
+        tabBar.unselectedItemTintColor = .clear
+        view.backgroundColor = .systemBackground
         
         let shapeLayer = CAShapeLayer()
         let bezierPath = UIBezierPath()
@@ -123,7 +129,7 @@ class CustomTabBarController: UITabBarController {
         
         shapeLayer.path = bezierPath.cgPath
         
-        shapeLayer.fillColor = whiteColor
+        shapeLayer.fillColor = UIColor.systemBackground.cgColor
         shapeLayer.shadowColor = UIColor.black.cgColor
         shapeLayer.shadowOpacity = 0.1
         shapeLayer.shadowOffset = CGSize(width: 0, height: -3)
@@ -131,12 +137,9 @@ class CustomTabBarController: UITabBarController {
         
         tabBar.layer.insertSublayer(shapeLayer, at: 0)
         tabBar.isTranslucent = false
-        
-        //        tabBar.backgroundImage = UIImage.imageWithLayer(layer: shapeLayer)
     }
     
-    @objc
-    private func middleButtonAction(sender: UIButton) {
+    @objc private func middleButtonAction(sender: UIButton) {
         self.selectedIndex = 2
     }
 }
