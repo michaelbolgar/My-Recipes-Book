@@ -323,14 +323,14 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
-				0A8AA6F72AB0AEDE00449610 /* Notifications */,
 				F4D7B06D2AAC685900028005 /* CustomTabbar */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
 				F43422482A9C2ABE0025C556 /* Saved Recipes */,
+				F4D7B07B2AAD88D500028005 /* CreateRecipe */,
+				0A8AA6F72AB0AEDE00449610 /* Notifications */,
 				F45B87982AA3229E00E5DBE4 /* Profile */,
 				F43422422A9C2A710025C556 /* Recipe detail */,
-				F4D7B07B2AAD88D500028005 /* CreateRecipe */,
 				F434224C2A9C2AF30025C556 /* Trending */,
 			);
 			path = Moduls;
