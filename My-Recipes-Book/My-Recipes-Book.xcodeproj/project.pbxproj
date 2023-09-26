@@ -64,6 +64,8 @@
 		F4D7B08F2AAD8A7A00028005 /* NewRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */; };
 		F4D7B0912AAD9C7D00028005 /* AppSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0902AAD9C7D00028005 /* AppSettingsManager.swift */; };
 		F4D7B0952AB0A5A200028005 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0942AB0A5A200028005 /* ProfileView.swift */; };
+		F4D7B0972AB273F200028005 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0962AB273F200028005 /* ProfileHeaderView.swift */; };
+		F4D7B09A2AB3627100028005 /* SavedRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0992AB3627100028005 /* SavedRecipeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +127,8 @@
 		F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipe.swift; sourceTree = "<group>"; };
 		F4D7B0902AAD9C7D00028005 /* AppSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsManager.swift; sourceTree = "<group>"; };
 		F4D7B0942AB0A5A200028005 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F4D7B0962AB273F200028005 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F4D7B0992AB3627100028005 /* SavedRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +486,7 @@
 		F45B87982AA3229E00E5DBE4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F4D7B0982AB3625600028005 /* Model */,
 				F4D7B0932AB0A59300028005 /* View */,
 				F45B87992AA322A600E5DBE4 /* Controller */,
 			);
@@ -555,8 +560,17 @@
 			isa = PBXGroup;
 			children = (
 				F4D7B0942AB0A5A200028005 /* ProfileView.swift */,
+				F4D7B0962AB273F200028005 /* ProfileHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F4D7B0982AB3625600028005 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4D7B0992AB3627100028005 /* SavedRecipeCell.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -646,6 +660,7 @@
 				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
 				F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */,
+				F4D7B0972AB273F200028005 /* ProfileHeaderView.swift in Sources */,
 				F4D7B0822AAD895400028005 /* CreateRecipeView.swift in Sources */,
 				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,
 				F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */,
@@ -687,6 +702,7 @@
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				F4D7B07A2AAC830900028005 /* Model.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
+				F4D7B09A2AB3627100028005 /* SavedRecipeCell.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 				F4D7B0882AAD89EE00028005 /* NameRecipeCell.swift in Sources */,
 			);
