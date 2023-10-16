@@ -12,7 +12,7 @@ struct NewRecipe {
     var name: String
     var serves: Int
     var cookTime: String
-    var Ingrediets: NewIngredient
+    var ingrediets: [NewIngredient]
 }
 
 struct NewIngredient {

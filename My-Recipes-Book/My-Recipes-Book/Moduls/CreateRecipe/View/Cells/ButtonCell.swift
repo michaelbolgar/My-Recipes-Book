@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 final class ButtonCell: UITableViewCell {
+    
+    // MARK: - Closures
+    var actionButton: (() -> Void)?
 
     // MARK: - Private UI Properties
     private lazy var createRecipeButton: UIButton = {
@@ -18,6 +21,11 @@ final class ButtonCell: UITableViewCell {
         createButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
         createButton.tintColor = .white
         createButton.layer.cornerRadius = 5
+        createButton.addTarget(
+            self,
+            action: #selector(createButtonDidTapped),
+            for: .touchUpInside
+        )
         return createButton
     }()
 
@@ -32,6 +40,11 @@ final class ButtonCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Actions
+    @objc private func createButtonDidTapped() {
+        actionButton?()
     }
 
     // MARK: - Private Methods

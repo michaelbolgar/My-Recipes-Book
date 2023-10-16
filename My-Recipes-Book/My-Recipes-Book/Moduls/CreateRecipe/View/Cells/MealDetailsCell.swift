@@ -11,17 +11,18 @@ import UIKit
 final class MealDetailsCell: UITableViewCell{
 
     // MARK: - Picker Properties
-    private lazy var pickerView: UIPickerView = {
+    lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
         return pickerView
     }()
 
-    private var currentValue = ""
+  var currentValue = ""
     private var currentRow: Int?
     private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
     private let serves = Array(1...10)
+    
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
@@ -180,5 +181,6 @@ extension MealDetailsCell: UIPickerViewDelegate {
         currentValue = currentRow == 0
         ? "\(serves[selectedValue])"
         : "\(cookTimes[selectedValue]) min"
+        
     }
 }

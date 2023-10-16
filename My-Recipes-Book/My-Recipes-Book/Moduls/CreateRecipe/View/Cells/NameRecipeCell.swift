@@ -65,4 +65,9 @@ extension NameRecipeCell: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let newRecipeVC = NewRecipeViewController()
+   
+    }
 }
