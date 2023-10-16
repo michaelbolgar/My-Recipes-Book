@@ -14,31 +14,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
         let window = UIWindow(windowScene: windowScene)
-//<<<<<<< Updated upstream:My-Recipes-Book/My-Recipes-Book/App/SceneDelegate.swift
-//        let isOnboardingCompleted = OnboardingViewController()
-//
 
-//        if isOnboardingCompleted {
-//            let mainVC = CustomTabBarController()
-//            window.rootViewController = mainVC
-//        } else {
-//            let onboardingVC = OnboardingViewController()
-//            window.rootViewController = onboardingVC
-//        }
-//        self.window = window
-//=======
-//        let navigationController = UINavigationController(rootViewController: onboardingVC)
+        let isOnboardingCompleted = AppSettingsManager.isOnboardingCompleted()
 
-
-
-//        window.rootViewController = PageViewController()
-
-//=======
-        window.rootViewController = NewRecipeViewController()
-//>>>>>>> Stashed changes:My-Recipes-Book/My-Recipes-Book/SceneDelegate.swift
+        if isOnboardingCompleted {
+            let mainVC = CustomTabBarController()
+            window.rootViewController = mainVC
+        } else {
+            let onboardingVC = OnboardingViewController()
+            window.rootViewController = onboardingVC
+        }
+        
+        self.window = window
         window.makeKeyAndVisible()
+
+//        let navigationController = UINavigationController(rootViewController: onboardingVC)
+//        window.rootViewController = PageViewController()
 
         
     }
