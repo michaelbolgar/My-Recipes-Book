@@ -16,8 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let isOnboardingCompleted = OnboardingViewController()
-
+//<<<<<<< Updated upstream:My-Recipes-Book/My-Recipes-Book/App/SceneDelegate.swift
+//        let isOnboardingCompleted = OnboardingViewController()
+//
 
 //        if isOnboardingCompleted {
 //            let mainVC = CustomTabBarController()
@@ -32,8 +33,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 
-        window.rootViewController = PageViewController()
+//        window.rootViewController = PageViewController()
 
+//=======
+        window.rootViewController = NewRecipeViewController()
+//>>>>>>> Stashed changes:My-Recipes-Book/My-Recipes-Book/SceneDelegate.swift
         window.makeKeyAndVisible()
 
         
