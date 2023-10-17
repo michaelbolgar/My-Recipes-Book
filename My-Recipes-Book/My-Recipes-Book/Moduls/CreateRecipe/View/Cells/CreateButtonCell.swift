@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 
-final class ButtonCell: UITableViewCell {
+final class CreateButtonCell: UITableViewCell {
+    
+    static let cellID = String(describing: CreateButtonCell.self)
     
     // MARK: - Closures
     var actionButton: (() -> Void)?
-
+    
     // MARK: - Private UI Properties
     private lazy var createRecipeButton: UIButton = {
         var createButton = UIButton(type: .system)
@@ -28,16 +30,14 @@ final class ButtonCell: UITableViewCell {
         )
         return createButton
     }()
-
-    // MARK: - Public UI Properties
-
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(createRecipeButton)
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,7 +46,7 @@ final class ButtonCell: UITableViewCell {
     @objc private func createButtonDidTapped() {
         actionButton?()
     }
-
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         createRecipeButton.snp.makeConstraints { make in

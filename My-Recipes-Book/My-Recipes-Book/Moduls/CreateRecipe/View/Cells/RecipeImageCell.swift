@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 final class RecipeImageCell: UITableViewCell {
-
+    
+    static let cellID = String(describing: RecipeImageCell.self)
+    
     // MARK: - UI Properties
     lazy var recipeImageView: UIImageView = {
         var recipeImageView = UIImageView()
@@ -18,7 +20,7 @@ final class RecipeImageCell: UITableViewCell {
         recipeImageView.image = UIImage(named: "testImage")
         return recipeImageView
     }()
-
+    
     lazy var editButton: UIButton = {
         var editButton = UIButton(type: .system)
         editButton.backgroundColor = .white
@@ -33,7 +35,7 @@ final class RecipeImageCell: UITableViewCell {
         )
         return editButton
     }()
-
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,22 +43,22 @@ final class RecipeImageCell: UITableViewCell {
         contentView.addSubview(editButton)
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-
+        
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }
     }
-
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         recipeImageView.snp.makeConstraints { make in
@@ -65,7 +67,7 @@ final class RecipeImageCell: UITableViewCell {
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalToSuperview().offset(-15)
         }
-
+        
         editButton.snp.makeConstraints { make in
             make.top.equalTo(recipeImageView.snp.top).offset(10)
             make.right.equalTo(recipeImageView.snp.right).offset(-10)
@@ -73,7 +75,7 @@ final class RecipeImageCell: UITableViewCell {
             make.height.equalTo(30)
         }
     }
-
+    
     private func findViewController() -> UIViewController? {
         var responder: UIResponder? = self
         while let currentResponder = responder {
