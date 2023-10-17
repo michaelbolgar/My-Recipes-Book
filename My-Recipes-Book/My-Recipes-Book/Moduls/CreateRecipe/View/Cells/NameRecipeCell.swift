@@ -8,15 +8,10 @@
 import Foundation
 import UIKit
 
-protocol NameRecipeCellDelegate: AnyObject {
-    func didEndEditingWithName(_ name: String)
-}
-
 final class NameRecipeCell: UITableViewCell {
     
+    // MARK: - Static Properties
     static let cellID = String(describing: NameRecipeCell.self)
-    
-    var delegate: NameRecipeCellDelegate?
     
     // MARK: - UI Properties
     private lazy var mainView: UIView = {
@@ -28,7 +23,7 @@ final class NameRecipeCell: UITableViewCell {
         return mainView
     }()
     
-    lazy var mainTextField: UITextField = {
+    private lazy var mainTextField: UITextField = {
         var mainTextField = UITextField()
         mainTextField.placeholder = "Recipe name"
         mainTextField.autocorrectionType = .no
@@ -46,9 +41,18 @@ final class NameRecipeCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public Properties
+    func getMainTextFieldText() -> String {
+        guard let text = mainTextField.text else { return "No value" }
+        return text
+    }
+    
+    func resetTextField() {
+        mainTextField.text = ""
+    }
     
     // MARK: - Private Methods
-    
     private func setupViewComponents() {
         contentView.addSubview(mainView)
         mainView.addSubview(mainTextField)
@@ -77,11 +81,5 @@ extension NameRecipeCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let name = textField.text {
-            delegate?.didEndEditingWithName(name)
-        }
     }
 }

@@ -14,20 +14,20 @@ protocol RecipeImageCellDelegate: AnyObject {
 
 final class RecipeImageCell: UITableViewCell {
     
+    // MARK: - Public Properties
     static let cellID = String(describing: RecipeImageCell.self)
-    
     var delegate: RecipeImageCellDelegate?
     
-    // MARK: - UI Properties
-    lazy var recipeImageView: UIImageView = {
+    // MARK: - Private UI Properties
+    private lazy var recipeImageView: UIImageView = {
         var recipeImageView = UIImageView()
         recipeImageView.layer.cornerRadius = 10
         recipeImageView.clipsToBounds = true
-        recipeImageView.image = UIImage(named: "testImage3")
+        recipeImageView.image = UIImage(named: "defaultImageCell")
         return recipeImageView
     }()
     
-    lazy var editButton: UIButton = {
+    private lazy var editButton: UIButton = {
         var editButton = UIButton(type: .system)
         editButton.backgroundColor = .white
         editButton.tintColor = .black
@@ -41,6 +41,8 @@ final class RecipeImageCell: UITableViewCell {
         )
         return editButton
     }()
+    
+    private let imagePicker = UIImagePickerController()
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,11 +63,9 @@ final class RecipeImageCell: UITableViewCell {
     
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
-        
-        let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-
+        
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }

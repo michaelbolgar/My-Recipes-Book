@@ -33,9 +33,54 @@ final class CreateRecipeView: UIView {
     }
     
     // MARK: - Public Methods
-    public func transferDelegates(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+    func transferDelegates(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
         mainTableView.dataSource = dataSource
         mainTableView.delegate = delegate
+    }
+    
+    func insertRows(with indexPath: IndexPath) {
+        mainTableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func scrollToRow(with indexPath: IndexPath) {
+        mainTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    func deleteRows(with indexPath: IndexPath) {
+        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func getTextFromNameRecipeCell() -> String? {
+        guard
+            let cell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 1))
+                as? NameRecipeCell
+        else {
+            return nil
+        }
+        return cell.getMainTextFieldText()
+    }
+    
+    func resetScreen() {
+        guard let imageCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+                as? RecipeImageCell
+        else {
+            return
+        }
+
+        guard let image = UIImage(named: "defaultImageCell") else { return }
+        imageCell.setupRecipeImageView(with: image)
+        
+        guard let nameCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 1))
+                as? NameRecipeCell
+        else {
+            return
+        }
+        
+        nameCell.resetTextField()
+    }
+    
+    func reloadTableView() {
+        mainTableView.reloadData()
     }
     
     // MARK: - Private Actions

@@ -62,8 +62,6 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
     @objc private func addIngredientButtonDidTapped() {
         delegate?.addNewIngredient()
     }
-
-
     
     // MARK: - Click effect methods
     @objc func animateButtonPressIn() {

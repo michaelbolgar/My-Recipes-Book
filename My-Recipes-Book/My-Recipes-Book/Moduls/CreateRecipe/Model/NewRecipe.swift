@@ -17,5 +17,5 @@ struct NewRecipe {
 
 struct NewIngredient {
     var name: String
-    var quantity: Int
+    var quantity: String
 }

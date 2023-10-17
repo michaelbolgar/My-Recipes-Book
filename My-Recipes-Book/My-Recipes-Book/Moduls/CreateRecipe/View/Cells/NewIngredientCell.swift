@@ -7,9 +7,7 @@
 
 import Foundation
 import UIKit
-import NotificationCenter
 
-//MARK: - NewIngredientCellDelegate
 protocol NewIngredientCellDelegate: AnyObject {
     func didTapDeleteButton(cell: NewIngredientCell)
 }
@@ -23,7 +21,7 @@ final class NewIngredientCell: UITableViewCell {
     var delegate: NewIngredientCellDelegate?
     
     // MARK: - Public UI Properties
-    lazy var nameTextField: UITextField = {
+    private lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
         nameTF.delegate = self
@@ -31,7 +29,7 @@ final class NewIngredientCell: UITableViewCell {
         return nameTF
     }()
     
-    lazy var quantityTextField: UITextField = {
+    private lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
         quantityTF.delegate = self
@@ -82,8 +80,24 @@ final class NewIngredientCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Actions
-    @objc func deleteButtonTapped() {
+    // MARK: - Public Methods
+    func configure(with ingredient: NewIngredient) {
+        nameTextField.text = ingredient.name
+        quantityTextField.text = ingredient.quantity
+    }
+    
+    func getNameTextFieldText() -> String {
+        guard let text = nameTextField.text else { return "No value"}
+        return text
+    }
+    
+    func getQuantityTextFieldText() -> String {
+        guard let text = quantityTextField.text else { return "No value"}
+        return text
+    }
+    
+    // MARK: - Private Actions
+    @objc private func deleteButtonTapped() {
         delegate?.didTapDeleteButton(cell: self)
     }
     

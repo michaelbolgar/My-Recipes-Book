@@ -19,18 +19,16 @@ protocol MealDetailsCellDelegate: AnyObject {
 
 final class MealDetailsCell: UITableViewCell{
     
-    static let cellID = String(describing: MealDetailsCell.self)
-    
-    var delegate: MealDetailsCellDelegate?
-    
     // MARK: - Public Properties
-    var currentValue = ""
-    var mealDetailType: MealDetailType?
+    static let cellID = String(describing: MealDetailsCell.self)
+    var delegate: MealDetailsCellDelegate?
     
     // MARK: - Private Properties
     private var currentRow: Int?
+    private var currentValue = ""
     private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
     private let serves = Array(1...10)
+    private var mealDetailType: MealDetailType?
     
     // MARK: - Private UI Properties
     private lazy var pickerView: UIPickerView = {

@@ -28,53 +28,75 @@ final class NewRecipeViewController: UIViewController {
         createRecipeView.transferDelegates(dataSource: self, delegate: self)
     }
     
-    // MARK: - Private Actions
+    // MARK: - Private Methods
     private func addIngredient() {
-        let newIngredient = NewIngredient(name: "", quantity: 0)
+        // cоздаем пустой экзепляр NewIngredient
+        let newIngredient = NewIngredient(name: "", quantity: "")
         
+        // добавляем в массив
         ingredientData.append(newIngredient)
         
+        // создаем индекс куда вставить новую ячейку
         let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
         
-        createRecipeView.mainTableView.beginUpdates()
-        createRecipeView.mainTableView.insertRows(at: [indexPath], with: .automatic)
-        createRecipeView.mainTableView.endUpdates()
+        // вставляем ячейку в таблицу
+        createRecipeView.insertRows(with: indexPath)
         
-        createRecipeView.mainTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        // прокручиваем скрол к новой ячейке
+        createRecipeView.scrollToRow(with: indexPath)
     }
     
-    func deleteIngredient(at indexPath: IndexPath) {
+    private func deleteIngredient(at indexPath: IndexPath) {
+        // удаляем ингредиент из массива
         ingredientData.remove(at: indexPath.row)
         
-        // Обновите таблицу с анимацией
-        createRecipeView.mainTableView.beginUpdates()
-        createRecipeView.mainTableView.deleteRows(at: [indexPath], with: .automatic)
-        createRecipeView.mainTableView.endUpdates()
+        // удалем ячейку из таблицы
+        createRecipeView.deleteRows(with: indexPath)
+        
     }
     
-    // MARK: - Private Methods
-    private func setupConstraints() {
-        createRecipeView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
-    func extractIngredients() -> [NewIngredient] {
+    // перебираем все ячейки с ингредиентами и возвращаем массив с типом NewIngredient
+    private func extractIngredients() -> [NewIngredient] {
         var ingredients: [NewIngredient] = []
         
         let section = 3
         for row in 0..<createRecipeView.mainTableView.numberOfRows(inSection: section) {
             let indexPath = IndexPath(row: row, section: section)
             if let cell = createRecipeView.mainTableView.cellForRow(at: indexPath) as? NewIngredientCell {
-                if let name = cell.nameTextField.text,
-                   let quantityString = cell.quantityTextField.text,
-                   let quantity = Int(quantityString) {
-                    let ingredient = NewIngredient(name: name, quantity: quantity)
-                    ingredients.append(ingredient)
-                }
+                let ingredient = NewIngredient(
+                    name: cell.getNameTextFieldText(),
+                    quantity: cell.getQuantityTextFieldText())
+                
+                ingredients.append(ingredient)
             }
         }
         return ingredients
+    }
+    
+    private func setupConstraints() {
+        createRecipeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Successfully",
+            message: "Your recipe has been saved",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
+    }
+    
+    private func resetScreen() {
+        createRecipeView.resetScreen()
+        ingredientData.removeAll()
+        createRecipeView.reloadTableView()
     }
 }
 
@@ -95,6 +117,7 @@ extension NewRecipeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.section {
         case 0:
             guard
@@ -116,8 +139,6 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            // устанавливаем viewController в качестве делегата
-            cell.delegate = self
             cell.selectionStyle = .none
             return cell
         case 2:
@@ -149,6 +170,9 @@ extension NewRecipeViewController: UITableViewDataSource {
                 
                 return UITableViewCell()
             }
+            
+            let value = ingredientData[indexPath.row]
+            cell.configure(with: value)
             cell.tableView = createRecipeView.mainTableView
             // устанавливаем viewController в качестве делегата
             cell.delegate = self
@@ -163,19 +187,19 @@ extension NewRecipeViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionButton = { [weak self] in
-                
-                
-                let newRecipe = NewRecipe(
-                    image: self?.currentImage,
-                    name: self?.currentDishName ?? "",
-                    serves: self?.currentServes ?? 0,
-                    cookTime: self?.currentCookTime ?? "",
-                    ingrediets: self?.extractIngredients() ?? [NewIngredient(name: "", quantity: 0)]
-                )
-                
-                print(newRecipe)
+                if let text = self?.createRecipeView.getTextFromNameRecipeCell(), text != "" {
+                    let newRecipe = NewRecipe(
+                        image: self?.currentImage,
+                        name: self?.currentDishName ?? "",
+                        serves: self?.currentServes ?? 0,
+                        cookTime: self?.currentCookTime ?? "",
+                        ingrediets: self?.extractIngredients() ?? [NewIngredient(name: "", quantity: "")]
+                    )
+                    
+                    self?.showAlert()
+                    self?.resetScreen()
+                }
             }
-            
             return cell
         }
     }
@@ -183,7 +207,6 @@ extension NewRecipeViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension NewRecipeViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 1:
@@ -273,13 +296,6 @@ extension NewRecipeViewController: MealDetailsCellDelegate {
         } else {
             currentCookTime = value
         }
-    }
-}
-
-// MARK: - NameRecipeCellDelegate
-extension NewRecipeViewController: NameRecipeCellDelegate {
-    func didEndEditingWithName(_ name: String) {
-        currentDishName = name
     }
 }
 
