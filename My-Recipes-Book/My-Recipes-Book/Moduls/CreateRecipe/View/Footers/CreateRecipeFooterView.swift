@@ -22,22 +22,18 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
         var button = UIButton(type: .custom)
         button.setTitle("Add new ingredient", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
         button.addTarget(
             self,
             action: #selector(addIngredientButtonDidTapped),
             for: .touchUpInside
         )
-//        button.addTarget(
-//            self,
-//            action: #selector(buttonPressed),
-//            for: .touchDown
-//        )
-//        button.addTarget(
-//            self,
-//            action: #selector(buttonReleased),
-//            for: [.touchUpInside, .touchUpOutside, .touchCancel]
-//        )
+        button.addTarget(self, action: #selector(animateButtonPressIn), for: .touchDown)
+        button.addTarget(self, action: #selector(animateButtonPressOut), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+
+
+
         return button
     }()
     
@@ -66,22 +62,22 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
     @objc private func addIngredientButtonDidTapped() {
         delegate?.addNewIngredient()
     }
+
+
     
     // MARK: - Click effect methods
-//    @objc func buttonPressed() {
-//        UIView.animate(withDuration: 0.1) {
-//            // Уменьшаем размер кнопки на 10% для эффекта нажатия
-//            self.addIngredientButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-//        }
-//    }
-//
-//    @objc func buttonReleased() {
-//        UIView.animate(withDuration: 0.1) {
-//            // Возвращаем кнопку к исходному размеру
-//            self.addIngredientButton.transform = CGAffineTransform.identity
-//        }
-//    }
-    
+    @objc func animateButtonPressIn() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.addIngredientButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+
+    @objc func animateButtonPressOut() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.addIngredientButton.transform = CGAffineTransform.identity
+        })
+    }
+
     // MARK: - Private Methods
     private func setupConstraints() {
         plusImageView.snp.makeConstraints { make in
