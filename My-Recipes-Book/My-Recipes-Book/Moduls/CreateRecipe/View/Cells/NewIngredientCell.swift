@@ -17,7 +17,6 @@ final class NewIngredientCell: UITableViewCell {
     static let cellID = String(describing: NewIngredientCell.self)
     
     // MARK: Public Properties
-    var tableView: UITableView?
     var delegate: NewIngredientCellDelegate?
     
     // MARK: - Public UI Properties
@@ -159,11 +158,4 @@ final class NewIngredientCell: UITableViewCell {
 
 // MARK: - UITextFieldDelegate
 extension NewIngredientCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: -50), animated: true)
-    }
 }

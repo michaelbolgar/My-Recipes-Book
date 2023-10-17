@@ -26,6 +26,12 @@ final class NewRecipeViewController: UIViewController {
         view.addSubview(createRecipeView)
         setupConstraints()
         createRecipeView.transferDelegates(dataSource: self, delegate: self)
+        addObservers()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     // MARK: - Private Methods
@@ -55,6 +61,12 @@ final class NewRecipeViewController: UIViewController {
         
     }
     
+    private func resetScreen() {
+        createRecipeView.resetScreen()
+        ingredientData.removeAll()
+        createRecipeView.reloadTableView()
+    }
+    
     // перебираем все ячейки с ингредиентами и возвращаем массив с типом NewIngredient
     private func extractIngredients() -> [NewIngredient] {
         var ingredients: [NewIngredient] = []
@@ -79,6 +91,22 @@ final class NewRecipeViewController: UIViewController {
         }
     }
     
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: nil) { _ in
+                self.view.frame.origin.y = -200
+            }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: nil) { _ in
+                self.view.frame.origin.y = 0
+            }
+    }
+    
     private func showAlert() {
         let alert = UIAlertController(
             title: "Successfully",
@@ -92,12 +120,7 @@ final class NewRecipeViewController: UIViewController {
         
         present(alert, animated: true)
     }
-    
-    private func resetScreen() {
-        createRecipeView.resetScreen()
-        ingredientData.removeAll()
-        createRecipeView.reloadTableView()
-    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -173,7 +196,6 @@ extension NewRecipeViewController: UITableViewDataSource {
             
             let value = ingredientData[indexPath.row]
             cell.configure(with: value)
-            cell.tableView = createRecipeView.mainTableView
             // устанавливаем viewController в качестве делегата
             cell.delegate = self
             return cell
