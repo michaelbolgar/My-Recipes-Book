@@ -8,7 +8,7 @@
 import Foundation
 
 struct NewRecipe {
-    var image: String
+    var image: Data?
     var name: String
     var serves: Int
     var cookTime: String

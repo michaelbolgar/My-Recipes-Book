@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CreateRecipeFooterViewDelegate {
+    func addNewIngredient()
+}
+
 class CreateRecipeFooterView: UITableViewHeaderFooterView {
     
     static let reuseID = String(describing: CreateRecipeFooterView.self)
+    
+    var delegate: CreateRecipeFooterViewDelegate?
     
     // MARK: - Private UI Properties
     private lazy var addIngredientButton: UIButton = {
@@ -22,16 +28,16 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
             action: #selector(addIngredientButtonDidTapped),
             for: .touchUpInside
         )
-        button.addTarget(
-            self,
-            action: #selector(buttonPressed),
-            for: .touchDown
-        )
-        button.addTarget(
-            self,
-            action: #selector(buttonReleased),
-            for: [.touchUpInside, .touchUpOutside, .touchCancel]
-        )
+//        button.addTarget(
+//            self,
+//            action: #selector(buttonPressed),
+//            for: .touchDown
+//        )
+//        button.addTarget(
+//            self,
+//            action: #selector(buttonReleased),
+//            for: [.touchUpInside, .touchUpOutside, .touchCancel]
+//        )
         return button
     }()
     
@@ -58,23 +64,23 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Private Actions
     @objc private func addIngredientButtonDidTapped() {
-        
+        delegate?.addNewIngredient()
     }
     
     // MARK: - Click effect methods
-    @objc func buttonPressed() {
-        UIView.animate(withDuration: 0.1) {
-            // Уменьшаем размер кнопки на 10% для эффекта нажатия
-            self.addIngredientButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }
-    }
-
-    @objc func buttonReleased() {
-        UIView.animate(withDuration: 0.1) {
-            // Возвращаем кнопку к исходному размеру
-            self.addIngredientButton.transform = CGAffineTransform.identity
-        }
-    }
+//    @objc func buttonPressed() {
+//        UIView.animate(withDuration: 0.1) {
+//            // Уменьшаем размер кнопки на 10% для эффекта нажатия
+//            self.addIngredientButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//        }
+//    }
+//
+//    @objc func buttonReleased() {
+//        UIView.animate(withDuration: 0.1) {
+//            // Возвращаем кнопку к исходному размеру
+//            self.addIngredientButton.transform = CGAffineTransform.identity
+//        }
+//    }
     
     // MARK: - Private Methods
     private func setupConstraints() {

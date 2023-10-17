@@ -8,16 +8,22 @@
 import Foundation
 import UIKit
 
+protocol RecipeImageCellDelegate: AnyObject {
+    func didPickImage(_ image: UIImage)
+}
+
 final class RecipeImageCell: UITableViewCell {
     
     static let cellID = String(describing: RecipeImageCell.self)
+    
+    var delegate: RecipeImageCellDelegate?
     
     // MARK: - UI Properties
     lazy var recipeImageView: UIImageView = {
         var recipeImageView = UIImageView()
         recipeImageView.layer.cornerRadius = 10
         recipeImageView.clipsToBounds = true
-        recipeImageView.image = UIImage(named: "testImage")
+        recipeImageView.image = UIImage(named: "testImage3")
         return recipeImageView
     }()
     
@@ -48,12 +54,18 @@ final class RecipeImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    func setupRecipeImageView(with image: UIImage) {
+        recipeImageView.image = image
+    }
+    
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        
+
         if let viewController = findViewController() {
             viewController.present(imagePicker, animated: true, completion: nil)
         }
@@ -93,6 +105,7 @@ extension RecipeImageCell: UIImagePickerControllerDelegate, UINavigationControll
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             recipeImageView.image = pickedImage
+            delegate?.didPickImage(pickedImage)
         }
         picker.dismiss(animated: true)
     }

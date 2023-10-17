@@ -15,33 +15,10 @@ final class NewRecipeViewController: UIViewController {
     
     // MARK: - Private Properties
     private var ingredientData: [NewIngredient] = []
-    
-    private var currentDishName: String? {
-        let indexPath = IndexPath(row: 0, section: 1)
-        if let cell = createRecipeView.mainTableView.cellForRow(at: indexPath) as? NameRecipeCell {
-            return cell.mainTextField.text
-        } else {
-            return ""
-        }
-    }
-    
-    private var currentServes: Int? {
-        let indexPath = IndexPath(row: 0, section: 2)
-        if let cell = createRecipeView.mainTableView.cellForRow(at: indexPath) as? MealDetailsCell {
-            return Int(cell.currentValue)
-        } else {
-            return 0
-        }
-    }
-    
-    private var currentCookTime: String? {
-        let indexPath = IndexPath(row: 1, section: 2)
-        if let cell = createRecipeView.mainTableView.cellForRow(at: indexPath) as? MealDetailsCell {
-            return cell.currentValue
-        } else {
-            return ""
-        }
-    }
+    private var currentImage: Data?
+    private var currentDishName: String?
+    private var currentServes: Int?
+    private var currentCookTime: String?
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -52,7 +29,7 @@ final class NewRecipeViewController: UIViewController {
     }
     
     // MARK: - Private Actions
-    @objc private func addIngredient() {
+    private func addIngredient() {
         let newIngredient = NewIngredient(name: "", quantity: 0)
         
         ingredientData.append(newIngredient)
@@ -70,9 +47,9 @@ final class NewRecipeViewController: UIViewController {
         ingredientData.remove(at: indexPath.row)
         
         // Обновите таблицу с анимацией
-                createRecipeView.mainTableView.beginUpdates()
+        createRecipeView.mainTableView.beginUpdates()
         createRecipeView.mainTableView.deleteRows(at: [indexPath], with: .automatic)
-                createRecipeView.mainTableView.endUpdates()
+        createRecipeView.mainTableView.endUpdates()
     }
     
     // MARK: - Private Methods
@@ -127,6 +104,8 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+            // устанавливаем viewController в качестве делегата
+            cell.delegate = self
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -137,6 +116,8 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+            // устанавливаем viewController в качестве делегата
+            cell.delegate = self
             cell.selectionStyle = .none
             return cell
         case 2:
@@ -147,13 +128,15 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+            // устанавливаем viewController в качестве делегата
+            cell.delegate = self
             
             if indexPath.row == 0 {
-                cell.configure("person.2.fill", detail: "Serves", detailLabel: "1", rowNumber: 0)
+                cell.configure("person.2.fill", detail: "Serves", detailLabel: "1", type: .serves)
                 cell.selectionStyle = .none
                 return cell
             } else {
-                cell.configure("clock.fill", detail: "Cook time", detailLabel: "20 min", rowNumber: 1)
+                cell.configure("clock.fill", detail: "Cook time", detailLabel: "20 min", type: .cookTimes)
                 cell.selectionStyle = .none
                 return cell
             }
@@ -163,9 +146,11 @@ extension NewRecipeViewController: UITableViewDataSource {
                     withIdentifier: NewIngredientCell.cellID,
                     for: indexPath) as? NewIngredientCell
             else {
+                
                 return UITableViewCell()
             }
             cell.tableView = createRecipeView.mainTableView
+            // устанавливаем viewController в качестве делегата
             cell.delegate = self
             return cell
             
@@ -181,7 +166,7 @@ extension NewRecipeViewController: UITableViewDataSource {
                 
                 
                 let newRecipe = NewRecipe(
-                    image: "123",
+                    image: self?.currentImage,
                     name: self?.currentDishName ?? "",
                     serves: self?.currentServes ?? 0,
                     cookTime: self?.currentCookTime ?? "",
@@ -258,6 +243,7 @@ extension NewRecipeViewController {
                 return UITableViewHeaderFooterView()
             }
             
+            footerView.delegate = self
             return footerView
             
         }
@@ -276,5 +262,37 @@ extension NewRecipeViewController: NewIngredientCellDelegate {
         if let indexPath = createRecipeView.mainTableView.indexPath(for: cell) {
             deleteIngredient(at: indexPath)
         }
+    }
+}
+
+// MARK: - MealDetailsCellDelegate
+extension NewRecipeViewController: MealDetailsCellDelegate {
+    func didPickValue(_ value: String) {
+        if let servesValue = Int(value) {
+            currentServes = servesValue
+        } else {
+            currentCookTime = value
+        }
+    }
+}
+
+// MARK: - NameRecipeCellDelegate
+extension NewRecipeViewController: NameRecipeCellDelegate {
+    func didEndEditingWithName(_ name: String) {
+        currentDishName = name
+    }
+}
+
+// MARK: - RecipeImageCellDelegate
+extension NewRecipeViewController: RecipeImageCellDelegate {
+    func didPickImage(_ image: UIImage) {
+        currentImage = image.pngData()
+    }
+}
+
+// MARK: - nameCreateRecipeFooterViewDelegate
+extension NewRecipeViewController: CreateRecipeFooterViewDelegate {
+    func addNewIngredient() {
+        addIngredient()
     }
 }

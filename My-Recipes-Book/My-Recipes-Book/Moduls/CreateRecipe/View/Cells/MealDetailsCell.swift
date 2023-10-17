@@ -8,24 +8,38 @@
 import Foundation
 import UIKit
 
+enum MealDetailType {
+    case serves
+    case cookTimes
+}
+
+protocol MealDetailsCellDelegate: AnyObject {
+    func didPickValue(_ value: String)
+}
+
 final class MealDetailsCell: UITableViewCell{
     
     static let cellID = String(describing: MealDetailsCell.self)
     
-    // MARK: - Picker Properties
-    lazy var pickerView: UIPickerView = {
+    var delegate: MealDetailsCellDelegate?
+    
+    // MARK: - Public Properties
+    var currentValue = ""
+    var mealDetailType: MealDetailType?
+    
+    // MARK: - Private Properties
+    private var currentRow: Int?
+    private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
+    private let serves = Array(1...10)
+    
+    // MARK: - Private UI Properties
+    private lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
         return pickerView
     }()
     
-    var currentValue = ""
-    private var currentRow: Int?
-    private let cookTimes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 ]
-    private let serves = Array(1...10)
-    
-    // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
         mainView.backgroundColor = #colorLiteral(red: 0.9450979829, green: 0.9450979829, blue: 0.9450979829, alpha: 1)
@@ -47,26 +61,24 @@ final class MealDetailsCell: UITableViewCell{
         return arrowImageView
     }()
     
-    // MARK: - Public UI Properties
-    lazy var iconImageView: UIImageView = {
+    private lazy var iconImageView: UIImageView = {
         var iconImageView = UIImageView()
         iconImageView.image = UIImage(systemName: "person.2.fill")
         iconImageView.tintColor = .black
         return iconImageView
     }()
     
-    lazy var nameDetailLabel: UILabel = {
+    private lazy var nameDetailLabel: UILabel = {
         var nameDetailLabel = UILabel()
         nameDetailLabel.font = UIFont(name: "Poppins-SemiBold", size: 16)
         nameDetailLabel.textColor = .black
         return nameDetailLabel
     }()
     
-    lazy var detailTextField: UITextField = {
+    private lazy var detailTextField: UITextField = {
         var detailTextField = UITextField()
         detailTextField.font = UIFont(name: "Poppins-Regular", size: 14)
         detailTextField.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
-        
         return detailTextField
     }()
     
@@ -87,11 +99,11 @@ final class MealDetailsCell: UITableViewCell{
     }
     
     // MARK: - Public Methods
-    func configure(_ imageName: String, detail: String, detailLabel: String, rowNumber: Int) {
+    func configure(_ imageName: String, detail: String, detailLabel: String, type: MealDetailType) {
         iconImageView.image = UIImage(systemName: imageName)
         nameDetailLabel.text = detail
         detailTextField.text = detailLabel
-        currentRow = rowNumber
+        mealDetailType = type
     }
     
     // MARK: - Private Actions
@@ -172,21 +184,42 @@ extension MealDetailsCell: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        currentRow == 0 ? serves.count : cookTimes.count
+        switch mealDetailType {
+        case .serves:
+            return serves.count
+        case .cookTimes:
+            return cookTimes.count
+        case .none:
+            return 0
+        }
     }
 }
 
 // MARK: - UIPickerViewDelegate
 extension MealDetailsCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        currentRow == 0 ? "\(serves[row])" : "\(cookTimes[row]) min"
+        switch mealDetailType {
+        case .serves:
+            return "\(serves[row])"
+        case .cookTimes:
+            return "\(cookTimes[row]) min"
+        case .none:
+            return "0"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedValue = pickerView.selectedRow(inComponent: component)
         
-        currentValue = currentRow == 0
-        ? "\(serves[selectedValue])"
-        : "\(cookTimes[selectedValue]) min"
+        switch mealDetailType {
+        case .serves:
+            currentValue = "\(serves[selectedValue])"
+        case .cookTimes:
+            currentValue = "\(cookTimes[selectedValue]) min"
+        case .none:
+            break
+        }
+        
+        delegate?.didPickValue(currentValue)
     }
 }

@@ -8,14 +8,20 @@
 import Foundation
 import UIKit
 
+protocol NameRecipeCellDelegate: AnyObject {
+    func didEndEditingWithName(_ name: String)
+}
+
 final class NameRecipeCell: UITableViewCell {
     
     static let cellID = String(describing: NameRecipeCell.self)
     
+    var delegate: NameRecipeCellDelegate?
+    
     // MARK: - UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
-        mainView.backgroundColor = .white
+        mainView.backgroundColor = .systemBackground
         mainView.layer.borderColor = UIColor.systemRed.cgColor
         mainView.layer.borderWidth = 1
         mainView.layer.cornerRadius = 10
@@ -33,8 +39,7 @@ final class NameRecipeCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(mainView)
-        mainView.addSubview(mainTextField)
+        setupViewComponents()
         setupConstraints()
     }
     
@@ -43,6 +48,12 @@ final class NameRecipeCell: UITableViewCell {
     }
     
     // MARK: - Private Methods
+    
+    private func setupViewComponents() {
+        contentView.addSubview(mainView)
+        mainView.addSubview(mainTextField)
+    }
+    
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -66,5 +77,11 @@ extension NameRecipeCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let name = textField.text {
+            delegate?.didEndEditingWithName(name)
+        }
     }
 }

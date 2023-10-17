@@ -63,7 +63,7 @@ final class NewIngredientCell: UITableViewCell {
         return quantityView
     }()
     
-    private lazy var mainButton: UIButton = {
+    private lazy var deleteButton: UIButton = {
         var mainButton = UIButton(type: .system)
         mainButton.setImage(UIImage(named: "minus"), for: .normal)
         mainButton.tintColor = .black
@@ -92,7 +92,7 @@ final class NewIngredientCell: UITableViewCell {
         contentView.addSubview(mainView)
         mainView.addSubview(itemNameView)
         mainView.addSubview(quantityView)
-        mainView.addSubview(mainButton)
+        mainView.addSubview(deleteButton)
         itemNameView.addSubview(nameTextField)
         quantityView.addSubview(quantityTextField)
     }
@@ -119,7 +119,7 @@ final class NewIngredientCell: UITableViewCell {
             make.width.equalTo(110)
         }
         
-        mainButton.snp.makeConstraints { make in
+        deleteButton.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
             make.left.equalTo(quantityView.snp.right).offset(15)
             make.centerY.equalTo(quantityView.snp.centerY)
