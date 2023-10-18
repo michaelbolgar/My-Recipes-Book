@@ -16,7 +16,7 @@ final class NameRecipeCell: UITableViewCell {
     private lazy var mainView: UIView = {
         var mainView = UIView()
         mainView.backgroundColor = .systemBackground
-        mainView.layer.borderColor = UIColor.systemRed.cgColor
+        mainView.layer.borderColor = Palette.redPrimary50.cgColor
         mainView.layer.borderWidth = 1
         mainView.layer.cornerRadius = 10
         return mainView

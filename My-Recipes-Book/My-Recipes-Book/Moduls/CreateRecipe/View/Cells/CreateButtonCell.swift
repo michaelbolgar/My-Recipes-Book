@@ -18,11 +18,11 @@ final class CreateButtonCell: UITableViewCell {
     // MARK: - Private UI Properties
     private lazy var createRecipeButton: UIButton = {
         var createButton = UIButton(type: .system)
-        createButton.backgroundColor = #colorLiteral(red: 0.8841535449, green: 0.2446581125, blue: 0.2408704162, alpha: 1)
+        createButton.backgroundColor = Palette.redPrimary50
         createButton.setTitle("Create recipe", for: .normal)
-        createButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
+        createButton.titleLabel?.font = UIFont.poppins(weight: .semibold, size: 16)
         createButton.tintColor = .white
-        createButton.layer.cornerRadius = 5
+        createButton.layer.cornerRadius = 8
         createButton.addTarget(
             self,
             action: #selector(createButtonDidTapped),

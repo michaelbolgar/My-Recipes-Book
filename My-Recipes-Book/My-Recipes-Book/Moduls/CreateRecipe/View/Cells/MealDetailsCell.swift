@@ -41,7 +41,7 @@ final class MealDetailsCell: UITableViewCell{
     
     private lazy var mainView: UIView = {
         var mainView = UIView()
-        mainView.backgroundColor = #colorLiteral(red: 0.9450979829, green: 0.9450979829, blue: 0.9450979829, alpha: 1)
+        mainView.backgroundColor = Palette.neutral10
         mainView.layer.cornerRadius = 12
         return mainView
     }()
@@ -69,16 +69,15 @@ final class MealDetailsCell: UITableViewCell{
     
     private lazy var nameDetailLabel: UILabel = {
         var nameDetailLabel = UILabel()
-        nameDetailLabel.font = UIFont(name: "Poppins-SemiBold", size: 16)
-        nameDetailLabel.textColor = .black
+        nameDetailLabel.font = UIFont.poppins(weight: .semibold, size: 16)
+        nameDetailLabel.textColor = Palette.neutral100
         return nameDetailLabel
     }()
     
     private lazy var detailTextField: UITextField = {
         var detailTextField = UITextField()
-        detailTextField.font = UIFont(name: "Poppins-Regular", size: 14)
-        detailTextField.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
-        detailTextField.delegate = self
+        detailTextField.font = UIFont.poppins(weight: .regular, size: 14)
+        detailTextField.textColor = Palette.neutral50
         return detailTextField
     }()
     
@@ -237,12 +236,5 @@ extension MealDetailsCell: UIPickerViewDelegate {
         }
         
         delegate?.didPickValue(currentValue)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension MealDetailsCell: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        false
     }
 }

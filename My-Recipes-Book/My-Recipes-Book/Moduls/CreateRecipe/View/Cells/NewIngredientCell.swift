@@ -18,7 +18,7 @@ final class NewIngredientCell: UITableViewCell {
     
     // MARK: Public Properties
     var delegate: NewIngredientCellDelegate?
- 
+    
     // MARK: - Public UI Properties
     private lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
@@ -44,7 +44,7 @@ final class NewIngredientCell: UITableViewCell {
     
     private lazy var itemNameView: UIView = {
         var itemNameView = UIView()
-        itemNameView.layer.borderColor = UIColor.systemGray5.cgColor
+        itemNameView.layer.borderColor = Palette.neutral30.cgColor
         itemNameView.layer.borderWidth = 1
         itemNameView.layer.cornerRadius = 10
         itemNameView.backgroundColor = .white
@@ -53,7 +53,7 @@ final class NewIngredientCell: UITableViewCell {
     
     private lazy var quantityView: UIView = {
         var quantityView = UIView()
-        quantityView.layer.borderColor = UIColor.systemGray5.cgColor
+        quantityView.layer.borderColor = Palette.neutral30.cgColor
         quantityView.layer.borderWidth = 1
         quantityView.layer.cornerRadius = 10
         quantityView.backgroundColor = .white
@@ -62,9 +62,13 @@ final class NewIngredientCell: UITableViewCell {
     
     private lazy var deleteButton: UIButton = {
         var mainButton = UIButton(type: .system)
-        mainButton.setImage(UIImage(named: "minus"), for: .normal)
+        mainButton.setImage(UIImage(systemName: "minus.circle"), for: .normal)
         mainButton.tintColor = .black
-        mainButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        mainButton.addTarget(
+            self,
+            action: #selector(deleteButtonTapped),
+            for: .touchUpInside
+        )
         return mainButton
     }()
     

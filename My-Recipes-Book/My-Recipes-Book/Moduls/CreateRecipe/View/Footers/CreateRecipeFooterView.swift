@@ -20,32 +20,47 @@ final class CreateRecipeFooterView: UITableViewHeaderFooterView {
     var delegate: CreateRecipeFooterViewDelegate?
     
     // MARK: - Private UI Properties
-    private lazy var addIngredientButton: UIButton = {
-        var button = UIButton(type: .custom)
-        button.setTitle("Add new ingredient", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.gray, for: .highlighted)
-        button.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
+    private lazy var ingredientButton: UIButton = {
+        var button = UIButton()
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "plus1")
+        imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        imageView.contentMode = .scaleAspectFit
+        
+        let label = UILabel()
+        label.text = "Add new ingredient"
+        label.textColor = .black
+        label.font = UIFont(name: "Poppins-SemiBold", size: 16)
+        
+        button.addSubview(imageView)
+        button.addSubview(label)
+        
+        imageView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.centerY.equalTo(button.snp.centerY)
+            make.height.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        label.snp.makeConstraints { make in
+            make.left.equalTo(imageView.snp.right).offset(8)
+            make.centerY.equalTo(button.snp.centerY)
+        }
+        
         button.addTarget(
-            self,
-            action: #selector(addIngredientButtonDidTapped),
-            for: .touchUpInside
-        )
+                   self,
+                   action: #selector(addIngredientButtonDidTapped),
+                   for: .touchUpInside
+               )
+        
         return button
-    }()
-    
-    private lazy var plusImageView: UIImageView = {
-        var plusIV = UIImageView()
-        plusIV.image = UIImage(named: "plus")
-        plusIV.tintColor = .black
-        return plusIV
     }()
     
     // MARK: - Init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        addSubview(addIngredientButton)
-        addIngredientButton.addSubview(plusImageView)
+        addSubview(ingredientButton)
         setupConstraints()
     }
     
@@ -60,17 +75,10 @@ final class CreateRecipeFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Private Methods
     private func setupConstraints() {
-        plusImageView.snp.makeConstraints { make in
-            make.centerY.equalTo(addIngredientButton.snp.centerY)
-            make.left.equalTo(addIngredientButton.snp.left)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-        }
-        
-        addIngredientButton.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY)
-            make.left.equalTo(self.snp.left).offset(16)
-            make.right.equalTo(self.snp.right).offset(-140)
+        ingredientButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(10)
+            make.width.equalTo(200)
         }
     }
 }
