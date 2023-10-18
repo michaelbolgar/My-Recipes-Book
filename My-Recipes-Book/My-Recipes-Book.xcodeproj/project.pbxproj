@@ -37,6 +37,8 @@
 		0AA95BA62AA66549009326D2 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95BA52AA66549009326D2 /* UIImageViewExtension.swift */; };
 		3C82C0872ADDB16400575FEF /* CreateRecipeSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0862ADDB16400575FEF /* CreateRecipeSectionHeader.swift */; };
 		3C82C08A2ADDB76A00575FEF /* CreateRecipeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0892ADDB76A00575FEF /* CreateRecipeFooterView.swift */; };
+		3C82C0B72AE06CD900575FEF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0B62AE06CD900575FEF /* ProfileView.swift */; };
+		3C82C0B92AE071F400575FEF /* MyRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0B82AE071F400575FEF /* MyRecipeCell.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -99,6 +101,8 @@
 		0AA95BA52AA66549009326D2 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		3C82C0862ADDB16400575FEF /* CreateRecipeSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeSectionHeader.swift; sourceTree = "<group>"; };
 		3C82C0892ADDB76A00575FEF /* CreateRecipeFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeFooterView.swift; sourceTree = "<group>"; };
+		3C82C0B62AE06CD900575FEF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3C82C0B82AE071F400575FEF /* MyRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipeCell.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -319,6 +323,23 @@
 			path = Footers;
 			sourceTree = "<group>";
 		};
+		3C82C0B42AE06CB900575FEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C82C0B52AE06CC200575FEF /* Cell */,
+				3C82C0B62AE06CD900575FEF /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C82C0B52AE06CC200575FEF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3C82C0B82AE071F400575FEF /* MyRecipeCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		F43422132A9C29930025C556 = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +540,7 @@
 		F45B87982AA3229E00E5DBE4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				3C82C0B42AE06CB900575FEF /* View */,
 				F45B87992AA322A600E5DBE4 /* Controller */,
 			);
 			path = Profile;
@@ -709,6 +731,8 @@
 				3C82C0872ADDB16400575FEF /* CreateRecipeSectionHeader.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
 				0AA95BA42AA664E0009326D2 /* TrendingView.swift in Sources */,
+				3C82C0B72AE06CD900575FEF /* ProfileView.swift in Sources */,
+				3C82C0B92AE071F400575FEF /* MyRecipeCell.swift in Sources */,
 				0AA95B9D2AA664AB009326D2 /* RecipeEndPoint.swift in Sources */,
 				0AA95B902AA66403009326D2 /* RecipeDataModelForCell.swift in Sources */,
 				0AA95B8D2AA649BC009326D2 /* CategoryType.swift in Sources */,

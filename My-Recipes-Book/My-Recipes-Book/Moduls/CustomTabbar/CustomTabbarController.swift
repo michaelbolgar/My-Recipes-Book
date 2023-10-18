@@ -54,6 +54,7 @@ class CustomTabBarController: UITabBarController {
         let profileActiveImage = UIImage(named: "ProfileActive")?.withRenderingMode(.alwaysOriginal)
         let profileInactiveImage = UIImage(named: "ProfileInactive")?.withRenderingMode(.alwaysOriginal)
         let profileItem = UITabBarItem(title: nil, image: profileInactiveImage, selectedImage: profileActiveImage)
+        let navigationProfileVC = UINavigationController(rootViewController: profileVC)
         profileVC.tabBarItem = profileItem
         profileVC.view.backgroundColor = .systemBackground
         
@@ -63,7 +64,7 @@ class CustomTabBarController: UITabBarController {
             navigationSavedVC,
             createRecipeVC,
             notificationVC, //have to be developed later
-            profileVC //have to be developed later
+            navigationProfileVC //have to be developed later
         ]
     }
     
