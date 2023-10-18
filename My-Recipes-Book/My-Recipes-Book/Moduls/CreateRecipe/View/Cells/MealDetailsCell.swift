@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
 
 enum MealDetailType {
@@ -19,8 +18,10 @@ protocol MealDetailsCellDelegate: AnyObject {
 
 final class MealDetailsCell: UITableViewCell{
     
-    // MARK: - Public Properties
+    // MARK: - Static Properties
     static let cellID = String(describing: MealDetailsCell.self)
+    
+    // MARK: - Public Properties
     var delegate: MealDetailsCellDelegate?
     
     // MARK: - Private Properties

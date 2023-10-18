@@ -7,8 +7,9 @@
 
 import UIKit
 
-class CreateRecipeSectionHeader: UITableViewHeaderFooterView {
-
+final class CreateRecipeSectionHeader: UITableViewHeaderFooterView {
+    
+    // MARK: - Static Properties
     static let reuseID = String(describing: CreateRecipeSectionHeader.self)
     
     // MARK: - Private UI Properties

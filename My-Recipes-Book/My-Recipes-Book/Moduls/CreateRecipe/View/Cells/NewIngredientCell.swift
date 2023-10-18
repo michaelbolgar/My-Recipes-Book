@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
 
 protocol NewIngredientCellDelegate: AnyObject {
@@ -14,11 +13,12 @@ protocol NewIngredientCellDelegate: AnyObject {
 
 final class NewIngredientCell: UITableViewCell {
     
+    // MARK: - Static Properties
     static let cellID = String(describing: NewIngredientCell.self)
     
     // MARK: Public Properties
     var delegate: NewIngredientCellDelegate?
-    
+ 
     // MARK: - Public UI Properties
     private lazy var nameTextField: UITextField = {
         var nameTF = UITextField()

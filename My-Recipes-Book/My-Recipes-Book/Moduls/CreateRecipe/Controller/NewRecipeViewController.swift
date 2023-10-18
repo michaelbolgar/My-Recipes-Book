@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
 
 final class NewRecipeViewController: UIViewController {
@@ -29,10 +28,12 @@ final class NewRecipeViewController: UIViewController {
         addObservers()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
+//    // MARK: - Override methods
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        view.endEditing(true)
+//
+//    }
     
     // MARK: - Private Methods
     private func addIngredient() {
@@ -120,7 +121,7 @@ final class NewRecipeViewController: UIViewController {
         
         present(alert, animated: true)
     }
-
+    
 }
 
 // MARK: - UITableViewDataSource

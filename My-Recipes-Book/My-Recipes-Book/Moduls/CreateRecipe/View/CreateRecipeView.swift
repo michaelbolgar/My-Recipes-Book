@@ -5,8 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
-
 import UIKit
 
 final class CreateRecipeView: UIView {
@@ -61,12 +59,13 @@ final class CreateRecipeView: UIView {
     }
     
     func resetScreen() {
-        guard let imageCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        guard
+            let imageCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 0))
                 as? RecipeImageCell
         else {
             return
         }
-
+        
         guard let image = UIImage(named: "defaultImageCell") else { return }
         imageCell.setupRecipeImageView(with: image)
         
@@ -85,7 +84,7 @@ final class CreateRecipeView: UIView {
     
     // MARK: - Private Actions
     @objc private func handleTap() {
-        self.endEditing(true)
+        endEditing(true)
     }
     
     // MARK: - Private Methods

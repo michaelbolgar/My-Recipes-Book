@@ -11,10 +11,12 @@ protocol CreateRecipeFooterViewDelegate {
     func addNewIngredient()
 }
 
-class CreateRecipeFooterView: UITableViewHeaderFooterView {
+final class CreateRecipeFooterView: UITableViewHeaderFooterView {
     
+    // MARK: - Static Properties
     static let reuseID = String(describing: CreateRecipeFooterView.self)
     
+    // MARK: - Public Properties
     var delegate: CreateRecipeFooterViewDelegate?
     
     // MARK: - Private UI Properties
@@ -29,11 +31,6 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
             action: #selector(addIngredientButtonDidTapped),
             for: .touchUpInside
         )
-        button.addTarget(self, action: #selector(animateButtonPressIn), for: .touchDown)
-        button.addTarget(self, action: #selector(animateButtonPressOut), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-
-
-
         return button
     }()
     
@@ -44,14 +41,12 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
         return plusIV
     }()
     
-    
     // MARK: - Init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addSubview(addIngredientButton)
         addIngredientButton.addSubview(plusImageView)
         setupConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -63,19 +58,6 @@ class CreateRecipeFooterView: UITableViewHeaderFooterView {
         delegate?.addNewIngredient()
     }
     
-    // MARK: - Click effect methods
-    @objc func animateButtonPressIn() {
-        UIView.animate(withDuration: 0.4, animations: {
-            self.addIngredientButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        })
-    }
-
-    @objc func animateButtonPressOut() {
-        UIView.animate(withDuration: 0.4, animations: {
-            self.addIngredientButton.transform = CGAffineTransform.identity
-        })
-    }
-
     // MARK: - Private Methods
     private func setupConstraints() {
         plusImageView.snp.makeConstraints { make in

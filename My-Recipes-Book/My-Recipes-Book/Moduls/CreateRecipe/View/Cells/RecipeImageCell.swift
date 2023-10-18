@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
 
 protocol RecipeImageCellDelegate: AnyObject {
@@ -14,8 +13,10 @@ protocol RecipeImageCellDelegate: AnyObject {
 
 final class RecipeImageCell: UITableViewCell {
     
-    // MARK: - Public Properties
+    // MARK: - Static Properties
     static let cellID = String(describing: RecipeImageCell.self)
+    
+    // MARK: - Public Properties
     var delegate: RecipeImageCellDelegate?
     
     // MARK: - Private UI Properties
@@ -103,7 +104,7 @@ final class RecipeImageCell: UITableViewCell {
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension RecipeImageCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let pickedImage = info[.originalImage] as? UIImage {
             recipeImageView.image = pickedImage
             delegate?.didPickImage(pickedImage)
         }

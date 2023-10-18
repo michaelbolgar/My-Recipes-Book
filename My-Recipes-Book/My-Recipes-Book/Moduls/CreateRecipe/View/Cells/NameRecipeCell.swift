@@ -5,7 +5,6 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
 
 final class NameRecipeCell: UITableViewCell {
