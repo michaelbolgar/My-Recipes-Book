@@ -78,6 +78,7 @@ final class MealDetailsCell: UITableViewCell{
         var detailTextField = UITextField()
         detailTextField.font = UIFont(name: "Poppins-Regular", size: 14)
         detailTextField.textColor = UIColor(red: 0.569, green: 0.569, blue: 0.569, alpha: 1)
+        detailTextField.delegate = self
         return detailTextField
     }()
     
@@ -91,6 +92,7 @@ final class MealDetailsCell: UITableViewCell{
             textField: detailTextField,
             action: #selector(doneAction)
         )
+        createTapGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -111,7 +113,19 @@ final class MealDetailsCell: UITableViewCell{
         contentView.endEditing(true)
     }
     
+    @objc private func handleTapGesture() {
+        detailTextField.becomeFirstResponder()
+    }
+    
     // MARK: - Private Methods
+    private func createTapGesture() {
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTapGesture)
+        )
+        contentView.addGestureRecognizer(tapGesture)
+    }
+    
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
@@ -171,6 +185,7 @@ final class MealDetailsCell: UITableViewCell{
         )
         
         toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
         textField.inputView = picker
         textField.inputAccessoryView = toolbar
     }
@@ -213,12 +228,21 @@ extension MealDetailsCell: UIPickerViewDelegate {
         switch mealDetailType {
         case .serves:
             currentValue = "\(serves[selectedValue])"
+            detailTextField.text = currentValue
         case .cookTimes:
             currentValue = "\(cookTimes[selectedValue]) min"
+            detailTextField.text = currentValue
         case .none:
             break
         }
         
         delegate?.didPickValue(currentValue)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension MealDetailsCell: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        false
     }
 }
