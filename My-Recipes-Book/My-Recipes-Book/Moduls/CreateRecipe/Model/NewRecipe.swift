@@ -8,14 +8,14 @@
 import Foundation
 
 struct NewRecipe {
-    var image: String
+    var image: Data?
     var name: String
     var serves: Int
     var cookTime: String
-    var Ingrediets: NewIngredient
+    var ingrediets: [NewIngredient]
 }
 
 struct NewIngredient {
     var name: String
-    var quantity: Int
+    var quantity: String
 }

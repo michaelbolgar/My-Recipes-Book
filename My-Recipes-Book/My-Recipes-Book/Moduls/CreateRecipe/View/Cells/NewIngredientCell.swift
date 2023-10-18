@@ -5,96 +5,120 @@
 //  Created by Михаил Болгар on 10.09.2023.
 //
 
-import Foundation
 import UIKit
-import NotificationCenter
 
-//MARK: - NewIngredientCellDelegate
 protocol NewIngredientCellDelegate: AnyObject {
     func didTapDeleteButton(cell: NewIngredientCell)
 }
 
 final class NewIngredientCell: UITableViewCell {
-
+    
+    // MARK: - Static Properties
+    static let cellID = String(describing: NewIngredientCell.self)
+    
     // MARK: Public Properties
-    var tableView: UITableView?
     var delegate: NewIngredientCellDelegate?
-
+    
     // MARK: - Public UI Properties
-    lazy var mainButton: UIButton = {
-        var mainButton = UIButton(type: .system)
-        mainButton.setImage(UIImage(named: "minus"), for: .normal)
-        mainButton.tintColor = .black
-        mainButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        return mainButton
-    }()
-
-    lazy var nameTextField: UITextField = {
+     private lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
-        nameTF.delegate = self
         nameTF.autocorrectionType = .no
+         nameTF.tag = 100
         return nameTF
     }()
-
-    lazy var quantityTextField: UITextField = {
+    
+    private lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
-        quantityTF.delegate = self
         quantityTF.autocorrectionType = .no
+        quantityTF.tag = 200
         return quantityTF
     }()
-
+    
     // MARK: - Private UI Properties
     private lazy var mainView: UIView = {
         var mainView = UIView()
         return mainView
     }()
-
+    
     private lazy var itemNameView: UIView = {
         var itemNameView = UIView()
-        itemNameView.layer.borderColor = UIColor.systemGray5.cgColor
+        itemNameView.layer.borderColor = Palette.neutral30.cgColor
         itemNameView.layer.borderWidth = 1
         itemNameView.layer.cornerRadius = 10
         itemNameView.backgroundColor = .white
         return itemNameView
     }()
-
+    
     private lazy var quantityView: UIView = {
         var quantityView = UIView()
-        quantityView.layer.borderColor = UIColor.systemGray5.cgColor
+        quantityView.layer.borderColor = Palette.neutral30.cgColor
         quantityView.layer.borderWidth = 1
         quantityView.layer.cornerRadius = 10
         quantityView.backgroundColor = .white
         return quantityView
     }()
-
+    
+    private lazy var deleteButton: UIButton = {
+        var mainButton = UIButton(type: .system)
+        mainButton.setImage(UIImage(systemName: "minus.circle"), for: .normal)
+        mainButton.tintColor = .black
+        mainButton.addTarget(
+            self,
+            action: #selector(deleteButtonTapped),
+            for: .touchUpInside
+        )
+        return mainButton
+    }()
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Actions
-    @objc func deleteButtonTapped() {
+    
+    // MARK: - Public Methods
+    func configure(with ingredient: NewIngredient) {
+        nameTextField.text = ingredient.name
+        quantityTextField.text = ingredient.quantity
+    }
+    
+    func getNameTextFieldText() -> String {
+        guard let text = nameTextField.text else { return "No value"}
+        return text
+    }
+    
+    func getQuantityTextFieldText() -> String {
+        guard let text = quantityTextField.text else { return "No value"}
+        return text
+    }
+    
+    func transferDelegate(_ delegate: UITextFieldDelegate) {
+        nameTextField.delegate = delegate
+        quantityTextField.delegate = delegate
+    }
+    
+    // MARK: - Private Actions
+    @objc private func deleteButtonTapped() {
         delegate?.didTapDeleteButton(cell: self)
     }
-
+    
     // MARK: - Private Methods
     private func addViews() {
         contentView.addSubview(mainView)
         mainView.addSubview(itemNameView)
         mainView.addSubview(quantityView)
-        mainView.addSubview(mainButton)
+        mainView.addSubview(deleteButton)
         itemNameView.addSubview(nameTextField)
         quantityView.addSubview(quantityTextField)
     }
-
+    
     private func setupConstraints() {
         mainView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
@@ -102,53 +126,41 @@ final class NewIngredientCell: UITableViewCell {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-
+        
         itemNameView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-5)
             make.width.equalTo(160)
         }
-
+        
         quantityView.snp.makeConstraints { make in
             make.left.equalTo(itemNameView.snp.right).offset(15)
             make.top.equalToSuperview().offset(15)
             make.bottom.equalToSuperview().offset(-5)
             make.width.equalTo(110)
         }
-
-        mainButton.snp.makeConstraints { make in
+        
+        deleteButton.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
             make.left.equalTo(quantityView.snp.right).offset(15)
             make.centerY.equalTo(quantityView.snp.centerY)
             make.top.equalTo(quantityView.snp.top).offset(5)
             make.bottom.equalTo(quantityView.snp.bottom).offset(-5)
         }
-
+        
         nameTextField.snp.makeConstraints { make in
             make.left.equalTo(itemNameView.snp.left).offset(16)
             make.right.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-
+        
         quantityTextField.snp.makeConstraints { make in
             make.left.equalTo(quantityView.snp.left).offset(16)
             make.right.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension NewIngredientCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        tableView?.setContentOffset(CGPoint(x: 0, y: -50), animated: true)
-
     }
 }
