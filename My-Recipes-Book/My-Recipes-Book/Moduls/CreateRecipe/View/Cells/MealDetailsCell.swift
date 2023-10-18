@@ -106,6 +106,21 @@ final class MealDetailsCell: UITableViewCell{
         mealDetailType = type
     }
     
+    func resetPickerValue() {
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        
+        switch mealDetailType {
+           case .serves:
+               currentValue = "\(serves[0])"
+           case .cookTimes:
+               currentValue = "\(cookTimes[0]) min"
+           case .none:
+               currentValue = "0"
+           }
+           detailTextField.text = currentValue
+           delegate?.didPickValue(currentValue)
+    }
+    
     // MARK: - Private Actions
     @objc private func doneAction() {
         detailTextField.text = currentValue

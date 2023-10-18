@@ -59,6 +59,8 @@ final class CreateRecipeView: UIView {
     }
     
     func resetScreen() {
+        
+        // сбрасываем изображение до default
         guard
             let imageCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 0))
                 as? RecipeImageCell
@@ -69,6 +71,7 @@ final class CreateRecipeView: UIView {
         guard let image = UIImage(named: "defaultImageCell") else { return }
         imageCell.setupRecipeImageView(with: image)
         
+        // сбрасываем текст в nameTextField
         guard let nameCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 1))
                 as? NameRecipeCell
         else {
@@ -76,6 +79,14 @@ final class CreateRecipeView: UIView {
         }
         
         nameCell.resetTextField()
+        
+        // сбрасываем значения в pickerView
+        guard let mealDetailsCell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 2))
+                as? MealDetailsCell
+        else {
+            return
+        }
+        mealDetailsCell.resetPickerValue()
     }
     
     func reloadTableView() {
