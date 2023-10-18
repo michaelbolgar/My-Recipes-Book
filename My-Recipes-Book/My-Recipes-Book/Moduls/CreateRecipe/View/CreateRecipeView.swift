@@ -15,6 +15,7 @@ final class CreateRecipeView: UIView {
         mainTableView.backgroundColor = .systemBackground
         mainTableView.separatorStyle = .none
         mainTableView.showsVerticalScrollIndicator = false
+        mainTableView.estimatedRowHeight = 40
         return mainTableView
     }()
     
@@ -39,6 +40,7 @@ final class CreateRecipeView: UIView {
     func insertRows(with indexPath: IndexPath) {
         mainTableView.insertRows(at: [indexPath], with: .automatic)
     }
+
     
     func scrollToRow(with indexPath: IndexPath) {
         mainTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -47,7 +49,7 @@ final class CreateRecipeView: UIView {
     func deleteRows(with indexPath: IndexPath) {
         mainTableView.deleteRows(at: [indexPath], with: .automatic)
     }
-    
+
     func getTextFromNameRecipeCell() -> String? {
         guard
             let cell = mainTableView.cellForRow(at: IndexPath(row: 0, section: 1))

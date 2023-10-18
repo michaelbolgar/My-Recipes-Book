@@ -23,7 +23,6 @@ final class NewIngredientCell: UITableViewCell {
      lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
-//        nameTF.delegate = self
         nameTF.autocorrectionType = .no
         return nameTF
     }()
@@ -31,7 +30,6 @@ final class NewIngredientCell: UITableViewCell {
     lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
-//        quantityTF.delegate = self
         quantityTF.autocorrectionType = .no
         return quantityTF
     }()
@@ -159,7 +157,3 @@ final class NewIngredientCell: UITableViewCell {
         }
     }
 }
-
-//// MARK: - UITextFieldDelegate
-//extension NewIngredientCell: UITextFieldDelegate {
-//}

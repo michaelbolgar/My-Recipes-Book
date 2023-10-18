@@ -13,7 +13,7 @@ final class NewRecipeViewController: UIViewController {
     private var createRecipeView = CreateRecipeView()
     
     // MARK: - Private Properties
-    private var ingredientData: [NewIngredient] = []
+    private var ingredientData: [NewIngredient] = [NewIngredient(name: "", quantity: "")]
     private var currentImage: Data?
     private var currentDishName: String?
     private var currentServes: Int?
@@ -26,6 +26,9 @@ final class NewRecipeViewController: UIViewController {
         setupConstraints()
         createRecipeView.transferDelegates(dataSource: self, delegate: self)
         addObservers()
+    
+        // код для удаления бага дергания ячеек после удаления
+//        createRecipeView.mainTableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - Private Methods
@@ -39,24 +42,30 @@ final class NewRecipeViewController: UIViewController {
         // создаем индекс куда вставить новую ячейку
         let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
         
-        // вставляем ячейку в таблицу
-        createRecipeView.insertRows(with: indexPath)
+        createRecipeView.mainTableView.performBatchUpdates({
+               // вставляем ячейку в таблицу
+               createRecipeView.insertRows(with: indexPath)
+           }, completion: { _ in
+               // прокручиваем скрол к новой ячейке после завершения анимации вставки
+               
+           })
         
-        // прокручиваем скрол к новой ячейке
-        createRecipeView.scrollToRow(with: indexPath)
+        self.createRecipeView.scrollToRow(with: indexPath)
     }
     
     private func deleteIngredient(at indexPath: IndexPath) {
-        
+
         // завершаем редактирование текстовых полей перед удалением чтобы не было fatal error
         createRecipeView.endEditing(true)
         
-        // удаляем ингредиент из массива
-        ingredientData.remove(at: indexPath.row)
-        
-        // удалем ячейку из таблицы
-        createRecipeView.deleteRows(with: indexPath)
-        
+        createRecipeView.mainTableView.performBatchUpdates({
+                // удаляем ингредиент из массива
+                ingredientData.remove(at: indexPath.row)
+                
+                // удалем ячейку из таблицы
+                createRecipeView.deleteRows(with: indexPath)
+            }, completion: nil)
+
     }
     
     
@@ -264,7 +273,7 @@ extension NewRecipeViewController{
         
         section == 0
         ? headerView.configure(with: "Create Recipe", and: 24)
-        :  headerView.configure(with: "Ingredients", and: 20)
+        : headerView.configure(with: "Ingredients", and: 20)
         
         return headerView
     }
