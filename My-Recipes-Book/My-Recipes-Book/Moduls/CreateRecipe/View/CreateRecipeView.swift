@@ -10,7 +10,7 @@ import UIKit
 final class CreateRecipeView: UIView {
     
     // MARK: - Public UI Properties
-    lazy var mainTableView: UITableView = {
+    private lazy var mainTableView: UITableView = {
         let mainTableView = UITableView(frame: self.bounds, style: .grouped)
         mainTableView.backgroundColor = .systemBackground
         mainTableView.separatorStyle = .none
@@ -38,16 +38,19 @@ final class CreateRecipeView: UIView {
     }
     
     func insertRows(with indexPath: IndexPath) {
-        mainTableView.insertRows(at: [indexPath], with: .automatic)
+        mainTableView.performBatchUpdates {
+            mainTableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
-
     
     func scrollToRow(with indexPath: IndexPath) {
         mainTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     func deleteRows(with indexPath: IndexPath) {
-        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+        mainTableView.performBatchUpdates {
+            mainTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 
     func getTextFromNameRecipeCell() -> String? {
@@ -93,6 +96,18 @@ final class CreateRecipeView: UIView {
     
     func reloadTableView() {
         mainTableView.reloadData()
+    }
+    
+    func getIndexPathForCell(_ cell: UITableViewCell) -> IndexPath {
+       mainTableView.indexPath(for: cell) ?? IndexPath(row: 0, section: 0)
+    }
+    
+    func getNumberOfRowsInSection(_ section: Int) -> Int {
+        mainTableView.numberOfRows(inSection: section)
+    }
+    
+    func getCellForRowAt(_ indexPath: IndexPath) -> UITableViewCell {
+        mainTableView.cellForRow(at: indexPath)!
     }
     
     // MARK: - Private Actions

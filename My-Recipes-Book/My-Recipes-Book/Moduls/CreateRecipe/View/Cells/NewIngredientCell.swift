@@ -20,17 +20,19 @@ final class NewIngredientCell: UITableViewCell {
     var delegate: NewIngredientCellDelegate?
     
     // MARK: - Public UI Properties
-     lazy var nameTextField: UITextField = {
+     private lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
         nameTF.autocorrectionType = .no
+         nameTF.tag = 100
         return nameTF
     }()
     
-    lazy var quantityTextField: UITextField = {
+    private lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
         quantityTF.autocorrectionType = .no
+        quantityTF.tag = 200
         return quantityTF
     }()
     
@@ -95,6 +97,11 @@ final class NewIngredientCell: UITableViewCell {
     func getQuantityTextFieldText() -> String {
         guard let text = quantityTextField.text else { return "No value"}
         return text
+    }
+    
+    func transferDelegate(_ delegate: UITextFieldDelegate) {
+        nameTextField.delegate = delegate
+        quantityTextField.delegate = delegate
     }
     
     // MARK: - Private Actions

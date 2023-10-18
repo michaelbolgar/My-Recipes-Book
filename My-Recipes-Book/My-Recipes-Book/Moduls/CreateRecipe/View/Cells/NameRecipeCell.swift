@@ -26,7 +26,6 @@ final class NameRecipeCell: UITableViewCell {
         var mainTextField = UITextField()
         mainTextField.placeholder = "Recipe name"
         mainTextField.autocorrectionType = .no
-        mainTextField.delegate = self
         return mainTextField
     }()
     
@@ -51,6 +50,10 @@ final class NameRecipeCell: UITableViewCell {
         mainTextField.text = ""
     }
     
+    func transferDelegate(delegate: UITextFieldDelegate) {
+        mainTextField.delegate = delegate
+    }
+    
     // MARK: - Private Methods
     private func setupViewComponents() {
         contentView.addSubview(mainView)
@@ -72,13 +75,5 @@ final class NameRecipeCell: UITableViewCell {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension NameRecipeCell: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

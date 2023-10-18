@@ -26,49 +26,32 @@ final class NewRecipeViewController: UIViewController {
         setupConstraints()
         createRecipeView.transferDelegates(dataSource: self, delegate: self)
         addObservers()
-    
-        // код для удаления бага дергания ячеек после удаления
-//        createRecipeView.mainTableView.rowHeight = UITableView.automaticDimension
-    }
-
-    // MARK: - Private Methods
-    private func addIngredient() {
-        // cоздаем пустой экзепляр NewIngredient
-        let newIngredient = NewIngredient(name: "", quantity: "")
         
-        // добавляем в массив
+        // код для удаления бага дергания ячеек после удаления
+        //        createRecipeView.mainTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    // MARK: - Private Methods
+    // метод для добавления ингредиента в ячейку и массив
+    private func addIngredient() {
+        let newIngredient = NewIngredient(name: "", quantity: "")
         ingredientData.append(newIngredient)
         
-        // создаем индекс куда вставить новую ячейку
         let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
-        
-        createRecipeView.mainTableView.performBatchUpdates({
-               // вставляем ячейку в таблицу
-               createRecipeView.insertRows(with: indexPath)
-           }, completion: { _ in
-               // прокручиваем скрол к новой ячейке после завершения анимации вставки
-               
-           })
-        
-        self.createRecipeView.scrollToRow(with: indexPath)
+        createRecipeView.insertRows(with: indexPath)
+        createRecipeView.scrollToRow(with: indexPath)
     }
     
+    // удалчения ингредиента из ячейки и массива
     private func deleteIngredient(at indexPath: IndexPath) {
-
-        // завершаем редактирование текстовых полей перед удалением чтобы не было fatal error
         createRecipeView.endEditing(true)
         
-        createRecipeView.mainTableView.performBatchUpdates({
-                // удаляем ингредиент из массива
-                ingredientData.remove(at: indexPath.row)
-                
-                // удалем ячейку из таблицы
-                createRecipeView.deleteRows(with: indexPath)
-            }, completion: nil)
-
+        ingredientData.remove(at: indexPath.row)
+        
+        createRecipeView.deleteRows(with: indexPath)
     }
     
-    
+    // сброс всех значений в UI
     private func resetScreen() {
         createRecipeView.resetScreen()
         ingredientData.removeAll()
@@ -80,25 +63,18 @@ final class NewRecipeViewController: UIViewController {
         var ingredients: [NewIngredient] = []
         
         let section = 3
-        for row in 0..<createRecipeView.mainTableView.numberOfRows(inSection: section) {
+        for row in 0..<createRecipeView.getNumberOfRowsInSection(section) {
             let indexPath = IndexPath(row: row, section: section)
-            if let cell = createRecipeView.mainTableView.cellForRow(at: indexPath) as? NewIngredientCell {
-                let ingredient = NewIngredient(
-                    name: cell.getNameTextFieldText(),
-                    quantity: cell.getQuantityTextFieldText())
-                
-                ingredients.append(ingredient)
-            }
+            let cell = createRecipeView.getCellForRowAt(indexPath) as? NewIngredientCell
+            let ingredient = NewIngredient(
+                name: cell?.getNameTextFieldText() ?? "",
+                quantity: cell?.getQuantityTextFieldText() ?? "")
+            ingredients.append(ingredient)
         }
         return ingredients
     }
     
-    private func setupConstraints() {
-        createRecipeView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
+    // поднимаем view когда выезжает клавиатура
     private func addObservers() {
         NotificationCenter.default.addObserver(
             forName: UIResponder.keyboardWillShowNotification,
@@ -115,6 +91,7 @@ final class NewRecipeViewController: UIViewController {
             }
     }
     
+    // показываем алерт когда рецепт создан
     private func showAlert() {
         let alert = UIAlertController(
             title: "Successfully",
@@ -123,12 +100,15 @@ final class NewRecipeViewController: UIViewController {
         )
         
         let okAction = UIAlertAction(title: "Ok", style: .default)
-        
         alert.addAction(okAction)
-        
         present(alert, animated: true)
     }
     
+    private func setupConstraints() {
+        createRecipeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -158,7 +138,6 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            // устанавливаем viewController в качестве делегата
             cell.delegate = self
             cell.selectionStyle = .none
             return cell
@@ -171,6 +150,7 @@ extension NewRecipeViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
+            cell.transferDelegate(delegate: self)
             return cell
         case 2:
             guard
@@ -180,7 +160,6 @@ extension NewRecipeViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            // устанавливаем viewController в качестве делегата
             cell.delegate = self
             
             if indexPath.row == 0 {
@@ -206,11 +185,7 @@ extension NewRecipeViewController: UITableViewDataSource {
             
             cell.configure(with: value)
             cell.tag = indexPath.row
-            cell.nameTextField.tag = 100
-            cell.quantityTextField.tag = 200
-            cell.nameTextField.delegate = self
-            cell.quantityTextField.delegate = self
-            // устанавливаем viewController в качестве делегата
+            cell.transferDelegate(self)
             cell.delegate = self
             cell.selectionStyle = .none
             return cell
@@ -224,6 +199,7 @@ extension NewRecipeViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionButton = { [weak self] in
+                self?.createRecipeView.endEditing(true)
                 if let text = self?.createRecipeView.getTextFromNameRecipeCell(), text != "" {
                     let newRecipe = NewRecipe(
                         image: self?.currentImage,
@@ -234,6 +210,7 @@ extension NewRecipeViewController: UITableViewDataSource {
                     )
                     
                     self?.showAlert()
+                    print(newRecipe)
                     self?.resetScreen()
                 }
             }
@@ -280,7 +257,6 @@ extension NewRecipeViewController{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
-            
         case 0:
             return 60
         case 3:
@@ -319,9 +295,8 @@ extension NewRecipeViewController {
 extension NewRecipeViewController: NewIngredientCellDelegate {
     func didTapDeleteButton(cell: NewIngredientCell) {
         
-        if let indexPath = createRecipeView.mainTableView.indexPath(for: cell) {
-            deleteIngredient(at: indexPath)
-        }
+        let indexPath = createRecipeView.getIndexPathForCell(cell)
+        deleteIngredient(at: indexPath)
     }
 }
 
@@ -381,4 +356,10 @@ extension NewRecipeViewController: UITextFieldDelegate {
             break
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
+
