@@ -20,18 +20,18 @@ final class NewIngredientCell: UITableViewCell {
     var delegate: NewIngredientCellDelegate?
     
     // MARK: - Public UI Properties
-    private lazy var nameTextField: UITextField = {
+     lazy var nameTextField: UITextField = {
         var nameTF = UITextField()
         nameTF.placeholder = "Item name"
-        nameTF.delegate = self
+//        nameTF.delegate = self
         nameTF.autocorrectionType = .no
         return nameTF
     }()
     
-    private lazy var quantityTextField: UITextField = {
+    lazy var quantityTextField: UITextField = {
         var quantityTF = UITextField()
         quantityTF.placeholder = "Quantity"
-        quantityTF.delegate = self
+//        quantityTF.delegate = self
         quantityTF.autocorrectionType = .no
         return quantityTF
     }()
@@ -160,6 +160,6 @@ final class NewIngredientCell: UITableViewCell {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension NewIngredientCell: UITextFieldDelegate {
-}
+//// MARK: - UITextFieldDelegate
+//extension NewIngredientCell: UITextFieldDelegate {
+//}

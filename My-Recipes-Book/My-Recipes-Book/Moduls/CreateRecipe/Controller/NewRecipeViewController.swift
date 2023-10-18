@@ -27,14 +27,7 @@ final class NewRecipeViewController: UIViewController {
         createRecipeView.transferDelegates(dataSource: self, delegate: self)
         addObservers()
     }
-    
-//    // MARK: - Override methods
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        view.endEditing(true)
-//
-//    }
-    
+
     // MARK: - Private Methods
     private func addIngredient() {
         // cоздаем пустой экзепляр NewIngredient
@@ -54,6 +47,10 @@ final class NewRecipeViewController: UIViewController {
     }
     
     private func deleteIngredient(at indexPath: IndexPath) {
+        
+        // завершаем редактирование текстовых полей перед удалением чтобы не было fatal error
+        createRecipeView.endEditing(true)
+        
         // удаляем ингредиент из массива
         ingredientData.remove(at: indexPath.row)
         
@@ -61,6 +58,7 @@ final class NewRecipeViewController: UIViewController {
         createRecipeView.deleteRows(with: indexPath)
         
     }
+    
     
     private func resetScreen() {
         createRecipeView.resetScreen()
@@ -196,9 +194,16 @@ extension NewRecipeViewController: UITableViewDataSource {
             }
             
             let value = ingredientData[indexPath.row]
+            
             cell.configure(with: value)
+            cell.tag = indexPath.row
+            cell.nameTextField.tag = 100
+            cell.quantityTextField.tag = 200
+            cell.nameTextField.delegate = self
+            cell.quantityTextField.delegate = self
             // устанавливаем viewController в качестве делегата
             cell.delegate = self
+            cell.selectionStyle = .none
             return cell
             
         default:
@@ -333,5 +338,38 @@ extension NewRecipeViewController: RecipeImageCellDelegate {
 extension NewRecipeViewController: CreateRecipeFooterViewDelegate {
     func addNewIngredient() {
         addIngredient()
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension NewRecipeViewController: UITextFieldDelegate {
+    
+    // метод для нахождения родительского ячейку для текстового поля
+    func getParentCell(for textField: UITextField) -> NewIngredientCell? {
+        var view = textField.superview
+        while view != nil {
+            if let cell = view as? NewIngredientCell {
+                return cell
+            }
+            view = view?.superview
+        }
+        return nil
+    }
+    
+    // обновляем свойства в модели данных в массиве когда пользователь закончил редактирования textField
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let cell = getParentCell(for: textField) else { return }
+        
+        let cellIndex = cell.tag
+        
+        switch textField.tag {
+        case 100:
+            ingredientData[cellIndex].name = textField.text ?? ""
+        case 200:
+            ingredientData[cellIndex].quantity = textField.text ?? ""
+        default:
+            break
+        }
     }
 }

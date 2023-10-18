@@ -49,10 +49,10 @@ final class CreateRecipeFooterView: UITableViewHeaderFooterView {
         }
         
         button.addTarget(
-                   self,
-                   action: #selector(addIngredientButtonDidTapped),
-                   for: .touchUpInside
-               )
+            self,
+            action: #selector(addIngredientButtonDidTapped),
+            for: .touchUpInside
+        )
         
         return button
     }()
