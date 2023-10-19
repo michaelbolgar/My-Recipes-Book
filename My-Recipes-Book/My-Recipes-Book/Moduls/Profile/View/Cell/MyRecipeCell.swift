@@ -84,8 +84,9 @@ class MyRecipeCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(with image: UIImage, recipeName: String, ingrCount: Int, cookTime: String) {
-        dishImageView.image = image
+    func configure(with image: Data?, recipeName: String, ingrCount: Int, cookTime: String) {
+        let defaultImage = UIImage(named: "defaultImageCell")
+        dishImageView.image = UIImage(data: image ?? Data()) ?? defaultImage
         recipeNameLabel.text = recipeName
         countOfIngredientsLabel.text = "\(ingrCount) Ingredients"
         cookTimeLabel.text = cookTime
@@ -113,7 +114,7 @@ class MyRecipeCell: UITableViewCell {
     private func setLayouts() {
         dishImageView.snp.makeConstraints { make in
             make.edges.equalTo(self).inset(UIEdgeInsets(
-                top: 12,
+                top: 0,
                 left: 15,
                 bottom: 24,
                 right: 15)

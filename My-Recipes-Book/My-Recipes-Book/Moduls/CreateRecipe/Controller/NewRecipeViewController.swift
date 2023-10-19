@@ -39,6 +39,7 @@ final class NewRecipeViewController: UIViewController {
         
         let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
         createRecipeView.insertRows(with: indexPath)
+        
         createRecipeView.scrollToRow(with: indexPath)
     }
     
@@ -200,18 +201,22 @@ extension NewRecipeViewController: UITableViewDataSource {
             }
             cell.actionButton = { [weak self] in
                 self?.createRecipeView.endEditing(true)
-                if let text = self?.createRecipeView.getTextFromNameRecipeCell(), text != "" {
+                if let text = self?.createRecipeView.getTextFromNameRecipeCell(), !text.isEmpty {
                     let newRecipe = NewRecipe(
                         image: self?.currentImage,
-                        name: self?.currentDishName ?? "",
+                        name: self?.createRecipeView.getTextFromNameRecipeCell() ?? "",
                         serves: self?.currentServes ?? 0,
                         cookTime: self?.currentCookTime ?? "",
                         ingrediets: self?.extractIngredients() ?? [NewIngredient(name: "", quantity: "")]
                     )
                     
-                    self?.showAlert()
-                    print(newRecipe)
-                    self?.resetScreen()
+                    if let tabBarVC = self?.tabBarController as? CustomTabBarController,
+                       let navController = tabBarVC.viewControllers?[4] as? UINavigationController,
+                       let profileVC = navController.topViewController as? ProfileViewController {
+                        profileVC.addNewRecipe(newRecipe)
+                        self?.showAlert()
+                        self?.resetScreen()
+                    }
                 }
             }
             return cell

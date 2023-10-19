@@ -17,10 +17,17 @@ final class DetailsViewController: UIViewController {
     private var recipeURLbyID: String { "https://api.spoonacular.com/recipes/\(recipeID ?? 715449)/information?apiKey=5ae93d38d7cf4f94912465f822fa82eb&includeNutrition=false"
     }
     
+    private var myRecipe: NewRecipe?
+    
     //MARK: - Init
     convenience init(id: Int){
         self.init()
         recipeID = id
+    }
+    
+    convenience init(myRecipe: NewRecipe) {
+        self.init()
+        self.myRecipe = myRecipe
     }
     
     // MARK: - Life Cycle Methods
@@ -28,16 +35,31 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setupConstraints()
-        fetchRecipe(with: recipeURLbyID)
+        
+        if myRecipe == nil {
+            fetchRecipe(with: recipeURLbyID)
+        } else {
+            setupNewRecipe()
+        }
+      
         
     }
     
     // MARK: - Private Methods
     
+    private func setupNewRecipe() {
+        contentView.myRecipe = myRecipe
+    }
+    
     private func setViews() {
         view.addSubview(contentView)
         //set back button image
-        let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "Arrow-Left"), style: .done, target: self, action: #selector(backButtonAction))
+        let backBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "Arrow-Left"),
+            style: .done,
+            target: self,
+            action: #selector(backButtonAction)
+        )
         backBarButtonItem.tintColor = UIColor.black
         navigationItem.leftBarButtonItem = backBarButtonItem
     }

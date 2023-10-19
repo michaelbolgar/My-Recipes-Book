@@ -111,6 +111,12 @@ final class IngredientCell: UITableViewCell{
         }
     }
     
+    func configureWithNewRecipe(with ingredient: NewIngredient) {
+        ingredientNameLabel.text = ingredient.name
+        weightLabel.text = ingredient.quantity
+        ingredientImageView.image = UIImage(named: "defaultIngredientImage")
+    }
+    
     // MARK: - Private Actions
     @objc private func checkBoxDidTapped() {
         isButtonPressed.toggle()

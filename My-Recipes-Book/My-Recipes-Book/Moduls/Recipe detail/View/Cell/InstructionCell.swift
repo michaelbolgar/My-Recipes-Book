@@ -46,6 +46,11 @@ final class InstructionCell: UITableViewCell {
         instructionLabel.text = step?.step
     }
     
+    func configureWithNewRecipe() {
+        numberLabel.text = ""
+        instructionLabel.text = "No instructions"
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         numberLabel.snp.makeConstraints { make in

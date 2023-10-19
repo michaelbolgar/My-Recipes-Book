@@ -5,15 +5,17 @@
 //  Created by Михаил Болгар on 02.09.2023.
 //
 
-import Foundation
 import UIKit
 
 final class ProfileViewController: UIViewController {
-    //MARK: - Outlets
+    
+    //MARK: - Private UI Properties
     private let profileView = ProfileView()
     
-  //MARK: - View life cycle
+    // MARK: - Public Properties
+    var myRecipes: [NewRecipe] = []
     
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
@@ -22,9 +24,23 @@ final class ProfileViewController: UIViewController {
         profileView.transferDelegates(dataSource: self, delegate: self)
     }
     
-    //MARK: - Methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        profileView.reloadTableView()
+    }
     
-    fileprivate func setViews() {
+    // MARK: - Private Actions
+    @objc private func rightBarButtonDidTapped() {
+        
+    }
+    
+    // MARK: - Public Methods
+    func addNewRecipe(_ recipe: NewRecipe) {
+        myRecipes.append(recipe)
+    }
+    
+    //MARK: - Private Methods
+    private func setViews() {
         view.addSubview(profileView)
     }
     
@@ -38,16 +54,25 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //        navigationController?.navigationBar.prefersLargeTitles = true
         title = "My profile"
+        
+        let rightBarButton = UIBarButtonItem(
+            image: UIImage(systemName: "ellipsis"),
+            style: .done,
+            target: self,
+            action: #selector(rightBarButtonDidTapped)
+        )
+        
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.rightBarButtonItem = rightBarButton
     }
-    
 }
 
 // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        myRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,20 +86,18 @@ extension ProfileViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let image = UIImage(named: "testDishImage")!
+        let recipe = myRecipes[indexPath.row]
         
         cell.configure(
-            with: image,
-            recipeName: "How to make yam & vegetable sauce at home",
-            ingrCount: 9,
-            cookTime: "25 min"
+            with: recipe.image,
+            recipeName: recipe.name,
+            ingrCount: recipe.ingrediets.count,
+            cookTime: recipe.cookTime
         )
         cell.selectionStyle = .none
         
         return cell
     }
-    
-    
 }
 
 // MARK: - UITableViewDelegate
@@ -82,4 +105,14 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 225
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let recipe = myRecipes[indexPath.row]
+
+        let detailsVC = DetailsViewController(myRecipe: recipe)
+        navigationController?.pushViewController(detailsVC, animated: true)
+
+    }
+
 }

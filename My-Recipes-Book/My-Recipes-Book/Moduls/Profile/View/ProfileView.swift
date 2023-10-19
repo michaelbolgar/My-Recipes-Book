@@ -17,6 +17,14 @@ final class ProfileView: UIView {
         return image
     }()
     
+    private lazy var recipeLabel: UILabel = {
+        var label = UILabel()
+        label.text = "My recipes"
+        label.font = UIFont.poppins(weight: .semibold, size: 24)
+        label.textColor = Palette.neutral100
+        return label
+    }()
+    
     private lazy var mainTableView: UITableView = {
         let tableView = UITableView(frame: self.bounds, style: .grouped)
         tableView.backgroundColor = .systemBackground
@@ -32,6 +40,7 @@ final class ProfileView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(profileImageView)
+        addSubview(recipeLabel)
         addSubview(mainTableView)
         setupConstraints()
     }
@@ -46,6 +55,10 @@ final class ProfileView: UIView {
         mainTableView.delegate = delegate
     }
     
+    func reloadTableView() {
+        mainTableView.reloadData()
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         profileImageView.snp.makeConstraints { make in
@@ -55,8 +68,13 @@ final class ProfileView: UIView {
             make.height.equalTo(80)
         }
         
+        recipeLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(48)
+            make.left.equalToSuperview().offset(36)
+        }
+        
         mainTableView.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(50)
+            make.top.equalTo(recipeLabel.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
