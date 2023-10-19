@@ -22,13 +22,7 @@ final class ProfileViewController: UIViewController {
         setConstraints()
         setupNavigationBar()
         profileView.transferDelegates(dataSource: self, delegate: self)
-        profileView.didTapChangeButton = { [weak self] in
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary
-            self?.present(imagePicker, animated: true)
-            
-        }
+        setupChangeImageButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +40,16 @@ final class ProfileViewController: UIViewController {
         myRecipes.append(recipe)
     }
     
-    //MARK: - Private Methods
+    // MARK: - Private Methods
+    private func setupChangeImageButton() {
+        profileView.didTapChangeButton = { [weak self] in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            self?.present(imagePicker, animated: true)
+        }
+    }
+    
     private func setViews() {
         view.addSubview(profileView)
     }
@@ -116,23 +119,20 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let recipe = myRecipes[indexPath.row]
-
+        
         let detailsVC = DetailsViewController(myRecipe: recipe)
         navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            // Обработка выбранного изображения
-            if let selectedImage = info[.originalImage] as? UIImage {
-                // Делаем что-то с изображением, например, устанавливаем его в profileImageView
-                profileView.setiProfileImage(selectedImage)
-            }
-            picker.dismiss(animated: true)
+        if let selectedImage = info[.originalImage] as? UIImage {
+            profileView.setiProfileImage(selectedImage)
         }
+        picker.dismiss(animated: true)
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)

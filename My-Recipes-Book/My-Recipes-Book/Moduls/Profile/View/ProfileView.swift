@@ -21,7 +21,7 @@ final class ProfileView: UIView {
         var image = UIImageView()
         image.image = UIImage(named: "profileImage")
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 40
+        image.layer.cornerRadius = 42.5
         image.clipsToBounds = true
         return image
     }()
@@ -34,7 +34,7 @@ final class ProfileView: UIView {
         edit.tintColor = .black
         edit.clipsToBounds = true
         edit.layer.borderColor = UIColor.white.cgColor
-        edit.layer.borderWidth = 2
+        edit.layer.borderWidth = 3
         edit.contentEdgeInsets = UIEdgeInsets(
             top: 5,
             left: 5,
