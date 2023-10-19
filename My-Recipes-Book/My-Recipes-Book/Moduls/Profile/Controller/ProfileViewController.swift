@@ -11,6 +11,7 @@ final class ProfileViewController: UIViewController {
     
     //MARK: - Private UI Properties
     private let profileView = ProfileView()
+    private let imagePicker = UIImagePickerController()
     
     // MARK: - Public Properties
     var myRecipes: [NewRecipe] = []
@@ -31,8 +32,17 @@ final class ProfileViewController: UIViewController {
     }
     
     // MARK: - Private Actions
-    @objc private func rightBarButtonDidTapped() {
-        
+    @objc private func rightBarButtonDidTapped(sender: UIBarButtonItem) {
+     let popoverContent = CustomPopoverViewController()
+        popoverContent.modalPresentationStyle = .popover
+        if let popover = popoverContent.popoverPresentationController {
+            popover.barButtonItem = sender
+            popover.permittedArrowDirections = []
+            popover.delegate = self
+            
+            popoverContent.preferredContentSize = CGSize(width: 200, height: 80)
+            present(popoverContent, animated: true)
+        }
     }
     
     // MARK: - Public Methods
@@ -43,10 +53,9 @@ final class ProfileViewController: UIViewController {
     // MARK: - Private Methods
     private func setupChangeImageButton() {
         profileView.didTapChangeButton = { [weak self] in
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary
-            self?.present(imagePicker, animated: true)
+            self?.imagePicker.delegate = self
+            self?.imagePicker.sourceType = .photoLibrary
+            self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
         }
     }
     
@@ -77,6 +86,8 @@ final class ProfileViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         navigationItem.rightBarButtonItem = rightBarButton
     }
+    
+
 }
 
 // MARK: - UITableViewDataSource
@@ -136,5 +147,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+extension ProfileViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
     }
 }

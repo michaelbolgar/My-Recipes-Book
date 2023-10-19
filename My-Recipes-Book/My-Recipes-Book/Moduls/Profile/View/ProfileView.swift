@@ -48,6 +48,13 @@ final class ProfileView: UIView {
         )
         return edit
     }()
+    
+    private lazy var userNameLabel: UILabel = {
+        var user = UILabel()
+        user.text = "Kirill Taraturin"
+        user.font = UIFont.poppins(weight: .bold, size: 20)
+        return user
+    }()
 
     private lazy var recipeLabel: UILabel = {
         var label = UILabel()
@@ -74,6 +81,7 @@ final class ProfileView: UIView {
         addSubview(imageView)
         imageView.addSubview(profileImageView)
         imageView.addSubview(editButton)
+        addSubview(userNameLabel)
         addSubview(recipeLabel)
         addSubview(mainTableView)
         setupConstraints()
@@ -102,6 +110,10 @@ final class ProfileView: UIView {
         profileImageView.image = image
     }
     
+    func setupUserNameLabel(_ name: String) {
+        userNameLabel.text = name
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         imageView.snp.makeConstraints { make in
@@ -123,6 +135,11 @@ final class ProfileView: UIView {
             make.right.equalToSuperview().offset(-2)
             make.height.equalTo(25)
             make.width.equalTo(25)
+        }
+        
+        userNameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(profileImageView.snp.centerY)
+            make.left.equalTo(profileImageView.snp.right).offset(40)
         }
         
         recipeLabel.snp.makeConstraints { make in
