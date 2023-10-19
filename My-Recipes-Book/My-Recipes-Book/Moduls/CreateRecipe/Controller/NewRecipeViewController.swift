@@ -29,6 +29,7 @@ final class NewRecipeViewController: UIViewController {
         
         // код для удаления бага дергания ячеек после удаления
         //        createRecipeView.mainTableView.rowHeight = UITableView.automaticDimension
+        
     }
     
     // MARK: - Private Methods

@@ -9,14 +9,46 @@ import UIKit
 
 final class ProfileView: UIView {
     
+    // MARK: - Closurse
+    var didTapChangeButton: (() -> Void)?
+    
     // MARK: - Private UI Properties
+    private lazy var imageView: UIView = {
+        var imageView = UIView()
+        return imageView
+    }()
     private lazy var profileImageView: UIImageView = {
         var image = UIImageView()
         image.image = UIImage(named: "profileImage")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 40
+        image.clipsToBounds = true
         return image
     }()
     
+    private lazy var editButton: UIButton = {
+        var edit = UIButton(type: .system)
+        edit.setImage(UIImage(named: "Edit1"), for: .normal)
+        edit.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9294117647, blue: 0.9450980392, alpha: 1)
+        edit.layer.cornerRadius = 12.5
+        edit.tintColor = .black
+        edit.clipsToBounds = true
+        edit.layer.borderColor = UIColor.white.cgColor
+        edit.layer.borderWidth = 2
+        edit.contentEdgeInsets = UIEdgeInsets(
+            top: 5,
+            left: 5,
+            bottom: 5,
+            right: 5
+        )
+        edit.addTarget(
+            self,
+            action: #selector(changeButtonDidTapped),
+            for: .touchUpInside
+        )
+        return edit
+    }()
+
     private lazy var recipeLabel: UILabel = {
         var label = UILabel()
         label.text = "My recipes"
@@ -30,16 +62,18 @@ final class ProfileView: UIView {
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-//        tableView.estimatedRowHeight = 40
+        //        tableView.estimatedRowHeight = 40
         tableView.register(MyRecipeCell.self, forCellReuseIdentifier: MyRecipeCell.cellID)
         return tableView
         
     }()
-
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(profileImageView)
+        addSubview(imageView)
+        imageView.addSubview(profileImageView)
+        imageView.addSubview(editButton)
         addSubview(recipeLabel)
         addSubview(mainTableView)
         setupConstraints()
@@ -47,6 +81,11 @@ final class ProfileView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Actions
+    @objc private func changeButtonDidTapped() {
+        didTapChangeButton?()
     }
     
     // MARK: - Public Methods
@@ -59,13 +98,31 @@ final class ProfileView: UIView {
         mainTableView.reloadData()
     }
     
+    func setiProfileImage(_ image: UIImage) {
+        profileImageView.image = image
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
-        profileImageView.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(16)
-            make.width.equalTo(80)
-            make.height.equalTo(80)
+            make.width.equalTo(85)
+            make.height.equalTo(85)
+        }
+        
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(0)
+            make.left.equalToSuperview().offset(0)
+            make.right.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(0)
+        }
+        
+        editButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-2)
+            make.right.equalToSuperview().offset(-2)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
         }
         
         recipeLabel.snp.makeConstraints { make in
@@ -81,3 +138,4 @@ final class ProfileView: UIView {
         }
     }
 }
+
