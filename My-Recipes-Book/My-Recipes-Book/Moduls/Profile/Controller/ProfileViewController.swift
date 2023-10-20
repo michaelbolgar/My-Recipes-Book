@@ -47,6 +47,7 @@ final class ProfileViewController: UIViewController {
             popover.delegate = self
             
             popoverContent.preferredContentSize = CGSize(width: 200, height: 80)
+            popoverContent.delegate = self
             present(popoverContent, animated: true)
         }
     }
@@ -182,5 +183,15 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension ProfileViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         .none
+    }
+}
+
+// MARK: - CustomPopoverDelegate
+extension ProfileViewController: CustomPopoverDelegate {
+    func didTapEditProfile() {
+        self.dismiss(animated: true) {
+            let editProfileVC = EditProfileViewController()
+            self.navigationController?.pushViewController(editProfileVC, animated: true)
+        }
     }
 }

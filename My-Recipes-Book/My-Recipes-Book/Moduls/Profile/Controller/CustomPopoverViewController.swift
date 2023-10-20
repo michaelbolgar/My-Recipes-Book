@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol CustomPopoverDelegate: AnyObject {
+    func didTapEditProfile()
+}
+
 final class CustomPopoverViewController: UIViewController {
     
     // MARK: - Private UI Properties
     private let customPopoverView = CustomPopoverView()
+    
+    var delegate: CustomPopoverDelegate?
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -22,8 +28,11 @@ final class CustomPopoverViewController: UIViewController {
     
     // MARK: - Setup Button Actions
     private func setupButtons() {
-        customPopoverView.buttonTouchDown = { sender in
+        customPopoverView.buttonTouchDown = { [weak self] sender in
             sender.backgroundColor = .systemGray4
+            if sender.tag == 0 {
+                self?.delegate?.didTapEditProfile()
+            }
             
         }
         customPopoverView.buttonTouchUp = { sender in
@@ -45,3 +54,5 @@ final class CustomPopoverViewController: UIViewController {
         }
     }
 }
+
+

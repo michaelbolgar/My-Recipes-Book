@@ -41,6 +41,7 @@
 		3C82C0B92AE071F400575FEF /* MyRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0B82AE071F400575FEF /* MyRecipeCell.swift */; };
 		3C82C0BB2AE1845A00575FEF /* CustomPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0BA2AE1845A00575FEF /* CustomPopoverViewController.swift */; };
 		3C82C0BD2AE2A12A00575FEF /* CustomPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0BC2AE2A12A00575FEF /* CustomPopoverView.swift */; };
+		3C82C0BF2AE2D76400575FEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0BE2AE2D76400575FEF /* EditProfileViewController.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 		3C82C0B82AE071F400575FEF /* MyRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipeCell.swift; sourceTree = "<group>"; };
 		3C82C0BA2AE1845A00575FEF /* CustomPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopoverViewController.swift; sourceTree = "<group>"; };
 		3C82C0BC2AE2A12A00575FEF /* CustomPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopoverView.swift; sourceTree = "<group>"; };
+		3C82C0BE2AE2D76400575FEF /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 			children = (
 				F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */,
 				3C82C0BA2AE1845A00575FEF /* CustomPopoverViewController.swift */,
+				3C82C0BE2AE2D76400575FEF /* EditProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
 				3C82C0BD2AE2A12A00575FEF /* CustomPopoverView.swift in Sources */,
 				3C82C08A2ADDB76A00575FEF /* CreateRecipeFooterView.swift in Sources */,
+				3C82C0BF2AE2D76400575FEF /* EditProfileViewController.swift in Sources */,
 				F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */,
 				F4D7B0822AAD895400028005 /* CreateRecipeView.swift in Sources */,
 				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,

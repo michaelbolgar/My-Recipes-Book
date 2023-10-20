@@ -29,16 +29,21 @@ final class CustomPopoverView: UIView {
     private lazy var editProfileButton: UIButton = {
         let changeProfileButton = createCustomButton(
             with: "Edit Profile",
-            image: ImageNames.edit.rawValue
+            image: ImageNames.edit.rawValue,
+            titleColor: .black
         )
+        changeProfileButton.tag = 0
         return changeProfileButton
     }()
     
     private lazy var logOutButton: UIButton = {
         var logButton = createCustomButton(
             with: "Log Out",
-            image: ImageNames.logOut.rawValue
+            image: ImageNames.logOut.rawValue,
+            titleColor: .systemRed
         )
+        logButton.tag = 1
+        logButton.tintColor = .red
         return logButton
     }()
     
@@ -96,14 +101,14 @@ final class CustomPopoverView: UIView {
 
 // MARK: - Create UI Methods
 extension CustomPopoverView {
-    private func createCustomButton(with title: String, image: String) -> UIButton {
+    private func createCustomButton(with title: String, image: String, titleColor: UIColor) -> UIButton {
         let button = UIButton(type: .custom)
-        configureButton(button, with: title, image: image)
+        configureButton(button, with: title, image: image, titleColor: titleColor)
         return button
     }
     
-    private func configureButton(_ button: UIButton, with title: String, image: String) {
-        let label = createLabel(with: title)
+    private func configureButton(_ button: UIButton, with title: String, image: String, titleColor: UIColor) {
+        let label = createLabel(with: title, and: titleColor)
         let imageView = createImageView(with: image)
         
         button.addSubview(label)
@@ -123,10 +128,10 @@ extension CustomPopoverView {
         )
     }
     
-    private func createLabel(with title: String) -> UILabel {
+    private func createLabel(with title: String, and titleColor: UIColor) -> UILabel {
         let label = UILabel()
         label.text = title
-        label.textColor = .black
+        label.textColor = titleColor
         label.textAlignment = .left
         label.font = UIFont.poppins(weight: .regular, size: 15)
         return label
@@ -136,7 +141,6 @@ extension CustomPopoverView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: image)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .black
         return imageView
     }
     
