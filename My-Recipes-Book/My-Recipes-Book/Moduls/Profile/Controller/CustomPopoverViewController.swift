@@ -26,7 +26,6 @@ final class CustomPopoverViewController: UIViewController {
             sender.backgroundColor = .systemGray4
             
         }
-        
         customPopoverView.buttonTouchUp = { sender in
             sender.backgroundColor = .white
         }
