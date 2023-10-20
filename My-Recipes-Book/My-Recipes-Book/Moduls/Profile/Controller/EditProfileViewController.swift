@@ -15,6 +15,7 @@ final class EditProfileViewController: UIViewController {
         setViews()
         setupConstraints()
         view.backgroundColor = .white
+        title = "Edit Profile"
     }
     
     // MARK: - Private Methods
