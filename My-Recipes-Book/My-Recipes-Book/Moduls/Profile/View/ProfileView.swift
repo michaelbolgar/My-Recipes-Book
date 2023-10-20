@@ -20,7 +20,7 @@ final class ProfileView: UIView {
     
     private lazy var profileImageView: UIImageView = {
         var image = UIImageView()
-        image.image = UIImage(named: "profileImage")
+        image.image = UIImage(named: "user")
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 42.5
         image.clipsToBounds = true
