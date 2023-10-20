@@ -9,9 +9,12 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    //MARK: - Private UI Properties
+    // MARK: - Private UI Properties
     private let profileView = ProfileView()
     private let imagePicker = UIImagePickerController()
+    
+    // MARK: - Private Properties
+    private let rowHeight: CGFloat = 225
     
     // MARK: - Public Properties
     var myRecipes: [NewRecipe] = []
@@ -29,21 +32,14 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if myRecipes.isEmpty {
-            isMyRecipeEmpty = true
-        } else {
-            isMyRecipeEmpty = false
-        }
+        isMyRecipeEmpty = myRecipes.isEmpty
         profileView.reloadTableView()
-        
-    
-     
     }
     
     // MARK: - Private Actions
-    @objc private func rightBarButtonDidTapped(sender: UIBarButtonItem) {
-     let popoverContent = CustomPopoverViewController()
+    // This method is triggered when the options button is tapped
+    @objc private func optionsButtonDidTapped(sender: UIBarButtonItem) {
+        let popoverContent = CustomPopoverViewController()
         popoverContent.modalPresentationStyle = .popover
         if let popover = popoverContent.popoverPresentationController {
             popover.barButtonItem = sender
@@ -59,15 +55,26 @@ final class ProfileViewController: UIViewController {
     func addNewRecipe(_ recipe: NewRecipe) {
         myRecipes.append(recipe)
         isMyRecipeEmpty = false
-     
     }
     
-    // MARK: - Private Methods
+    // MARK: - Setup Methods
+    // This method is called when an image is selected
     private func setupChangeImageButton() {
+        // добавлена возможность выбрать источник данные, галерея или камера телефона
         profileView.didTapChangeButton = { [weak self] in
-            self?.imagePicker.delegate = self
-            self?.imagePicker.sourceType = .photoLibrary
-            self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Camera", style: .default) { _ in
+                self?.imagePicker.sourceType = .camera
+                self?.imagePicker.delegate = self
+                self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
+            })
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { _ in
+                self?.imagePicker.sourceType = .photoLibrary
+                self?.imagePicker.delegate = self
+                self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self?.present(alert, animated: true)
         }
     }
     
@@ -85,32 +92,24 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        //        navigationController?.navigationBar.prefersLargeTitles = true
         title = "My profile"
         
-        let rightBarButton = UIBarButtonItem(
+        let optionsButton = UIBarButtonItem(
             image: UIImage(systemName: "ellipsis"),
             style: .done,
             target: self,
-            action: #selector(rightBarButtonDidTapped)
+            action: #selector(optionsButtonDidTapped)
         )
         
         navigationController?.navigationBar.tintColor = .black
-        navigationItem.rightBarButtonItem = rightBarButton
+        navigationItem.rightBarButtonItem = optionsButton
     }
-    
-
 }
 
 // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isMyRecipeEmpty {
-            return 1
-        } else {
-            return myRecipes.count
-        }
-
+        isMyRecipeEmpty ? 1 : myRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,7 +125,6 @@ extension ProfileViewController: UITableViewDataSource {
         
         if !isMyRecipeEmpty {
             let recipe = myRecipes[indexPath.row]
-            
             cell.configure(
                 with: recipe.image,
                 recipeName: recipe.name,
@@ -136,7 +134,7 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             cell.configureWithoutRecipe()
         }
-      
+        
         cell.selectionStyle = .none
         
         return cell
@@ -146,7 +144,7 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 225
+        rowHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -158,10 +156,10 @@ extension ProfileViewController: UITableViewDelegate {
             navigationController?.pushViewController(detailsVC, animated: true)
         } else {
             let createVC = NewRecipeViewController()
-//            navigationController?.pushViewController(createVC, animated: true)
-//            createVC.modalPresentationStyle = .fullScreen
+            //            navigationController?.pushViewController(createVC, animated: true)
+            //            createVC.modalPresentationStyle = .fullScreen
             present(createVC, animated: true)
-//            self.tabBarController?.selectedIndex = 2
+            //            self.tabBarController?.selectedIndex = 2
         }
     }
 }
@@ -170,7 +168,7 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
-            profileView.setiProfileImage(selectedImage)
+            profileView.setProfileImage(selectedImage)
         }
         picker.dismiss(animated: true)
     }

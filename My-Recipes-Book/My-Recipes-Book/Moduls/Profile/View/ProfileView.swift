@@ -13,10 +13,11 @@ final class ProfileView: UIView {
     var didTapChangeButton: (() -> Void)?
     
     // MARK: - Private UI Properties
-    private lazy var imageView: UIView = {
+    private lazy var mainImageView: UIView = {
         var imageView = UIView()
         return imageView
     }()
+    
     private lazy var profileImageView: UIImageView = {
         var image = UIImageView()
         image.image = UIImage(named: "profileImage")
@@ -55,7 +56,7 @@ final class ProfileView: UIView {
         user.font = UIFont.poppins(weight: .bold, size: 20)
         return user
     }()
-
+    
     private lazy var recipeLabel: UILabel = {
         var label = UILabel()
         label.text = "My recipes"
@@ -78,12 +79,7 @@ final class ProfileView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
-        imageView.addSubview(profileImageView)
-        imageView.addSubview(editButton)
-        addSubview(userNameLabel)
-        addSubview(recipeLabel)
-        addSubview(mainTableView)
+        setupView()
         setupConstraints()
     }
     
@@ -106,7 +102,7 @@ final class ProfileView: UIView {
         mainTableView.reloadData()
     }
     
-    func setiProfileImage(_ image: UIImage) {
+    func setProfileImage(_ image: UIImage) {
         profileImageView.image = image
     }
     
@@ -115,8 +111,17 @@ final class ProfileView: UIView {
     }
     
     // MARK: - Private Methods
+    private func setupView() {
+        addSubview(mainImageView)
+        mainImageView.addSubview(profileImageView)
+        mainImageView.addSubview(editButton)
+        addSubview(userNameLabel)
+        addSubview(recipeLabel)
+        addSubview(mainTableView)
+    }
+    
     private func setupConstraints() {
-        imageView.snp.makeConstraints { make in
+        mainImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(16)
             make.width.equalTo(85)
@@ -152,15 +157,6 @@ final class ProfileView: UIView {
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
-        }
-    }
-}
-
-extension UIImage {
-    func resized(to size: CGSize) -> UIImage? {
-        let renderer = UIGraphicsImageRenderer(size: size)
-        return renderer.image { (context) in
-            self.draw(in: CGRect(origin: .zero, size: size))
         }
     }
 }

@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum ImageNames: String {
+    case edit = "Edit1"
+    case logOut = "LogOut"
+}
+
 final class CustomPopoverView: UIView {
     
     // MARK: - Closures
@@ -24,31 +29,15 @@ final class CustomPopoverView: UIView {
     private lazy var editProfileButton: UIButton = {
         let changeProfileButton = createCustomButton(
             with: "Edit Profile",
-            image: "Edit1"
-        )
-        changeProfileButton.addTarget(
-            self,
-            action: #selector(touchDownButtonTapped),
-            for: .touchDown
-        )
-        changeProfileButton.addTarget(
-            self,
-            action: #selector(touchUpButtonTapped),
-            for: .touchUpInside
+            image: ImageNames.edit.rawValue
         )
         return changeProfileButton
     }()
     
     private lazy var logOutButton: UIButton = {
-        var logButton = createCustomButton(with: "Log Out", image: "LogOut")
-        logButton.addTarget(
-            self,
-            action: #selector(touchDownButtonTapped),
-            for: .touchDown
-        )
-        logButton.addTarget(
-            self, action: #selector(touchUpButtonTapped),
-            for: .touchUpInside
+        var logButton = createCustomButton(
+            with: "Log Out",
+            image: ImageNames.logOut.rawValue
         )
         return logButton
     }()
@@ -63,8 +52,6 @@ final class CustomPopoverView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Public Methods
     
     // MARK: - Private Actions
     @objc private func touchDownButtonTapped(_ sender: UIButton) {
@@ -105,8 +92,10 @@ final class CustomPopoverView: UIView {
             make.bottom.equalToSuperview()
         }
     }
-    
-    // MARK: - Create UI Methods
+}
+
+// MARK: - Create UI Methods
+extension CustomPopoverView {
     private func createCustomButton(with title: String, image: String) -> UIButton {
         let button = UIButton(type: .custom)
         configureButton(button, with: title, image: image)
@@ -121,6 +110,17 @@ final class CustomPopoverView: UIView {
         button.addSubview(imageView)
         
         setupConstraintsFor(label: label, imageView: imageView, in: button)
+        
+        button.addTarget(
+            self,
+            action: #selector(touchDownButtonTapped),
+            for: .touchDown
+        )
+        button.addTarget(
+            self,
+            action: #selector(touchUpButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     private func createLabel(with title: String) -> UILabel {

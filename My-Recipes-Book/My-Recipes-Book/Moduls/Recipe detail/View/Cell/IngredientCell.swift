@@ -36,7 +36,7 @@ final class IngredientCell: UITableViewCell{
     // MARK: - Public Properties for checkBox
     var isButtonPressed: Bool = false {
         didSet {
-            checkBoxButton.tintColor = isButtonPressed ? .red : .black
+            checkBoxButton.tintColor = isButtonPressed ? .systemGreen : .black
         }
     }
     
