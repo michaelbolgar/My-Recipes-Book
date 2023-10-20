@@ -15,6 +15,7 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Public Properties
     var myRecipes: [NewRecipe] = []
+    var isMyRecipeEmpty = false
     
     //MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -28,7 +29,16 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if myRecipes.isEmpty {
+            isMyRecipeEmpty = true
+        } else {
+            isMyRecipeEmpty = false
+        }
         profileView.reloadTableView()
+        
+    
+     
     }
     
     // MARK: - Private Actions
@@ -48,6 +58,8 @@ final class ProfileViewController: UIViewController {
     // MARK: - Public Methods
     func addNewRecipe(_ recipe: NewRecipe) {
         myRecipes.append(recipe)
+        isMyRecipeEmpty = false
+     
     }
     
     // MARK: - Private Methods
@@ -93,7 +105,12 @@ final class ProfileViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        myRecipes.count
+        if isMyRecipeEmpty {
+            return 1
+        } else {
+            return myRecipes.count
+        }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,14 +124,19 @@ extension ProfileViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let recipe = myRecipes[indexPath.row]
-        
-        cell.configure(
-            with: recipe.image,
-            recipeName: recipe.name,
-            ingrCount: recipe.ingrediets.count,
-            cookTime: recipe.cookTime
-        )
+        if !isMyRecipeEmpty {
+            let recipe = myRecipes[indexPath.row]
+            
+            cell.configure(
+                with: recipe.image,
+                recipeName: recipe.name,
+                ingrCount: recipe.ingrediets.count,
+                cookTime: recipe.cookTime
+            )
+        } else {
+            cell.configureWithoutRecipe()
+        }
+      
         cell.selectionStyle = .none
         
         return cell
@@ -129,10 +151,18 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let recipe = myRecipes[indexPath.row]
-        
-        let detailsVC = DetailsViewController(myRecipe: recipe)
-        navigationController?.pushViewController(detailsVC, animated: true)
+        if !isMyRecipeEmpty {
+            let recipe = myRecipes[indexPath.row]
+            
+            let detailsVC = DetailsViewController(myRecipe: recipe)
+            navigationController?.pushViewController(detailsVC, animated: true)
+        } else {
+            let createVC = NewRecipeViewController()
+//            navigationController?.pushViewController(createVC, animated: true)
+//            createVC.modalPresentationStyle = .fullScreen
+            present(createVC, animated: true)
+//            self.tabBarController?.selectedIndex = 2
+        }
     }
 }
 

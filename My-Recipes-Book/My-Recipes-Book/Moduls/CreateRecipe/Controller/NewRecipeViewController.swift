@@ -13,7 +13,7 @@ final class NewRecipeViewController: UIViewController {
     private var createRecipeView = CreateRecipeView()
     
     // MARK: - Private Properties
-    private var ingredientData: [NewIngredient] = [NewIngredient(name: "", quantity: "")]
+    private var ingredientData: [NewIngredient] = []
     private var currentImage: Data?
     private var currentDishName: String?
     private var currentServes: Int?
@@ -201,8 +201,10 @@ extension NewRecipeViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionButton = { [weak self] in
+                print("WORK 1")
                 self?.createRecipeView.endEditing(true)
                 if let text = self?.createRecipeView.getTextFromNameRecipeCell(), !text.isEmpty {
+                    print("WORK 2")
                     let newRecipe = NewRecipe(
                         image: self?.currentImage,
                         name: self?.createRecipeView.getTextFromNameRecipeCell() ?? "",
@@ -214,6 +216,9 @@ extension NewRecipeViewController: UITableViewDataSource {
                     if let tabBarVC = self?.tabBarController as? CustomTabBarController,
                        let navController = tabBarVC.viewControllers?[4] as? UINavigationController,
                        let profileVC = navController.topViewController as? ProfileViewController {
+                       print(tabBarVC)
+                        print(navController)
+                        print(profileVC)
                         profileVC.addNewRecipe(newRecipe)
                         self?.showAlert()
                         self?.resetScreen()

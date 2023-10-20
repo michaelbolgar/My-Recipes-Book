@@ -7,8 +7,9 @@
 
 import UIKit
 
-class CustomPopoverViewController: UIViewController {
+final class CustomPopoverViewController: UIViewController {
     
+    // MARK: - Private UI Properties
     private lazy var lineView: UIView = {
         var line = UIView()
         line.backgroundColor = .black
@@ -30,6 +31,7 @@ class CustomPopoverViewController: UIViewController {
         return logButton
     }()
 
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(lineView)
@@ -39,13 +41,13 @@ class CustomPopoverViewController: UIViewController {
         setupConstraints()
     }
     
+    // MARK: - Private Actions
     @objc private func buttonTouchDown(_ sender: UIButton) {
         if sender == logOutButton {
             logOutButton.backgroundColor = .systemGray4
         } else {
             editProfileButton.backgroundColor = .systemGray4
         }
-       
     }
     
     @objc private func buttonTouchUp(_ sender: UIButton) {
@@ -56,7 +58,7 @@ class CustomPopoverViewController: UIViewController {
         }
     }
     
-
+    // MARK: - Private Methods
     private func setupConstraints() {
         lineView.snp.makeConstraints { make in
             make.centerY.equalTo(view.snp.centerY)
@@ -111,6 +113,4 @@ class CustomPopoverViewController: UIViewController {
         
         return changeProfileButton
     }
-
-
 }

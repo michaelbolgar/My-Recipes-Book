@@ -12,7 +12,7 @@ class MyRecipeCell: UITableViewCell {
     // MARK: - Static Properties
     static let cellID = String(describing: MyRecipeCell.self)
     
-    // MARK: - UI element
+    // MARK: - Private UI properties
     private var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -63,12 +63,34 @@ class MyRecipeCell: UITableViewCell {
         return label
     }()
     
-    private var creatorNameLabel: UILabel = {
-        let label = UILabel()
-//        label.text = "George Filladelfia"
+    // MARK: - Default UI Properties
+    private lazy var defaultView: UIView = {
+        var view = UIView()
+        view.backgroundColor = .systemGray4
+        view.layer.cornerRadius = 10
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var defaultLabel: UILabel = {
+        var label = UILabel()
+        label.text = "No recipes have been added yet"
         label.textColor = .white
-        label.font = UIFont(name: "Poppins-Bold", size: 12)
+        label.font = UIFont.poppins(weight: .bold, size: 20)
+        label.isHidden = true
         return label
+    }()
+    
+    private lazy var defaultButton: UIButton = {
+        var button = UIButton(type: .system)
+        button.backgroundColor = Palette.redPrimary50
+        button.setTitle("Add your first recipe", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.poppins(weight: .regular, size: 18)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(defaultButtonDidTapped), for: .touchUpInside)
+        button.isHidden = true
+        return button
     }()
     
     // MARK: - Init
@@ -85,6 +107,11 @@ class MyRecipeCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(with image: Data?, recipeName: String, ingrCount: Int, cookTime: String) {
+        defaultView.isHidden = true
+        defaultLabel.isHidden = true
+        defaultButton.isHidden = true
+        dishImageView.isHidden = false
+        
         let defaultImage = UIImage(named: "defaultImageCell")
         dishImageView.image = UIImage(data: image ?? Data()) ?? defaultImage
         recipeNameLabel.text = recipeName
@@ -92,15 +119,35 @@ class MyRecipeCell: UITableViewCell {
         cookTimeLabel.text = cookTime
     }
     
+    func configureWithoutRecipe() {
+        dishImageView.isHidden = true
+//        recipeNameLabel.isHidden = true
+//        countOfIngredientsLabel.isHidden = true
+//        cookTimeLabel.isHidden = true
+//        pointScoreView.isHidden = true
+//        lineSeparatorLabel.isHidden = true
+        
+        defaultView.isHidden = false
+        defaultLabel.isHidden = false
+        defaultButton.isHidden = false
+    }
+    
+    @objc private func defaultButtonDidTapped() {
+        print("WORK")
+    }
+    
     // MARK: - Private Methods
     private func putToHierarchy() {
-        self.addSubview(dishImageView)
+        addSubview(dishImageView)
         dishImageView.addSubview(recipeNameLabel)
         dishImageView.addSubview(countOfIngredientsLabel)
         dishImageView.addSubview(lineSeparatorLabel)
         dishImageView.addSubview(cookTimeLabel)
         dishImageView.addSubview(pointScoreView)
-        dishImageView.addSubview(creatorNameLabel)
+
+        addSubview(defaultView)
+        defaultView.addSubview(defaultLabel)
+        defaultView.addSubview(defaultButton)
     }
     
     private func setPointScoreLabel(score: String) {
@@ -145,10 +192,27 @@ class MyRecipeCell: UITableViewCell {
             make.bottom.equalTo(countOfIngredientsLabel)
             make.size.equalTo(CGSize(width: 100, height: 18))
         }
-        creatorNameLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().offset(-16)
-            make.size.equalTo(CGSize(width: 150, height: 18))
+        
+        // default UI
+        defaultView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(
+                top: 0,
+                left: 15,
+                bottom: 24,
+                right: 15)
+            )
+        }
+        
+        defaultLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.centerX.equalToSuperview()
+        }
+        
+        defaultButton.snp.makeConstraints { make in
+            make.top.equalTo(defaultLabel.snp.bottom).offset(40)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(220)
+            make.height.equalTo(50)
         }
     }
 }

@@ -115,6 +115,7 @@ final class IngredientCell: UITableViewCell{
         ingredientNameLabel.text = ingredient.name
         weightLabel.text = ingredient.quantity
         ingredientImageView.image = UIImage(named: "defaultIngredientImage")
+        activityIndicator.stopAnimating()
     }
     
     // MARK: - Private Actions
