@@ -121,12 +121,6 @@ class MyRecipeCell: UITableViewCell {
     
     func configureWithoutRecipe() {
         dishImageView.isHidden = true
-//        recipeNameLabel.isHidden = true
-//        countOfIngredientsLabel.isHidden = true
-//        cookTimeLabel.isHidden = true
-//        pointScoreView.isHidden = true
-//        lineSeparatorLabel.isHidden = true
-        
         defaultView.isHidden = false
         defaultLabel.isHidden = false
         defaultButton.isHidden = false
