@@ -15,7 +15,7 @@
 		0A3D3B382A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B372A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift */; };
 		0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B3E2A9E725C00B72054 /* SectionType.swift */; };
 		0A3D3B442A9F672400B72054 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B432A9F672400B72054 /* HeaderCollectionReusableView.swift */; };
-		0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */; };
+		0A3D3B462A9F7BE800B72054 /* UIFont Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D3B452A9F7BE800B72054 /* UIFont Extension.swift */; };
 		0A3D3B492A9FCA0F00B72054 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */; };
 		0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */; };
 		0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726C322AA323FB00F08A3D /* RecipeManager.swift */; };
@@ -34,7 +34,7 @@
 		0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95B9A2AA664AB009326D2 /* NetworkRouting.swift */; };
 		0AA95BA32AA664E0009326D2 /* TrendRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95BA12AA664E0009326D2 /* TrendRecipeCell.swift */; };
 		0AA95BA42AA664E0009326D2 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95BA22AA664E0009326D2 /* TrendingView.swift */; };
-		0AA95BA62AA66549009326D2 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95BA52AA66549009326D2 /* UIImageViewExtension.swift */; };
+		0AA95BA62AA66549009326D2 /* UIImageView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA95BA52AA66549009326D2 /* UIImageView Extension.swift */; };
 		3C82C0872ADDB16400575FEF /* CreateRecipeSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0862ADDB16400575FEF /* CreateRecipeSectionHeader.swift */; };
 		3C82C08A2ADDB76A00575FEF /* CreateRecipeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0892ADDB76A00575FEF /* CreateRecipeFooterView.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
@@ -51,6 +51,18 @@
 		F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */; };
 		F43422642A9C802E0025C556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F43422632A9C802E0025C556 /* SnapKit */; };
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
+		F4BF74D72AE2A651003EBDDF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */; };
+		F4BF74D92AE2A686003EBDDF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D82AE2A686003EBDDF /* LoginView.swift */; };
+		F4BF74DB2AE2B5EE003EBDDF /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */; };
+		F4BF74DD2AE2B6B5003EBDDF /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */; };
+		F4BF74DF2AE461D2003EBDDF /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */; };
+		F4BF74E12AE468A8003EBDDF /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */; };
+		F4BF74E32AE479F8003EBDDF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4BF74E22AE479F8003EBDDF /* GoogleService-Info.plist */; };
+		F4BF74E62AE47A6B003EBDDF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E52AE47A6B003EBDDF /* FirebaseAnalytics */; };
+		F4BF74E82AE47A6B003EBDDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E72AE47A6B003EBDDF /* FirebaseAuth */; };
+		F4BF74EA2AE47A6B003EBDDF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E92AE47A6B003EBDDF /* FirebaseDatabase */; };
+		F4BF74EC2AE47A6B003EBDDF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74EB2AE47A6B003EBDDF /* FirebaseFirestore */; };
+		F4BF74EE2AE47A6B003EBDDF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74ED2AE47A6B003EBDDF /* FirebaseStorage */; };
 		F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */; };
 		F4D7B0712AAC7BFA00028005 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0702AAC7BFA00028005 /* PageViewController.swift */; };
 		F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0722AAC7C0000028005 /* CooksHelper.swift */; };
@@ -77,7 +89,7 @@
 		0A3D3B372A9E6C7900B72054 /* PopularCreatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCreatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A3D3B3E2A9E725C00B72054 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
 		0A3D3B432A9F672400B72054 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		0A3D3B452A9F7BE800B72054 /* UIFont Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont Extension.swift"; sourceTree = "<group>"; };
 		0A3D3B472A9F7D2B00B72054 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		0A3D3B482A9F7D3400B72054 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		0A726C322AA323FB00F08A3D /* RecipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
@@ -96,7 +108,7 @@
 		0AA95B9A2AA664AB009326D2 /* NetworkRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRouting.swift; sourceTree = "<group>"; };
 		0AA95BA12AA664E0009326D2 /* TrendRecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendRecipeCell.swift; sourceTree = "<group>"; };
 		0AA95BA22AA664E0009326D2 /* TrendingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
-		0AA95BA52AA66549009326D2 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		0AA95BA52AA66549009326D2 /* UIImageView Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView Extension.swift"; sourceTree = "<group>"; };
 		3C82C0862ADDB16400575FEF /* CreateRecipeSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeSectionHeader.swift; sourceTree = "<group>"; };
 		3C82C0892ADDB76A00575FEF /* CreateRecipeFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeFooterView.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +126,13 @@
 		F434225A2A9C2C700025C556 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F43422672A9C80B70025C556 /* My-Recipes-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Recipes-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F4BF74D82AE2A686003EBDDF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
+		F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
+		F4BF74E22AE479F8003EBDDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		F4D7B0702AAC7BFA00028005 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewController.swift; path = "My-Recipes-Book/Moduls/Onboarding/Controller/PageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F4D7B0722AAC7C0000028005 /* CooksHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CooksHelper.swift; path = "My-Recipes-Book/Moduls/Onboarding/Model/CooksHelper.swift"; sourceTree = SOURCE_ROOT; };
@@ -136,7 +155,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4BF74E62AE47A6B003EBDDF /* FirebaseAnalytics in Frameworks */,
+				F4BF74E82AE47A6B003EBDDF /* FirebaseAuth in Frameworks */,
+				F4BF74EA2AE47A6B003EBDDF /* FirebaseDatabase in Frameworks */,
+				F4BF74EC2AE47A6B003EBDDF /* FirebaseFirestore in Frameworks */,
 				F43422642A9C802E0025C556 /* SnapKit in Frameworks */,
+				F4BF74EE2AE47A6B003EBDDF /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +246,7 @@
 				F43422282A9C29950025C556 /* Assets.xcassets */,
 				F43422572A9C2BEA0025C556 /* Palette.swift */,
 				F434222D2A9C29950025C556 /* Info.plist */,
+				F4BF74E22AE479F8003EBDDF /* GoogleService-Info.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -343,6 +368,7 @@
 		F43422332A9C29C50025C556 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F4BF74D12AE2A5EC003EBDDF /* Login */,
 				F4D7B06D2AAC685900028005 /* CustomTabbar */,
 				F43422342A9C29CD0025C556 /* Onboarding */,
 				F434223C2A9C2A2F0025C556 /* Home */,
@@ -500,8 +526,10 @@
 			isa = PBXGroup;
 			children = (
 				F43422552A9C2B700025C556 /* UIColor Extension.swift */,
-				0A3D3B452A9F7BE800B72054 /* UIFont+Extension.swift */,
-				0AA95BA52AA66549009326D2 /* UIImageViewExtension.swift */,
+				0A3D3B452A9F7BE800B72054 /* UIFont Extension.swift */,
+				0AA95BA52AA66549009326D2 /* UIImageView Extension.swift */,
+				F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */,
+				F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -528,6 +556,41 @@
 			isa = PBXGroup;
 			children = (
 				F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F4BF74D12AE2A5EC003EBDDF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF74D32AE2A62F003EBDDF /* Model */,
+				F4BF74D52AE2A638003EBDDF /* Controller */,
+				F4BF74D42AE2A634003EBDDF /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F4BF74D32AE2A62F003EBDDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4BF74D42AE2A634003EBDDF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF74D82AE2A686003EBDDF /* LoginView.swift */,
+				F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4BF74D52AE2A638003EBDDF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */,
+				F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -607,6 +670,11 @@
 			name = "My-Recipes-Book";
 			packageProductDependencies = (
 				F43422632A9C802E0025C556 /* SnapKit */,
+				F4BF74E52AE47A6B003EBDDF /* FirebaseAnalytics */,
+				F4BF74E72AE47A6B003EBDDF /* FirebaseAuth */,
+				F4BF74E92AE47A6B003EBDDF /* FirebaseDatabase */,
+				F4BF74EB2AE47A6B003EBDDF /* FirebaseFirestore */,
+				F4BF74ED2AE47A6B003EBDDF /* FirebaseStorage */,
 			);
 			productName = "My-Recipes-Book";
 			productReference = F43422672A9C80B70025C556 /* My-Recipes-Book.app */;
@@ -638,6 +706,7 @@
 			mainGroup = F43422132A9C29930025C556;
 			packageReferences = (
 				F43422622A9C802E0025C556 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F43422132A9C29930025C556;
 			projectDirPath = "";
@@ -657,6 +726,7 @@
 				0A3D3B4A2A9FCA1100B72054 /* Poppins-SemiBold.ttf in Resources */,
 				F43422292A9C29950025C556 /* Assets.xcassets in Resources */,
 				F434225B2A9C2C700025C556 /* Poppins-Bold.ttf in Resources */,
+				F4BF74E32AE479F8003EBDDF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,9 +744,11 @@
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
 				F4D7B0782AAC829E00028005 /* SavedTableViewCell.swift in Sources */,
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
-				0A3D3B462A9F7BE800B72054 /* UIFont+Extension.swift in Sources */,
+				0A3D3B462A9F7BE800B72054 /* UIFont Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
+				F4BF74DF2AE461D2003EBDDF /* CreateAccountView.swift in Sources */,
 				3C82C08A2ADDB76A00575FEF /* CreateRecipeFooterView.swift in Sources */,
+				F4BF74DD2AE2B6B5003EBDDF /* UITextField Extension.swift in Sources */,
 				F4D7B0752AAC7C3B00028005 /* CookViewController.swift in Sources */,
 				F4D7B0822AAD895400028005 /* CreateRecipeView.swift in Sources */,
 				F4D7B06F2AAC688A00028005 /* CustomTabbarController.swift in Sources */,
@@ -687,9 +759,11 @@
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
 				F4D7B0912AAD9C7D00028005 /* AppSettingsManager.swift in Sources */,
 				F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */,
+				F4BF74DB2AE2B5EE003EBDDF /* CreateAccountVC.swift in Sources */,
 				F4D7B08C2AAD8A4E00028005 /* RecipeImageCell.swift in Sources */,
 				0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */,
-				0AA95BA62AA66549009326D2 /* UIImageViewExtension.swift in Sources */,
+				F4BF74D92AE2A686003EBDDF /* LoginView.swift in Sources */,
+				0AA95BA62AA66549009326D2 /* UIImageView Extension.swift in Sources */,
 				0A3D3B302A9E6BCE00B72054 /* TrendingCollectionViewCell.swift in Sources */,
 				0AA95B9C2AA664AB009326D2 /* NetworkManagment.swift in Sources */,
 				0A726C442AA324B500F08A3D /* InstructionCell.swift in Sources */,
@@ -708,8 +782,10 @@
 				F43422392A9C29FD0025C556 /* OnboardingViewController.swift in Sources */,
 				3C82C0872ADDB16400575FEF /* CreateRecipeSectionHeader.swift in Sources */,
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
+				F4BF74E12AE468A8003EBDDF /* UILabel Extension.swift in Sources */,
 				0AA95BA42AA664E0009326D2 /* TrendingView.swift in Sources */,
 				0AA95B9D2AA664AB009326D2 /* RecipeEndPoint.swift in Sources */,
+				F4BF74D72AE2A651003EBDDF /* LoginViewController.swift in Sources */,
 				0AA95B902AA66403009326D2 /* RecipeDataModelForCell.swift in Sources */,
 				0AA95B8D2AA649BC009326D2 /* CategoryType.swift in Sources */,
 				F4D7B0842AAD89A800028005 /* CreateButtonCell.swift in Sources */,
@@ -848,7 +924,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T22G8674NU;
+				DEVELOPMENT_TEAM = 87P7GYW9VY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "My-Recipes-Book/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -935,6 +1011,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -942,6 +1026,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F43422622A9C802E0025C556 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		F4BF74E52AE47A6B003EBDDF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F4BF74E72AE47A6B003EBDDF /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F4BF74E92AE47A6B003EBDDF /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		F4BF74EB2AE47A6B003EBDDF /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F4BF74ED2AE47A6B003EBDDF /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4BF74E42AE47A6B003EBDDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

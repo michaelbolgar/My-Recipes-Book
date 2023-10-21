@@ -1,11 +1,5 @@
-//
-//  SceneDelegate.swift
-//  My-Recipes-Book
-//
-//  Created by Михаил Болгар on 28.08.2023.
-//
-
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,21 +12,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let isOnboardingCompleted = AppSettingsManager.isOnboardingCompleted()
 
+//        if isOnboardingCompleted {
+//            let mainVC = createLoginViewController()
+//            window.rootViewController = mainVC
+//        } else {
+//            let onboardingVC = OnboardingViewController()
+//            window.rootViewController = onboardingVC
+//        }
+
         if isOnboardingCompleted {
-            let mainVC = CustomTabBarController()
-            window.rootViewController = mainVC
+            if let _ = Auth.auth().currentUser {
+                let tabbar = CustomTabBarController()
+                let navigationController = UINavigationController(rootViewController: tabbar)
+                navigationController.navigationBar.isHidden = true
+                navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationController.navigationBar.shadowImage = UIImage()
+                window.rootViewController = navigationController
+            } else {
+                let loginVC = LoginViewController()
+                let navigationController = UINavigationController(rootViewController: loginVC)
+                navigationController.navigationBar.isHidden = true
+                navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationController.navigationBar.shadowImage = UIImage()
+                window.rootViewController = navigationController
+            }
         } else {
             let onboardingVC = OnboardingViewController()
-            window.rootViewController = onboardingVC
+            let navigationController = UINavigationController(rootViewController: onboardingVC)
+            navigationController.navigationBar.isHidden = true
+            navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController.navigationBar.shadowImage = UIImage()
+            window.rootViewController = navigationController
         }
-        
+
+//        window.rootViewController = createLoginViewController()
+//        window.rootViewController = createAccountVC()
         self.window = window
         window.makeKeyAndVisible()
 
 //        let navigationController = UINavigationController(rootViewController: onboardingVC)
 //        window.rootViewController = PageViewController()
+    }
 
-        
+    func createLoginViewController() -> UINavigationController {
+        let loginVC = LoginViewController()
+        return UINavigationController(rootViewController: loginVC)
+    }
+
+    func createAccountVC() -> UINavigationController {
+        let createAccountVC = CreateAccountVC()
+        return UINavigationController(rootViewController: createAccountVC)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
