@@ -22,7 +22,7 @@ final class ProfileView: UIView {
         var image = UIImageView()
         image.image = UIImage(named: "user")
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 42.5
+//        image.layer.cornerRadius = image.layer.frame.height / 2
         image.clipsToBounds = true
         return image
     }()
@@ -81,11 +81,14 @@ final class ProfileView: UIView {
         super.init(frame: frame)
         setupView()
         setupConstraints()
+        profileImageView.layer.cornerRadius = profileImageView.layer.frame.height / 2
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+
     
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
@@ -109,6 +112,7 @@ final class ProfileView: UIView {
     func setupUserNameLabel(_ name: String) {
         userNameLabel.text = name
     }
+
     
     // MARK: - Private Methods
     private func setupView() {

@@ -43,6 +43,7 @@
 		3C82C0BD2AE2A12A00575FEF /* CustomPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0BC2AE2A12A00575FEF /* CustomPopoverView.swift */; };
 		3C82C0BF2AE2D76400575FEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0BE2AE2D76400575FEF /* EditProfileViewController.swift */; };
 		3C82C0E72AE7BB9600575FEF /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0E62AE7BB9600575FEF /* EditProfileView.swift */; };
+		3C82C0E92AE7BDD100575FEF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82C0E82AE7BDD100575FEF /* CustomTextField.swift */; };
 		F43422202A9C29930025C556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434221F2A9C29930025C556 /* AppDelegate.swift */; };
 		F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43422212A9C29930025C556 /* SceneDelegate.swift */; };
 		F43422292A9C29950025C556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43422282A9C29950025C556 /* Assets.xcassets */; };
@@ -111,6 +112,7 @@
 		3C82C0BC2AE2A12A00575FEF /* CustomPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopoverView.swift; sourceTree = "<group>"; };
 		3C82C0BE2AE2D76400575FEF /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		3C82C0E62AE7BB9600575FEF /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		3C82C0E82AE7BDD100575FEF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F434221F2A9C29930025C556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F43422212A9C29930025C556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F43422282A9C29950025C556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 			children = (
 				3C82C0B42AE06CB900575FEF /* View */,
 				F45B87992AA322A600E5DBE4 /* Controller */,
+				3C82C0E82AE7BDD100575FEF /* CustomTextField.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				0A3D3B362A9E6C2000B72054 /* RecentCollectionViewCell.swift in Sources */,
 				F43422222A9C29930025C556 /* SceneDelegate.swift in Sources */,
 				F4D7B07A2AAC830900028005 /* Model.swift in Sources */,
+				3C82C0E92AE7BDD100575FEF /* CustomTextField.swift in Sources */,
 				0A726C332AA323FB00F08A3D /* RecipeManager.swift in Sources */,
 				F43422472A9C2AAB0025C556 /* DetailsViewController.swift in Sources */,
 				F4D7B0882AAD89EE00028005 /* NameRecipeCell.swift in Sources */,
