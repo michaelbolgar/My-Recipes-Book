@@ -60,7 +60,6 @@
 		F45B879B2AA322B900E5DBE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */; };
 		F4BF74D72AE2A651003EBDDF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */; };
 		F4BF74D92AE2A686003EBDDF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D82AE2A686003EBDDF /* LoginView.swift */; };
-		F4BF74DB2AE2B5EE003EBDDF /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */; };
 		F4BF74E12AE468A8003EBDDF /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */; };
 		F4BF74E62AE47A6B003EBDDF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E52AE47A6B003EBDDF /* FirebaseAnalytics */; };
 		F4BF74E82AE47A6B003EBDDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E72AE47A6B003EBDDF /* FirebaseAuth */; };
@@ -143,9 +142,6 @@
 		F45B879A2AA322B900E5DBE4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4BF74D82AE2A686003EBDDF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
-		F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
-		F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
 		F4BF74EF2AE48B78003EBDDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4D7B06E2AAC688A00028005 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
@@ -566,7 +562,6 @@
 				F43422552A9C2B700025C556 /* UIColor Extension.swift */,
 				0A3D3B452A9F7BE800B72054 /* UIFont Extension.swift */,
 				0AA95BA52AA66549009326D2 /* UIImageView Extension.swift */,
-				F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */,
 				F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */,
 				F4F7A2C72AE7F0F8002D4415 /* UITextFieldExtension.swift */,
 			);
@@ -623,7 +618,6 @@
 			isa = PBXGroup;
 			children = (
 				F4BF74D82AE2A686003EBDDF /* LoginView.swift */,
-				F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */,
 				F4F7A2CB2AE7F143002D4415 /* CreateAccountView2.swift */,
 			);
 			path = View;
@@ -633,7 +627,6 @@
 			isa = PBXGroup;
 			children = (
 				F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */,
-				F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */,
 				F4F7A2C92AE7F117002D4415 /* CreateAccountViewController.swift */,
 			);
 			path = Controller;
@@ -804,7 +797,6 @@
 				F43422532A9C2B340025C556 /* TrendingViewController.swift in Sources */,
 				F4D7B0912AAD9C7D00028005 /* AppSettingsManager.swift in Sources */,
 				F4D7B0732AAC7C0000028005 /* CooksHelper.swift in Sources */,
-				F4BF74DB2AE2B5EE003EBDDF /* CreateAccountVC.swift in Sources */,
 				F4D7B08C2AAD8A4E00028005 /* RecipeImageCell.swift in Sources */,
 				0A3D3B3F2A9E725C00B72054 /* SectionType.swift in Sources */,
 				F4BF74D92AE2A686003EBDDF /* LoginView.swift in Sources */,
