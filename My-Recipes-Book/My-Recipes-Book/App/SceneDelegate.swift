@@ -44,6 +44,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.navigationBar.shadowImage = UIImage()
             window.rootViewController = navigationController
         }
+        
+//        let loginVC = LoginViewController()
+//        let navigationController = UINavigationController(rootViewController: loginVC)
+//        navigationController.navigationBar.isHidden = true
+//        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController.navigationBar.shadowImage = UIImage()
+//        window.rootViewController = navigationController
 
 //        window.rootViewController = createLoginViewController()
 //        window.rootViewController = createAccountVC()

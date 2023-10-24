@@ -9,13 +9,20 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-final class ProfileViewController: UIViewController {
+
+
+final class ProfileViewController: UIViewController{
     
     // MARK: - Private UI Properties
     private let profileView = ProfileView()
     
     // MARK: - Private Properties
     private let rowHeight: CGFloat = 225
+    
+    // MARK: - User Info
+    private var name: String?
+    private var surname: String?
+    private var email: String?
     
     // MARK: - Public Properties
     var myRecipes: [NewRecipe] = []
@@ -28,7 +35,8 @@ final class ProfileViewController: UIViewController {
         setConstraints()
         setupNavigationBar()
         profileView.transferDelegates(dataSource: self, delegate: self)
-//        fetchUserData()
+        // вызываем метод для установки имени пользователя в label
+        fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,8 +76,19 @@ final class ProfileViewController: UIViewController {
                     if let data = document.data() {
                         let name = data["firstName"] as? String ?? ""
                         let surname = data["lastName"] as? String ?? ""
-
-                        print("Name: \(name), Surname: \(surname)")
+                        let email = data["email"] as? String ?? ""
+                        
+                        // устанавливаем имя пользователя в label
+                        self.profileView.setupUserNameLabel("\(name) \(surname)")
+                        
+                        /*
+                         передаем данные пользователя в свойства, которые потом
+                         передаем в иницианилизатор при переходе
+                         */
+                        self.name = name
+                        self.surname = surname
+                        self.email = email
+                
                     }
                 } else {
                     print("Document does not exist")
@@ -78,7 +97,7 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    // MARK: - Setup Methods
+    // MARK: - Setup UI Methods
     private func setViews() {
         view.addSubview(profileView)
     }
@@ -176,7 +195,12 @@ extension ProfileViewController: UIPopoverPresentationControllerDelegate {
 extension ProfileViewController: CustomPopoverDelegate {
     func didTapEditProfile() {
         self.dismiss(animated: true) {
-            let editProfileVC = EditProfileViewController()
+            let editProfileVC = EditProfileViewController(
+                name: self.name ?? "",
+                surname: self.surname ?? "",
+                email: self.email ?? ""
+            )
+          
             self.navigationController?.pushViewController(editProfileVC, animated: true)
         }
     }

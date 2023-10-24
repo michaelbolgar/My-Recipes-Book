@@ -56,7 +56,7 @@ final class ProfileView: UIView {
         super.init(frame: frame)
         setupView()
         setupConstraints()
-        fetchUserData()
+
         profileImageView.layer.cornerRadius = profileImageView.layer.frame.height / 2
     }
     
@@ -77,6 +77,8 @@ final class ProfileView: UIView {
     func setupUserNameLabel(_ name: String) {
         userNameLabel.text = name
     }
+    
+    
 
     // MARK: - Private Methods
     private func setupView() {
@@ -86,24 +88,6 @@ final class ProfileView: UIView {
         addSubview(recipeLabel)
         addSubview(mainTableView)
     }
-
-    func fetchUserData() {
-            let db = Firestore.firestore()
-            if let userId = Auth.auth().currentUser?.uid {
-                db.collection("users").document(userId).getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        if let data = document.data() {
-                            let name = data["firstName"] as? String ?? ""
-                            let surname = data["lastName"] as? String ?? ""
-
-                            print("Name: \(name), Surname: \(surname)")
-                        }
-                    } else {
-                        print("Document does not exist")
-                    }
-                }
-            }
-        }
     
     private func setupConstraints() {
         mainImageView.snp.makeConstraints { make in

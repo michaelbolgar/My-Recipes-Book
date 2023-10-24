@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+
 
 final class EditProfileViewController: UIViewController {
     
@@ -13,6 +16,16 @@ final class EditProfileViewController: UIViewController {
     private let editProfileView = EditProfileView()
     private let scrollView = UIScrollView()
     private let imagePicker = UIImagePickerController()
+    
+
+    init(name: String, surname: String, email: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.editProfileView.setUserInfo(with: name, surname: surname, email: email)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -23,14 +36,45 @@ final class EditProfileViewController: UIViewController {
         title = "Edit Profile"
         setupChangeImageButton()
         setupNavigationBar()
+      
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        fetchUserData()
     }
     
     // MARK: - Private Actions
     @objc private func saveButtonDidTapped() {
         showAlert()
     }
-    
+
     // MARK: - Private Methods
+//    func fetchUserData() {
+//        let db = Firestore.firestore()
+//        if let userId = Auth.auth().currentUser?.uid {
+//            db.collection("users").document(userId).getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    if let data = document.data() {
+//                        let name = data["firstName"] as? String ?? ""
+//                        let surname = data["lastName"] as? String ?? ""
+//                        let email = data["email"] as? String ?? ""
+//
+//                        // устанавливаем данные пользователя в textFields
+////                        self.editProfileView.setUserInfo(
+////                            with: name,
+////                            surname: surname,
+////                            email: email
+////                        )
+//                        self.delegate
+//                    }
+//                } else {
+//                    print("Document does not exist")
+//                }
+//            }
+//        }
+//    }
+    
     private func setupChangeImageButton() {
         // добавлена возможность выбрать источник данные, галерея или камера телефона
         editProfileView.didTapChangeButton = { [weak self] in
@@ -108,3 +152,5 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         picker.dismiss(animated: true)
     }
 }
+
+

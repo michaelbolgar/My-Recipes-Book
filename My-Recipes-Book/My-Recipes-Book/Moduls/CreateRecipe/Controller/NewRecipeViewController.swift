@@ -216,21 +216,21 @@ extension NewRecipeViewController: UITableViewDataSource {
                     let db = Firestore.firestore()
                     let userID = Auth.auth().currentUser?.uid
                     
-                    let recipeData: [String: Any] = [
-                        "image": newRecipe.image,
-                        "name" : newRecipe.name,
-                        "serves" : newRecipe.serves,
-                        "cookTime" : newRecipe.cookTime,
-                        "ingredients" : newRecipe.ingrediets.map { ["name" : $0.name, "quantity": $0.quantity] }
-                    ]
-                    
-                    db.collection("users").document(userID!).updateData(["recipes": FieldValue.arrayUnion([recipeData])]) { err in
-                        if let err = err {
-                             print("Error updating document: \(err)")
-                         } else {
-                             print("Document successfully updated")
-                         }
-                    }
+//                    let recipeData: [String: Any] = [
+//                        "image": newRecipe.image,
+//                        "name" : newRecipe.name,
+//                        "serves" : newRecipe.serves,
+//                        "cookTime" : newRecipe.cookTime,
+//                        "ingredients" : newRecipe.ingrediets.map { ["name" : $0.name, "quantity": $0.quantity] }
+//                    ]
+//                    
+//                    db.collection("users").document(userID!).updateData(["recipes": FieldValue.arrayUnion([recipeData])]) { err in
+//                        if let err = err {
+//                             print("Error updating document: \(err)")
+//                         } else {
+//                             print("Document successfully updated")
+//                         }
+//                    }
                     
 //                    if let tabBarVC = self?.tabBarController as? CustomTabBarController,
 //                       let navController = tabBarVC.viewControllers?[4] as? UINavigationController,

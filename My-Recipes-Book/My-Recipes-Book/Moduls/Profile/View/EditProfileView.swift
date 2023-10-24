@@ -52,7 +52,7 @@ final class EditProfileView: UIView {
     }()
     
     // MARK: - Labels
-    private lazy var nameLabel: UILabel = {
+    private lazy var firstNameLabel: UILabel = {
         var nameLabel = createCustomLabel(with: "First Name")
         return nameLabel
     }()
@@ -78,7 +78,7 @@ final class EditProfileView: UIView {
     }()
     
     // MARK: - TextFields
-    private lazy var nameTF: UITextField = {
+    private lazy var firstNameTF: UITextField = {
         var nameTF = CustomTextField(
             fieldType: .withoutEyeButton,
             placeholder: "Enter your first name",
@@ -139,6 +139,12 @@ final class EditProfileView: UIView {
         profileImageView.image = image
     }
     
+    func setUserInfo(with firstName: String, surname: String, email: String) {
+        firstNameTF.text = firstName
+        lastNameTF.text = surname
+        emailTF.text = email
+    }
+    
     // MARK: - Private Actions
     @objc private func changeButtonDidTapped() {
         didTapChangeButton?()
@@ -149,8 +155,8 @@ final class EditProfileView: UIView {
         addSubview(mainImageView)
         mainImageView.addSubview(profileImageView)
         mainImageView.addSubview(editButton)
-        addSubview(nameTF)
-        addSubview(nameLabel)
+        addSubview(firstNameTF)
+        addSubview(firstNameLabel)
         addSubview(lastNameLabel)
         addSubview(lastNameTF)
         addSubview(emailLabel)
@@ -183,20 +189,20 @@ final class EditProfileView: UIView {
             make.width.equalTo(25)
         }
         
-        nameLabel.snp.makeConstraints { make in
+        firstNameLabel.snp.makeConstraints { make in
             make.top.equalTo(mainImageView.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
         
-        nameTF.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+        firstNameTF.snp.makeConstraints { make in
+            make.top.equalTo(firstNameLabel.snp.bottom).offset(5)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-16)
             make.height.equalTo(50)
         }
         
         lastNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameTF.snp.bottom).offset(10)
+            make.top.equalTo(firstNameTF.snp.bottom).offset(10)
             make.left.equalToSuperview().offset(20)
         }
         
