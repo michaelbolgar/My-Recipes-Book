@@ -25,7 +25,6 @@ final class EditProfileViewController: UIViewController {
         setupNavigationBar()
     }
     
-    
     // MARK: - Private Actions
     @objc private func saveButtonDidTapped() {
         showAlert()

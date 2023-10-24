@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 final class ProfileViewController: UIViewController {
     
@@ -26,6 +28,7 @@ final class ProfileViewController: UIViewController {
         setConstraints()
         setupNavigationBar()
         profileView.transferDelegates(dataSource: self, delegate: self)
+//        fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,8 +59,26 @@ final class ProfileViewController: UIViewController {
         isMyRecipeEmpty = false
     }
     
-    // MARK: - Setup Methods
+    // MARK: - Private Methods
+    func fetchUserData() {
+        let db = Firestore.firestore()
+        if let userId = Auth.auth().currentUser?.uid {
+            db.collection("users").document(userId).getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if let data = document.data() {
+                        let name = data["firstName"] as? String ?? ""
+                        let surname = data["lastName"] as? String ?? ""
+
+                        print("Name: \(name), Surname: \(surname)")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
     
+    // MARK: - Setup Methods
     private func setViews() {
         view.addSubview(profileView)
     }

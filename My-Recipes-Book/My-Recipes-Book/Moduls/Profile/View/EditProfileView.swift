@@ -13,7 +13,6 @@ final class EditProfileView: UIView {
     var didTapChangeButton: (() -> Void)?
     
     // MARK: - Header View
-
     private lazy var mainImageView: UIView = {
         var imageView = UIView()
         return imageView
@@ -21,9 +20,10 @@ final class EditProfileView: UIView {
     
     private lazy var profileImageView: UIImageView = {
         var image = UIImageView()
+        image.backgroundColor = .red
         image.image = UIImage(named: "user")
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 42.5
+        image.layer.cornerRadius = 60
         image.clipsToBounds = true
         return image
     }()
@@ -77,30 +77,49 @@ final class EditProfileView: UIView {
         return confirmPasswordLabel
     }()
     
-    
-   // MARK: - TextFields
+    // MARK: - TextFields
     private lazy var nameTF: UITextField = {
-        var nameTF = CustomTextField(fieldType: .withoutEyeButton, placeholder: "Enter your first name", border: true)
+        var nameTF = CustomTextField(
+            fieldType: .withoutEyeButton,
+            placeholder: "Enter your first name",
+            border: true
+        )
         return nameTF
     }()
     
     private lazy var lastNameTF: UITextField = {
-        var nameTF = CustomTextField(fieldType: .withoutEyeButton, placeholder: "Enter your last name", border: true)
+        var nameTF = CustomTextField(
+            fieldType: .withoutEyeButton,
+            placeholder: "Enter your last name",
+            border: true
+        )
         return nameTF
     }()
     
     private lazy var emailTF: UITextField = {
-        var emailTF = CustomTextField(fieldType: .withoutEyeButton, placeholder: "Enter you email", border: true)
+        var emailTF = CustomTextField(
+            fieldType: .withoutEyeButton,
+            placeholder: "Enter you email",
+            border: true
+        )
         return emailTF
     }()
     
     private lazy var passwordTF: UITextField = {
-        var paswordTF = CustomTextField(fieldType: .withEyeButton, placeholder: "******", border: true)
+        var paswordTF = CustomTextField(
+            fieldType: .withEyeButton,
+            placeholder: "******",
+            border: true
+        )
         return paswordTF
     }()
     
     private lazy var confirmPasswordTF: UITextField = {
-        var confirmPasswordTF = CustomTextField(fieldType: .withEyeButton, placeholder: "******", border: true)
+        var confirmPasswordTF = CustomTextField(
+            fieldType: .withEyeButton,
+            placeholder: "******",
+            border: true
+        )
         return confirmPasswordTF
     }()
     
@@ -115,12 +134,6 @@ final class EditProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Override Methods
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        profileImageView.layer.cornerRadius = profileImageView.layer.frame.height / 2
-    }
-    
     // MARK: - Public Methods
     func setProfileImage(_ image: UIImage) {
         profileImageView.image = image
@@ -133,7 +146,6 @@ final class EditProfileView: UIView {
     
     // MARK: - Private Methods
     private func setViews() {
-
         addSubview(mainImageView)
         mainImageView.addSubview(profileImageView)
         mainImageView.addSubview(editButton)
@@ -150,8 +162,6 @@ final class EditProfileView: UIView {
     }
     
     private func setupConstraints() {
-
-        
         mainImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.centerX.equalToSuperview()
@@ -160,10 +170,10 @@ final class EditProfileView: UIView {
         }
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(0)
-            make.left.equalToSuperview().offset(0)
-            make.right.equalToSuperview().offset(0)
-            make.bottom.equalToSuperview().offset(0)
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         editButton.snp.makeConstraints { make in
@@ -232,7 +242,6 @@ final class EditProfileView: UIView {
             make.right.equalToSuperview().offset(-16)
             make.height.equalTo(50)
         }
-        
     }
 }
 

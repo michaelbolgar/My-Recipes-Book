@@ -9,7 +9,6 @@ import UIKit
 
 final class ProfileView: UIView {
     
-    
     // MARK: - Private UI Properties
     private lazy var mainImageView: UIView = {
         var imageView = UIView()
@@ -23,7 +22,6 @@ final class ProfileView: UIView {
         image.clipsToBounds = true
         return image
     }()
-    
     
     private lazy var userNameLabel: UILabel = {
         var user = UILabel()
@@ -77,7 +75,6 @@ final class ProfileView: UIView {
         userNameLabel.text = name
     }
 
-    
     // MARK: - Private Methods
     private func setupView() {
         addSubview(mainImageView)

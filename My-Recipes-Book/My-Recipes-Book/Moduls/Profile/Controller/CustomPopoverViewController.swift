@@ -35,7 +35,6 @@ final class CustomPopoverViewController: UIViewController {
             } else {
                 print("Log Out button did tapped")
             }
-            
         }
         customPopoverView.buttonTouchUp = { sender in
             sender.backgroundColor = .white
