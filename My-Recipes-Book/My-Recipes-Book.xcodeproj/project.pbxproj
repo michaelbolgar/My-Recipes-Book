@@ -61,8 +61,6 @@
 		F4BF74D72AE2A651003EBDDF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */; };
 		F4BF74D92AE2A686003EBDDF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74D82AE2A686003EBDDF /* LoginView.swift */; };
 		F4BF74DB2AE2B5EE003EBDDF /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */; };
-		F4BF74DD2AE2B6B5003EBDDF /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */; };
-		F4BF74DF2AE461D2003EBDDF /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */; };
 		F4BF74E12AE468A8003EBDDF /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */; };
 		F4BF74E62AE47A6B003EBDDF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E52AE47A6B003EBDDF /* FirebaseAnalytics */; };
 		F4BF74E82AE47A6B003EBDDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F4BF74E72AE47A6B003EBDDF /* FirebaseAuth */; };
@@ -85,6 +83,9 @@
 		F4D7B08C2AAD8A4E00028005 /* RecipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B08B2AAD8A4E00028005 /* RecipeImageCell.swift */; };
 		F4D7B08F2AAD8A7A00028005 /* NewRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */; };
 		F4D7B0912AAD9C7D00028005 /* AppSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7B0902AAD9C7D00028005 /* AppSettingsManager.swift */; };
+		F4F7A2C82AE7F0F8002D4415 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7A2C72AE7F0F8002D4415 /* UITextFieldExtension.swift */; };
+		F4F7A2CA2AE7F117002D4415 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7A2C92AE7F117002D4415 /* CreateAccountViewController.swift */; };
+		F4F7A2CC2AE7F143002D4415 /* CreateAccountView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7A2CB2AE7F143002D4415 /* CreateAccountView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,9 @@
 		F4D7B08B2AAD8A4E00028005 /* RecipeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
 		F4D7B08E2AAD8A7A00028005 /* NewRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipe.swift; sourceTree = "<group>"; };
 		F4D7B0902AAD9C7D00028005 /* AppSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsManager.swift; sourceTree = "<group>"; };
+		F4F7A2C72AE7F0F8002D4415 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		F4F7A2C92AE7F117002D4415 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		F4F7A2CB2AE7F143002D4415 /* CreateAccountView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +568,7 @@
 				0AA95BA52AA66549009326D2 /* UIImageView Extension.swift */,
 				F4BF74DC2AE2B6B5003EBDDF /* UITextField Extension.swift */,
 				F4BF74E02AE468A8003EBDDF /* UILabel Extension.swift */,
+				F4F7A2C72AE7F0F8002D4415 /* UITextFieldExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 			children = (
 				F4BF74D82AE2A686003EBDDF /* LoginView.swift */,
 				F4BF74DE2AE461D2003EBDDF /* CreateAccountView.swift */,
+				F4F7A2CB2AE7F143002D4415 /* CreateAccountView2.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 			children = (
 				F4BF74D62AE2A651003EBDDF /* LoginViewController.swift */,
 				F4BF74DA2AE2B5EE003EBDDF /* CreateAccountVC.swift */,
+				F4F7A2C92AE7F117002D4415 /* CreateAccountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -781,6 +788,7 @@
 				0A726C462AA324B500F08A3D /* ContentView.swift in Sources */,
 				F4D7B0782AAC829E00028005 /* SavedTableViewCell.swift in Sources */,
 				F43422412A9C2A570025C556 /* HomeViewController.swift in Sources */,
+				F4F7A2CA2AE7F117002D4415 /* CreateAccountViewController.swift in Sources */,
 				0A3D3B462A9F7BE800B72054 /* UIFont Extension.swift in Sources */,
 				0AA95B9F2AA664AB009326D2 /* NetworkRouting.swift in Sources */,
 				3C82C0BD2AE2A12A00575FEF /* CustomPopoverView.swift in Sources */,
@@ -822,7 +830,9 @@
 				F43422582A9C2BEA0025C556 /* Palette.swift in Sources */,
 				F4BF74E12AE468A8003EBDDF /* UILabel Extension.swift in Sources */,
 				0AA95BA42AA664E0009326D2 /* TrendingView.swift in Sources */,
+				F4F7A2CC2AE7F143002D4415 /* CreateAccountView2.swift in Sources */,
 				3C82C0BB2AE1845A00575FEF /* CustomPopoverViewController.swift in Sources */,
+				F4F7A2C82AE7F0F8002D4415 /* UITextFieldExtension.swift in Sources */,
 				3C82C0B72AE06CD900575FEF /* ProfileView.swift in Sources */,
 				3C82C0B92AE071F400575FEF /* MyRecipeCell.swift in Sources */,
 				0AA95B9D2AA664AB009326D2 /* RecipeEndPoint.swift in Sources */,
