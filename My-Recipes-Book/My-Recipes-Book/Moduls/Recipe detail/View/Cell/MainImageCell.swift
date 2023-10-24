@@ -93,6 +93,12 @@ final class MainImageCell: UITableViewCell {
         }
     }
     
+    func configureWithNewRecipe(imageData: Data?) {
+        let defaultImage = UIImage(named: "defaultImageCell")
+        mainImageView.image = UIImage(data: imageData ?? Data()) ?? defaultImage
+        activityIndicatior.stopAnimating()
+    }
+    
     // MARK: - Private Methods
     private func setupConstraints() {
         mainImageView.snp.makeConstraints { make in

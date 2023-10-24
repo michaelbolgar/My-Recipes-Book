@@ -20,6 +20,7 @@ final class ContentView: UIView {
     
     // MARK: - Public Properties
     var recipe: Results?
+    var myRecipe: NewRecipe?
     
     // MARK: - Private Properties
     private var buttonStates: [IndexPath: Bool] = [:]
@@ -82,11 +83,20 @@ extension ContentView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return recipe?.extendedIngredients?.count ?? 1
+        if myRecipe == nil {
+            if section == 2 {
+                return recipe?.extendedIngredients?.count ?? 1
+            } else {
+                return section == 0 ? 1 : recipe?.analyzedInstructions?.first?.steps.count ?? 1
+            }
         } else {
-            return section == 0 ? 1 : recipe?.analyzedInstructions?.first?.steps.count ?? 1
+            if section == 2 {
+                return myRecipe?.ingrediets.count ?? 1
+            } else {
+                return section == 0 ? 1 : recipe?.analyzedInstructions?.first?.steps.count ?? 1
+            }
         }
+     
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +110,12 @@ extension ContentView: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.configure(with: recipe?.image ?? "")
+            if myRecipe == nil {
+                cell.configure(with: recipe?.image ?? "")
+            } else {
+                cell.configureWithNewRecipe(imageData: myRecipe?.image)
+            }
+         
             cell.backgroundColor = .white
             
             return cell
@@ -112,8 +127,13 @@ extension ContentView: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            let step = recipe?.analyzedInstructions?.first?.steps[indexPath.row]
-            cell.configure(step)
+            if myRecipe == nil {
+                let step = recipe?.analyzedInstructions?.first?.steps[indexPath.row]
+                cell.configure(step)
+            } else {
+                cell.configureWithNewRecipe()
+            }
+
             cell.backgroundColor = .white
             
             return cell
@@ -125,12 +145,22 @@ extension ContentView: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            let ingredient = recipe?.extendedIngredients?[indexPath.row]
-            cell.configure(with: ingredient)
-            cell.isButtonPressed = buttonStates[indexPath] ?? false
-            cell.buttonTapHandler = { [weak self] isPressed in
-                self?.updateButtonState(for: indexPath, isPressed: isPressed)
+            if myRecipe == nil {
+                let ingredient = recipe?.extendedIngredients?[indexPath.row]
+                cell.configure(with: ingredient)
+                cell.isButtonPressed = buttonStates[indexPath] ?? false
+                cell.buttonTapHandler = { [weak self] isPressed in
+                    self?.updateButtonState(for: indexPath, isPressed: isPressed)
+                }
+            } else {
+                let igredient = myRecipe?.ingrediets[indexPath.row] ?? NewIngredient(name: "", quantity: "")
+                cell.configureWithNewRecipe(with: igredient)
+                cell.isButtonPressed = buttonStates[indexPath] ?? false
+                cell.buttonTapHandler = { [weak self] isPressed in
+                    self?.updateButtonState(for: indexPath, isPressed: isPressed)
+                }
             }
+          
             cell.backgroundColor = .white
             
             return cell
@@ -169,7 +199,12 @@ extension ContentView: UITableViewDelegate {
             label.font = UIFont(name: "Poppins-Bold", size: 20)
         default:
             let countItemsLabel = UILabel()
-            countItemsLabel.text = "\(recipe?.extendedIngredients?.count ?? 0) Items"
+            if myRecipe == nil {
+                countItemsLabel.text = "\(recipe?.extendedIngredients?.count ?? 0) Items"
+            } else {
+                countItemsLabel.text = "\(myRecipe?.ingrediets.count ?? 0) Items"
+            }
+        
             countItemsLabel.textColor = .systemGray
             countItemsLabel.translatesAutoresizingMaskIntoConstraints = false
             headerView.addSubview(countItemsLabel)

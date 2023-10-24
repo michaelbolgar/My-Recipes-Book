@@ -36,7 +36,7 @@ final class IngredientCell: UITableViewCell{
     // MARK: - Public Properties for checkBox
     var isButtonPressed: Bool = false {
         didSet {
-            checkBoxButton.tintColor = isButtonPressed ? .red : .black
+            checkBoxButton.tintColor = isButtonPressed ? .systemGreen : .black
         }
     }
     
@@ -109,6 +109,13 @@ final class IngredientCell: UITableViewCell{
                 print(error)
             }
         }
+    }
+    
+    func configureWithNewRecipe(with ingredient: NewIngredient) {
+        ingredientNameLabel.text = ingredient.name
+        weightLabel.text = ingredient.quantity
+        ingredientImageView.image = UIImage(named: "defaultIngredientImage")
+        activityIndicator.stopAnimating()
     }
     
     // MARK: - Private Actions

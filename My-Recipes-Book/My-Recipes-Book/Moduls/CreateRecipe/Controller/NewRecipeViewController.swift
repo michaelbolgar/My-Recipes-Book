@@ -13,7 +13,7 @@ final class NewRecipeViewController: UIViewController {
     private var createRecipeView = CreateRecipeView()
     
     // MARK: - Private Properties
-    private var ingredientData: [NewIngredient] = [NewIngredient(name: "", quantity: "")]
+    private var ingredientData: [NewIngredient] = []
     private var currentImage: Data?
     private var currentDishName: String?
     private var currentServes: Int?
@@ -29,6 +29,7 @@ final class NewRecipeViewController: UIViewController {
         
         // код для удаления бага дергания ячеек после удаления
         //        createRecipeView.mainTableView.rowHeight = UITableView.automaticDimension
+        
     }
     
     // MARK: - Private Methods
@@ -39,6 +40,7 @@ final class NewRecipeViewController: UIViewController {
         
         let indexPath = IndexPath(row: ingredientData.count - 1, section: 3)
         createRecipeView.insertRows(with: indexPath)
+        
         createRecipeView.scrollToRow(with: indexPath)
     }
     
@@ -199,19 +201,28 @@ extension NewRecipeViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionButton = { [weak self] in
+                print("WORK 1")
                 self?.createRecipeView.endEditing(true)
-                if let text = self?.createRecipeView.getTextFromNameRecipeCell(), text != "" {
+                if let text = self?.createRecipeView.getTextFromNameRecipeCell(), !text.isEmpty {
+                    print("WORK 2")
                     let newRecipe = NewRecipe(
                         image: self?.currentImage,
-                        name: self?.currentDishName ?? "",
+                        name: self?.createRecipeView.getTextFromNameRecipeCell() ?? "",
                         serves: self?.currentServes ?? 0,
                         cookTime: self?.currentCookTime ?? "",
                         ingrediets: self?.extractIngredients() ?? [NewIngredient(name: "", quantity: "")]
                     )
                     
-                    self?.showAlert()
-                    print(newRecipe)
-                    self?.resetScreen()
+                    if let tabBarVC = self?.tabBarController as? CustomTabBarController,
+                       let navController = tabBarVC.viewControllers?[4] as? UINavigationController,
+                       let profileVC = navController.topViewController as? ProfileViewController {
+                       print(tabBarVC)
+                        print(navController)
+                        print(profileVC)
+                        profileVC.addNewRecipe(newRecipe)
+                        self?.showAlert()
+                        self?.resetScreen()
+                    }
                 }
             }
             return cell
