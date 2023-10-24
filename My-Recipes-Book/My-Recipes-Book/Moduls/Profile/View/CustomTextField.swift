@@ -26,7 +26,7 @@ class CustomTextField: UITextField {
         
         self.placeholder = placeholder
         self.backgroundColor = UIColor.systemGray6
-//        self.layer.cornerRadius = 5
+        self.layer.cornerRadius = 10
         self.returnKeyType = .done
         self.autocorrectionType = .no
         self.autocapitalizationType = .none

@@ -12,8 +12,8 @@ final class EditProfileView: UIView {
     // MARK: - Closurse
     var didTapChangeButton: (() -> Void)?
     
-    // MARK: - Private UI Properties
-    // Header View
+    // MARK: - Header View
+
     private lazy var mainImageView: UIView = {
         var imageView = UIView()
         return imageView
@@ -50,7 +50,8 @@ final class EditProfileView: UIView {
         )
         return edit
     }()
-    // Labels
+    
+    // MARK: - Labels
     private lazy var nameLabel: UILabel = {
         var nameLabel = createCustomLabel(with: "First Name")
         return nameLabel
@@ -66,7 +67,18 @@ final class EditProfileView: UIView {
         return emailLabel
     }()
     
-    // TextFeilds
+    private lazy var passwordLabel: UILabel = {
+        var passwordLabel = createCustomLabel(with: "Password")
+        return passwordLabel
+    }()
+    
+    private lazy var confirmPasswordLabel: UILabel = {
+        var confirmPasswordLabel = createCustomLabel(with: "Confirm Password")
+        return confirmPasswordLabel
+    }()
+    
+    
+   // MARK: - TextFields
     private lazy var nameTF: UITextField = {
         var nameTF = CustomTextField(fieldType: .withoutEyeButton, placeholder: "Enter your first name", border: true)
         return nameTF
@@ -80,6 +92,16 @@ final class EditProfileView: UIView {
     private lazy var emailTF: UITextField = {
         var emailTF = CustomTextField(fieldType: .withoutEyeButton, placeholder: "Enter you email", border: true)
         return emailTF
+    }()
+    
+    private lazy var passwordTF: UITextField = {
+        var paswordTF = CustomTextField(fieldType: .withEyeButton, placeholder: "******", border: true)
+        return paswordTF
+    }()
+    
+    private lazy var confirmPasswordTF: UITextField = {
+        var confirmPasswordTF = CustomTextField(fieldType: .withEyeButton, placeholder: "******", border: true)
+        return confirmPasswordTF
     }()
     
     // MARK: - Init
@@ -111,6 +133,7 @@ final class EditProfileView: UIView {
     
     // MARK: - Private Methods
     private func setViews() {
+
         addSubview(mainImageView)
         mainImageView.addSubview(profileImageView)
         mainImageView.addSubview(editButton)
@@ -120,9 +143,14 @@ final class EditProfileView: UIView {
         addSubview(lastNameTF)
         addSubview(emailLabel)
         addSubview(emailTF)
+        addSubview(passwordLabel)
+        addSubview(passwordTF)
+        addSubview(confirmPasswordLabel)
+        addSubview(confirmPasswordTF)
     }
     
     private func setupConstraints() {
+
         
         mainImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -146,7 +174,7 @@ final class EditProfileView: UIView {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainImageView.snp.bottom).offset(40)
+            make.top.equalTo(mainImageView.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
         }
         
@@ -174,8 +202,32 @@ final class EditProfileView: UIView {
             make.left.equalToSuperview().offset(20)
         }
         
-        lastNameTF.snp.makeConstraints { make in
-            make.top.equalTo(emailTF.snp.bottom).offset(5)
+        emailTF.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(5)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(50)
+        }
+        
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTF.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(20)
+        }
+        
+        passwordTF.snp.makeConstraints { make in
+            make.top.equalTo(passwordLabel.snp.bottom).offset(5)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(50)
+        }
+        
+        confirmPasswordLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTF.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(20)
+        }
+        
+        confirmPasswordTF.snp.makeConstraints { make in
+            make.top.equalTo(confirmPasswordLabel.snp.bottom).offset(5)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-16)
             make.height.equalTo(50)

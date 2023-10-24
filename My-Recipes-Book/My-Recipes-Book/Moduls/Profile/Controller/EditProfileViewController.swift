@@ -11,8 +11,9 @@ final class EditProfileViewController: UIViewController {
     
     // MARK: - Private UI Properties
     private let editProfileView = EditProfileView()
+    private let scrollView = UIScrollView()
     private let imagePicker = UIImagePickerController()
-
+    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,13 @@ final class EditProfileViewController: UIViewController {
         view.backgroundColor = .white
         title = "Edit Profile"
         setupChangeImageButton()
+        setupNavigationBar()
+    }
+    
+    
+    // MARK: - Private Actions
+    @objc private func saveButtonDidTapped() {
+        showAlert()
     }
     
     // MARK: - Private Methods
@@ -32,7 +40,7 @@ final class EditProfileViewController: UIViewController {
                 self?.imagePicker.sourceType = .camera
                 self?.imagePicker.delegate = self
                 self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
-           
+                
             })
             alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { _ in
                 self?.imagePicker.sourceType = .photoLibrary
@@ -45,16 +53,46 @@ final class EditProfileViewController: UIViewController {
     }
     
     private func setViews() {
-        view.addSubview(editProfileView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(editProfileView)
     }
     
     private func setupConstraints() {
-        editProfileView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        editProfileView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView)
+            make.bottom.equalTo(scrollView)
+            make.left.right.equalTo(view)
+            make.width.equalTo(view)
+            make.height.equalTo(700)  // явно заданная высота
+        }
+    }
+    
+    private func setupNavigationBar() {
+        let saveBarButton = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveButtonDidTapped)
+        )
+        
+        navigationController?.navigationBar.tintColor = Palette.redPrimary50
+        navigationItem.rightBarButtonItem = saveBarButton
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "You changes were successfully saved",
+            message: "",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
 }
 

@@ -336,6 +336,7 @@
 		3C82C0B42AE06CB900575FEF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3C82C0E82AE7BDD100575FEF /* CustomTextField.swift */,
 				3C82C0B52AE06CC200575FEF /* Cell */,
 				3C82C0B62AE06CD900575FEF /* ProfileView.swift */,
 				3C82C0BC2AE2A12A00575FEF /* CustomPopoverView.swift */,
@@ -554,7 +555,6 @@
 			children = (
 				3C82C0B42AE06CB900575FEF /* View */,
 				F45B87992AA322A600E5DBE4 /* Controller */,
-				3C82C0E82AE7BDD100575FEF /* CustomTextField.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

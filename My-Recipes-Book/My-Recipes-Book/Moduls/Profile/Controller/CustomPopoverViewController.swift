@@ -32,6 +32,8 @@ final class CustomPopoverViewController: UIViewController {
             sender.backgroundColor = .systemGray4
             if sender.tag == 0 {
                 self?.delegate?.didTapEditProfile()
+            } else {
+                print("Log Out button did tapped")
             }
             
         }

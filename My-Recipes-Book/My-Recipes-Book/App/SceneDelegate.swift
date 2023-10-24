@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if isOnboardingCompleted {
             let mainVC = CustomTabBarController()
-            let editVC = UINavigationController(rootViewController: EditProfileViewController()) 
-            window.rootViewController = editVC
+            window.rootViewController = mainVC
         } else {
             let onboardingVC = OnboardingViewController()
             window.rootViewController = onboardingVC

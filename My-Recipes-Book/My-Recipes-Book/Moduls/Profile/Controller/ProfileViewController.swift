@@ -11,7 +11,6 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Private UI Properties
     private let profileView = ProfileView()
-    private let imagePicker = UIImagePickerController()
     
     // MARK: - Private Properties
     private let rowHeight: CGFloat = 225
@@ -27,7 +26,6 @@ final class ProfileViewController: UIViewController {
         setConstraints()
         setupNavigationBar()
         profileView.transferDelegates(dataSource: self, delegate: self)
-        setupChangeImageButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,25 +57,6 @@ final class ProfileViewController: UIViewController {
     }
     
     // MARK: - Setup Methods
-    // This method is called when an image is selected
-    private func setupChangeImageButton() {
-        // добавлена возможность выбрать источник данные, галерея или камера телефона
-        profileView.didTapChangeButton = { [weak self] in
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Camera", style: .default) { _ in
-                self?.imagePicker.sourceType = .camera
-                self?.imagePicker.delegate = self
-                self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
-            })
-            alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { _ in
-                self?.imagePicker.sourceType = .photoLibrary
-                self?.imagePicker.delegate = self
-                self?.present(self?.imagePicker ?? UIImagePickerController(), animated: true)
-            })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self?.present(alert, animated: true)
-        }
-    }
     
     private func setViews() {
         view.addSubview(profileView)
@@ -162,20 +141,6 @@ extension ProfileViewController: UITableViewDelegate {
             present(createVC, animated: true)
             //            self.tabBarController?.selectedIndex = 2
         }
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            profileView.setProfileImage(selectedImage)
-        }
-        picker.dismiss(animated: true)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
     }
 }
 
