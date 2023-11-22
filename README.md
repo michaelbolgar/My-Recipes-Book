@@ -1,6 +1,6 @@
-# 🍳 My-Recipes-Book ![version](https://img.shields.io/badge/v1.0-release-green?link=release)
+# 🍳 My-Recipes-Book (in progress of development)
 
-## Challenge3 [(Swift Marathon 8.0)](https://t.me/swiftmarathon) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
+## Challenge3 [(Swift Marathon 8.0)](https://boosty.to/swiftmarathon) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
 
 ---
 
@@ -10,6 +10,7 @@
 * AutoLayout programmaticaly + Snapkit
 * UICollectionViewCompositionalLayout
 * UserDefaults
+* Firebase
 * iOS 15+
 
 ---
@@ -30,11 +31,8 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/Favorites.imageset/Favorites.png" width="140"/>  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/CreateRecipe.imageset/CreateRecipe.png" width="140"/>  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/NotificationScreen.imageset/NotificationScreen.png" width="140"/>
+  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/Favorites.imageset/Favorites.png" width="140"/>  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/CreateRecipe.imageset/CreateRecipe.png" width="140"/>
 </p>
-
-<p align="center">
-  <img src="https://github.com/DmitryLorents/My-Recipes-Book/blob/DimaL/ReadmeFix/My-Recipes-Book/My-Recipes-Book/SupportingFiles/Assets.xcassets/ReadmeImages/ProfileScreen.imageset/ProfileScreen.png" width="140"/>
 
 ## Video demonstration of the application
 
